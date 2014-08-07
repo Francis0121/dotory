@@ -27,7 +27,7 @@
 		
 	<servlet-mapping>
 		<servlet-name>dotori</servlet-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
 	<!-- Spring Security Filter -->

@@ -1,6 +1,7 @@
 package net.epril.dotori.oauth;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +36,10 @@ public class LogoutImpl implements LogoutSuccessHandler {
 	}
 
 	public void removeaccess(HttpServletRequest req) {
-
+		Enumeration<?> e = req.getHeaderNames();
+		while(e.hasMoreElements()){
+			System.out.println(e.nextElement().toString());
+		}
 		String tokens = req.getHeader("Authorization");
 		System.out.println(tokens);
 		String value = tokens.substring(tokens.indexOf(" ")).trim();
