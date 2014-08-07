@@ -27,8 +27,23 @@
 		
 	<servlet-mapping>
 		<servlet-name>dotori</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
+	
+	<!-- Spring Security Filter -->
+	<filter>  
+	    <filter-name>springSecurityFilterChain</filter-name>  
+	    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>  
+	    <init-param>  
+	        <param-name>contextAttribute</param-name>  
+	        <param-value>org.springframework.web.servlet.FrameworkServlet.CONTEXT.dotori</param-value>  
+	    </init-param>  
+	</filter>  
+	
+	<filter-mapping>  
+	    <filter-name>springSecurityFilterChain</filter-name>  
+	    <url-pattern>/*</url-pattern>  
+	</filter-mapping>  
 	
 	<!-- HttpMethod Filter Setting POST, GET, DELETE, PUT method adjust-->
 	<filter>
@@ -59,7 +74,7 @@
 	</filter-mapping>
 	
 	<!-- errorPage -->
-	<error-page>
+	<!--error-page>
 		<error-code>400</error-code>
 		<location>/WEB-INF/views/error/400.jsp</location>
 	</error-page>
@@ -72,6 +87,6 @@
 	<error-page>
 		<error-code>500</error-code>
 		<location>/WEB-INF/views/error/500.jsp</location>
-	</error-page>
+	</error-page-->
 
 </web-app>

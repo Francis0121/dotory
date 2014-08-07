@@ -15,5 +15,7 @@
 	<context:property-placeholder location="classpath:/net/epril/dotori/config/properties/datasource.properties"/>
 			
 	<import resource="datasource-context.xml"/>
+	
+	<import resource="security-context.xml"/>
 		
 </beans>
