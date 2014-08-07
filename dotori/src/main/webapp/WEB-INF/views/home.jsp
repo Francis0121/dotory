@@ -1,14 +1,10 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<html>
-<head>
-	<title>Home</title>
-</head>
-<body>
-<h1>
-	Hello world!  
-</h1>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="../layout/head.jspf"%>
 
-<P>  The time on the server is ${serverTime}. </P>
-</body>
-</html>
+<h2>Ajax Test</h2>
+
+<button type="button" id="_test_get">Get</button>
+<button type="button" id="_test_post">Post</button>
+
+
+<%@ include file="../layout/foot.jspf"%>

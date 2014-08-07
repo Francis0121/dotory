@@ -9,9 +9,14 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>1.6</java-version>
-		<org.springframework-version>3.1.1.RELEASE</org.springframework-version>
+		<org.springframework-version>3.2.10.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
+		<org.aspectj.cglib-version>2.2.2</org.aspectj.cglib-version>
+		<org.aspectj.weaver-version>1.6.2</org.aspectj.weaver-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<org.mybatis-version>1.1.1</org.mybatis-version>
+		<org.mybatis.dbcp-version>1.2.2</org.mybatis.dbcp-version>
+		<org.mybatis.mysql-version>5.1.9</org.mybatis.mysql-version>
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -32,6 +37,26 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+		
+		<!-- DataBase -->
+	    <dependency>
+	        <groupId>org.mybatis</groupId>
+	        <artifactId>mybatis-spring</artifactId>
+	        <version>${org.mybatis-version}</version>
+	    </dependency>
+	    
+	    <dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>${org.mybatis.dbcp-version}</version>
+		</dependency>
+		
+		<!-- MySQL database driver -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${org.mybatis.mysql-version}</version>
+		</dependency>
 				
 		<!-- AspectJ -->
 		<dependency>
@@ -39,6 +64,25 @@
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>	
+		
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${org.aspectj.weaver-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib-nodep</artifactId>
+			<version>${org.aspectj.cglib-version}</version>
+		</dependency>
+		
+		<!-- json -->
+		<dependency>
+		     <groupId>org.codehaus.jackson</groupId>
+		     <artifactId>jackson-mapper-asl</artifactId>
+		     <version>1.9.10</version>
+		</dependency>
 		
 		<!-- Logging -->
 		<dependency>
