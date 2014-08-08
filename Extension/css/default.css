@@ -1,0 +1,71 @@
+@CHARSET "UTF-8";
+/******************************************
+	All Base Style : Delete browser style
+*******************************************/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5,h6, p, blockquote, pre, 
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp, 
+small, strike, strong, sub, sup, tt, var, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, button{
+	margin: 0; padding: 0; border: 0; vertical-align: baseline; 
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+article, aside, details,figcaption, figure,
+footer, header, hgroup, menu, nav, section{
+	display: block;
+}
+
+ol, ul, menu{
+	list-style: none;
+}
+
+body{
+	line-height: 1; 
+}
+
+blockquote, q{
+	quotes: none;
+}
+
+blockquote:BEFORE, blockquote:AFTER,
+q:BEFORE, q:AFTER{
+	content: ''; content: none;
+}
+
+table{
+	border-collapse: collapse; 	border-spacing: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+a img {
+	border: 0;
+}
+
+input, textarea, select{
+	color: #000;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+input:FOCUS, textarea:FOCUS, select:FOCUS, button:FOCUS{
+	outline: 0;
+}
+
+pre{
+	white-space: pre-wrap; white-space: -moz-pre-wrap;  white-space: -pre-wrap;  white-space: -o-pre-wrap;  word-wrap: break-word;
+}
+
+html{
+	overflow-x: scroll;
+	overflow-y: scroll;
+}
