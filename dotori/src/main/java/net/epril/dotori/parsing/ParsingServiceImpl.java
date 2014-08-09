@@ -2,8 +2,11 @@ package net.epril.dotori.parsing;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -23,7 +26,7 @@ public class ParsingServiceImpl extends SqlSessionDaoSupport implements
 	//TODO Image Parsing, Title Parsing 처리 분리해서 하고 합쳐서하는 함수 따로 구현.
 	
 	@Override
-	public Parsing controlParsingData(Parsing parsing) throws IOException {
+	public Map<String, Object> controlParsingData(Parsing parsing) throws IOException {
 		Document fullBody =	Jsoup.connect(parsing.getUrl()).userAgent("Mozilla").get();
 		parsing.setText(fullBody.toString());
 		parsing.setTitle(fullBody.getElementsByTag("title").text());
@@ -41,7 +44,10 @@ public class ParsingServiceImpl extends SqlSessionDaoSupport implements
 		}
 		insertParsingImageUrl(images);
 		
-		return parsing;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("images", images);
+		map.put("text", StringEscapeUtils.escapeHtml4(parsing.getText()));
+		return map;
 	}
 	
 	private void insertParsingDate(Parsing parsing){

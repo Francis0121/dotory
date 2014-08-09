@@ -21,12 +21,19 @@ SECTION.dotory_full_wrap{ width: 100%; }
 SECTION.dotory_full_wrap>HEADER{ width: 100%; position: fixed; top: 0; }
 SECTION.dotory_full_wrap>HEADER>H1{ padding: 20px 20px 10px 20px; height: 30px; line-height: 30px; outline: 1px solid black;}
 SECTION.dotory_full_wrap>ARTICLE{ width: 50%; float: left; margin: 70px 0 40px 0;}
+SECTION.dotory_full_wrap>ARTICLE>HEADER{ float: left; padding: 10px 20px; }
+SECTION.dotory_full_wrap>ARTICLE>HEADER>H2{ float: left;}
 SECTION.dotory_full_wrap>FOOTER{ width: 100%; position: fixed; bottom: 0; padding: 10px; height: 20px;}
 
-SECTION.dotory_full_wrap>ARTICLE>HEADER{ float: left; font-size: 87.5%; padding: 10px 20px; }
 DIV.dotory_full_content_wrap{width : 100%; float: left;}
 DIV.dotory_full_content{ padding: 10px 20px;}
-ARTICLE.dotory_full_right{}
+
+ARTICLE.dotory_full_right>HEADER>MENU{ float:left; width: 100%;}
+ARTICLE.dotory_full_right>HEADER>MENU>LI{ float:left; width: 120px; height: 30px; line-height: 30px; padding: 5px 0; text-align: center; color: #fff; background: #000; margin: 10px 5px 0 0; font-size: 87.5%; cursor: pointer;}
+ARTICLE.dotory_full_right>HEADER>MENU>LI:HOVER{ background: #808080;}
+
+DIV.dotory_url_parsing_data_wrap{ float:left; width: 100%; }
+DIV.dotory_url_parsing_data_content{ float :left; margin: 10px 3%; width: 94%; height: 500px; overflow-y: scroll; overflow-x: hidden; outline: 1px solid #808080;}
 
 LABEL#dotory_url_label{ float: left;}
 INPUT#dotory_url_input{ width: 100%; float: left; margin: 10px 0;}

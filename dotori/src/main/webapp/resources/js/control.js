@@ -19,6 +19,8 @@ dotory.control.selectRegexList = function(){
 
 dotory.control.onParsing = function(){
 	$('#dotory_url_post').on('click', dotory.control.urlPost);
+	
+	$('.dotory_url_menu').on('click', dotory.control.menuOnOff);
 };
 
 dotory.control.urlPost = function(){
@@ -26,7 +28,33 @@ dotory.control.urlPost = function(){
 		url = contextPath + '/parsing/url',
 		json = { url : thiz.val() };
 	
-	$.postJSON(url, json, function(data){
-		alert(data);
+	$.postJSON(url, json, function(object){
+		var data = object.data;
+		if(object.code == 200){
+			var images = data.images;
+			
+			$('.dotory_url_parsing_data_wrap[data-type=html]>div').html('<pre>'+data.text+'</pre>');
+			
+			for(var i=0; i < images.length; i++){
+				if(i == 0)
+					$('.dotory_url_parsing_data_wrap[data-type=image]>div').html('<img src="'+images[i].url+'"/>');
+				else
+					$('.dotory_url_parsing_data_wrap[data-type=image]>div').append('<img src="'+images[i].url+'"/>');
+			}
+		}
 	});
 };
+
+dotory.control.menuOnOff = function(){
+	var thiz = $(this),
+		attr = thiz.attr('data-type');
+	
+	if(attr == 'html'){
+		$('.dotory_url_parsing_data_wrap[data-type=image]').hide();
+		$('.dotory_url_parsing_data_wrap[data-type=html]').show();
+	}else{
+		$('.dotory_url_parsing_data_wrap[data-type=html]').hide();
+		$('.dotory_url_parsing_data_wrap[data-type=image]').show();
+	}
+};
+

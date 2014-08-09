@@ -1,6 +1,7 @@
 package net.epril.dotori.parsing;
 
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * @author Francis
@@ -9,6 +10,6 @@ import java.io.IOException;
  */
 public interface ParsingService {
 
-	Parsing controlParsingData(Parsing parsing) throws IOException;
+	Map<String, Object> controlParsingData(Parsing parsing) throws IOException;
 
 }

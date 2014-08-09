@@ -20,10 +20,25 @@
 	<article class="dotory_full_right">
 		<header>
 			<h2>Content</h2>
+			<menu>
+				<li class="dotory_url_menu" data-type="html">
+					<span>Html Source</span>
+				</li>
+				<li class="dotory_url_menu" data-type="image">
+					<span>Image Url Data</span>
+				</li>
+			</menu>
 		</header>
-		<div class="dotory_url_parsing_data_wrap">
+		<div class="dotory_url_parsing_data_wrap" data-type="html">
 			<!-- Real Time Content -->
-			
+			<div class="dotory_url_parsing_data_content">
+				
+			</div>
+		</div>
+		<div class="dotory_url_parsing_data_wrap" data-type="image" style="display: none;">
+			<div class="dotory_url_parsing_data_content">
+				
+			</div>		
 		</div>
 	</article>
 	<footer>

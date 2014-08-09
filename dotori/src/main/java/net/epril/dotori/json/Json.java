@@ -25,6 +25,13 @@ public class Json {
 		this.log = log;
 	}
 
+	public Json(Integer code, String log, Object data) {
+		super();
+		this.code = code;
+		this.log = log;
+		this.data = data;
+	}
+
 	public Integer getCode() {
 		return code;
 	}

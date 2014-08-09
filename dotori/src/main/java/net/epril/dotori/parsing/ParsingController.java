@@ -1,17 +1,16 @@
 package net.epril.dotori.parsing;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import net.epril.dotori.json.Json;
-import net.epril.dotori.json.JsonErrorCode;
+import net.epril.dotori.json.AJC;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,14 +41,15 @@ public class ParsingController {
 	@ResponseBody
 	@RequestMapping(value = "/url", method = RequestMethod.POST)
 	public Json postJsonUrlData(@RequestBody Parsing parsing) {
+		Map<String, Object> map;
 		try {
-			parsingService.controlParsingData(parsing);
+			map = parsingService.controlParsingData(parsing);
 		} catch (IOException e) {
 			logger.error("Url Parsing Error : ", e);
-			return new Json(JsonErrorCode.IO_EXCEPTION_WARN, "");
+			return new Json(AJC.IO_EXCEPTION_WARN, "");
 		}
-
-		return new Json();
+		
+		return new Json(AJC.SUCCESS, "", map);
 	}
 
 }
