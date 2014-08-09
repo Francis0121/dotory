@@ -2,7 +2,9 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="net.epril.dotori.image.Image" alias="Image"/>
 		<typeAlias type="net.epril.dotori.regex.Regex" alias="Regex"/>
+		
+		<typeAlias type="net.epril.dotori.parsing.Image" alias="Image"/>
+		<typeAlias type="net.epril.dotori.parsing.Parsing" alias="Parsing"/>
 	</typeAliases>
 </configuration>

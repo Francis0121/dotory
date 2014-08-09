@@ -17,7 +17,7 @@ public class Parsing {
 	/**
 	 * 사용자 고유번호
 	 */
-	private String userPn;
+	private Integer userPn;
 
 	/**
 	 * 파싱 URL
@@ -36,6 +36,7 @@ public class Parsing {
 
 	public Parsing() {
 		super();
+		this.userPn = 1;
 	}
 
 	public Integer getPn() {
@@ -54,7 +55,7 @@ public class Parsing {
 		return url;
 	}
 
-	public String getUserPn() {
+	public Integer getUserPn() {
 		return userPn;
 	}
 
@@ -74,7 +75,7 @@ public class Parsing {
 		this.url = url;
 	}
 
-	public void setUserPn(String userPn) {
+	public void setUserPn(Integer userPn) {
 		this.userPn = userPn;
 	}
 

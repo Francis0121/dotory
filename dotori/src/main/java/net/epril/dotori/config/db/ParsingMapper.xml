@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="parsing">
+
+	<insert id="insertParsing" parameterType="Parsing">
+		INSERT INTO
+			parsing
+			( user_pn, url, title, text	)
+		VALUES
+			( #{userPn}, #{url}, #{title}, #{text} )
+		<selectKey keyProperty="pn" resultType="Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<insert id="insertParsingDate" parameterType="Parsing">
+		INSERT INTO
+			parsing_date
+			( parsing_pn, invite_date )
+		VALUES
+			( #{pn}, SYSDATE() )
+	</insert>
+	
+	<insert id="insertParsingImageUrl" parameterType="ArrayList">
+		INSERT INTO
+			parsing_image
+			( parsing_pn, url, width, height, color )
+		VALUES
+			<foreach collection="list" item="item" index="index" separator="," open="" close="">
+				( #{item.parsingPn}, #{item.url}, #{item.width}, #{item.height}, #{item.color} ) 
+			</foreach>
+	</insert>
+	
+</mapper>

@@ -1,10 +1,33 @@
 @CHARSET "UTF-8";
 
+BUTTON.dotory_btn{ width : 80px; height: 30px; font-size: 87.5%; color: #fff; background: #000; cursor: pointer;}
+BUTTON.dotory_btn:HOVER{ width : 80px; height: 30px; font-size: 87.5%; color: #fff; background: #808080; cursor: pointer;}
+
+INPUT.dotory_input{ width: 100px; padding: 4px; font-size: 75%; color: #000; }
+LABEL.dotory_label{ width: 100px; padding: 4px; font-size: 87.5%;}
+
+/** Regex */
 SECTION.dotory_4partition_wrap{ float: left; margin: 0 0 10px 10px;}
 ARTICLE.dotory_4partition{ width: 300px; min-height: 200px; padding: 15px; float: left; outline: 1px solid black; margin: 10px 10px 0px 0px;}
-SECTION BUTTON{ float: left; width : 80px; height: 30px; font-size: 87.5%; color: #fff; background: #000; cursor: pointer; }
-SECTION INPUT{ float: left; width: 100px; padding: 4px 6px; font-size: 75%; color: #000; margin-right: 10px;}
-SECTION SELECT{ float: left; width: 100px; padding: 4px; font-size: 75%; color: #000; margin-right: 10px;}
+SECTION.dotory_4partition_wrap BUTTON{ float: left; width : 80px; height: 30px; font-size: 87.5%; color: #fff; background: #000; cursor: pointer; }
+SECTION.dotory_4partition_wrap INPUT{ float: left; width: 100px; padding: 4px 6px; font-size: 75%; color: #000; margin-right: 10px;}
+SECTION.dotory_4partition_wrap SELECT{ float: left; width: 100px; padding: 4px; font-size: 75%; color: #000; margin-right: 10px;}
 UL.dotroy_4partition_list{ float: left; width: 100%;}
 UL.dotroy_4partition_list>LI{ float: left; width: 288px; padding: 5px; border: 1px solid #808080; margin: 2px 0;}
 UL.dotroy_4partition_list>LI:HOVER { border: 1px solid #000; background: #808080; color: #fff; cursor: pointer;}
+
+/** Parsing */
+SECTION.dotory_full_wrap{ width: 100%; }
+SECTION.dotory_full_wrap>HEADER{ width: 100%; position: fixed; top: 0; }
+SECTION.dotory_full_wrap>HEADER>H1{ padding: 20px 20px 10px 20px; height: 30px; line-height: 30px; outline: 1px solid black;}
+SECTION.dotory_full_wrap>ARTICLE{ width: 50%; float: left; margin: 70px 0 40px 0;}
+SECTION.dotory_full_wrap>FOOTER{ width: 100%; position: fixed; bottom: 0; padding: 10px; height: 20px;}
+
+SECTION.dotory_full_wrap>ARTICLE>HEADER{ float: left; font-size: 87.5%; padding: 10px 20px; }
+DIV.dotory_full_content_wrap{width : 100%; float: left;}
+DIV.dotory_full_content{ padding: 10px 20px;}
+ARTICLE.dotory_full_right{}
+
+LABEL#dotory_url_label{ float: left;}
+INPUT#dotory_url_input{ width: 100%; float: left; margin: 10px 0;}
+BUTTON#dotory_url_post{ float: left;}

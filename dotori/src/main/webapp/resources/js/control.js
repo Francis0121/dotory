@@ -17,3 +17,16 @@ dotory.control.selectRegexList = function(){
 	});
 };
 
+dotory.control.onParsing = function(){
+	$('#dotory_url_post').on('click', dotory.control.urlPost);
+};
+
+dotory.control.urlPost = function(){
+	var thiz = $('#dotory_url_input'),
+		url = contextPath + '/parsing/url',
+		json = { url : thiz.val() };
+	
+	$.postJSON(url, json, function(data){
+		alert(data);
+	});
+};
