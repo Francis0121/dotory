@@ -3,7 +3,7 @@
 <mapper namespace="regex">
 	
 	<resultMap type="Regex" id="regex_group">
-		<result column="pn" property="pn"/>
+		<result column="pn" property="groupPn"/>
 		<result column="name" property="name"/>
 	</resultMap>	
 	
@@ -32,7 +32,7 @@
 			</otherwise>	
 		</choose>
 		WHERE
-			group_pn = #{pn}
+			group_pn = #{groupPn}
 	</select>
 	
 	<insert id="insertRegexImage" parameterType="Regex">
@@ -47,7 +47,7 @@
 			</choose>
 			( group_pn, shape )
 		VALUES
-			( #{pn}, #{shape} )
+			( #{groupPn}, #{shape} )
 	</insert>
 	
 	<update id="updateRegexImage" parameterType="Regex">
@@ -66,7 +66,7 @@
 			pn = #{pn}
 	</update>
 	
-	<delete id="deleteRegexImage" parameterType="Integer">
+	<delete id="deleteRegexImage" parameterType="Regex" >
 		DELETE
 		FROM
 			<choose>

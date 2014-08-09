@@ -14,13 +14,14 @@
 <%-- favicon image style--%>
 <link rel="image_src" href="${cp }" />
 <link rel="shortcut icon" type="image/x-icon" href="${cp }"/>
-<link rel="stylesheet" type="text/css" href="${cp }">
+<link rel="stylesheet" type="text/css" href="${cp }/resources/css/default.css">
+<link rel="stylesheet" type="text/css" href="${cp }/resources/css/control.css">
 
 <script>
 var contextPath = '<c:out value="${cp}"/>';
 var realPath = '<c:out value="${rp}"/>';
-if (typeof dotori == 'undefined') {
-	dotori = {};
+if (typeof dotory == 'undefined') {
+	dotory = {};
 }
 </script>
 

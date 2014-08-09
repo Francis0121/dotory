@@ -55,7 +55,7 @@
 	
 	<filter-mapping>
 		<filter-name>httpMethodFilter</filter-name>
-		<servlet-name>winGlobal</servlet-name>
+		<servlet-name>dotori</servlet-name>
 	</filter-mapping>
 		
 	<!-- UTF-8 Encoding Filter Setting -->

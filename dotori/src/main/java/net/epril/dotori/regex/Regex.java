@@ -8,9 +8,14 @@ package net.epril.dotori.regex;
 public class Regex {
 
 	/**
-	 * 정규 표현식 그룹 고유번호
+	 * 정규 표현식 고유번호
 	 */
 	private Integer pn;
+
+	/**
+	 * 정규 표현식 그룹 고유번호
+	 */
+	private Integer groupPn;
 
 	/**
 	 * Image, Title 선택 조건
@@ -29,6 +34,18 @@ public class Regex {
 
 	public Regex() {
 		super();
+		this.groupPn = RegexUtil.REGEX_GROUP_TAG;
+		this.regexCategory = RegexUtil.REGEX_CATEGORY_IMAGE;
+	}
+
+	public Regex(Integer pn, Integer regexCategory) {
+		super();
+		this.pn = pn;
+		this.regexCategory = regexCategory;
+	}
+
+	public Integer getGroupPn() {
+		return groupPn;
 	}
 
 	public String getName() {
@@ -45,6 +62,10 @@ public class Regex {
 
 	public String getShape() {
 		return shape;
+	}
+
+	public void setGroupPn(Integer groupPn) {
+		this.groupPn = groupPn;
 	}
 
 	public void setName(String name) {
@@ -65,8 +86,8 @@ public class Regex {
 
 	@Override
 	public String toString() {
-		return "Regex [pn=" + pn + ", regexCategory=" + regexCategory
-				+ ", name=" + name + ", shape=" + shape + "]";
+		return "Regex [pn=" + pn + ", groupPn=" + groupPn + ", regexCategory="
+				+ regexCategory + ", name=" + name + ", shape=" + shape + "]";
 	}
 
 }

@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+
+SECTION.dotory_4partition_wrap{ float: left; margin: 0 0 10px 10px;}
+ARTICLE.dotory_4partition{ width: 300px; min-height: 200px; padding: 15px; float: left; outline: 1px solid black; margin: 10px 10px 0px 0px;}
+SECTION BUTTON{ float: left; width : 80px; height: 30px; font-size: 87.5%; color: #fff; background: #000; cursor: pointer; }
+SECTION INPUT{ float: left; width: 100px; padding: 4px 6px; font-size: 75%; color: #000; margin-right: 10px;}
+SECTION SELECT{ float: left; width: 100px; padding: 4px; font-size: 75%; color: #000; margin-right: 10px;}
+UL.dotroy_4partition_list{ float: left; width: 100%;}
+UL.dotroy_4partition_list>LI{ float: left; width: 288px; padding: 5px; border: 1px solid #808080; margin: 2px 0;}
+UL.dotroy_4partition_list>LI:HOVER { border: 1px solid #000; background: #808080; color: #fff; cursor: pointer;}

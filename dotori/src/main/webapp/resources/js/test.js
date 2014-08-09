@@ -1,3 +1,7 @@
+if (typeof dotori == 'undefined') {
+	dotori = {};
+}
+
 $(function(){
 	$('#_test_get').on('click', function(){
 		dotori.ajaxGet();

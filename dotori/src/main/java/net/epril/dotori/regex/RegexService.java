@@ -31,7 +31,7 @@ public interface RegexService {
 	 * @param shapePn
 	 *            정규표현식 형태 고유번호
 	 */
-	public void deleteRegexImage(Integer shapePn);
+	public void deleteRegexImage(Regex regex);
 
 	/**
 	 * @param regex

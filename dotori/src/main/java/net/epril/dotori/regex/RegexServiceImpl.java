@@ -30,8 +30,8 @@ public class RegexServiceImpl extends SqlSessionDaoSupport implements
 	}
 
 	@Override
-	public void deleteRegexImage(Integer shapePn) {
-		getSqlSession().delete("regex.deleteRegexImage", shapePn);
+	public void deleteRegexImage(Regex regex) {
+		getSqlSession().delete("regex.deleteRegexImage", regex);
 	}
 
 	@Override
