@@ -3,5 +3,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="net.epril.dotori.image.Image" alias="Image"/>
+		<typeAlias type="net.epril.dotori.regex.Regex" alias="Regex"/>
 	</typeAliases>
 </configuration>

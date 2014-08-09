@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="regex">
+	
+	<resultMap type="Regex" id="regex_group">
+		<result column="pn" property="pn"/>
+		<result column="name" property="name"/>
+	</resultMap>	
+	
+	<resultMap type="Regex" id="regex_shape">
+		<result column="pn" property="pn"/>
+		<result column="shaper" property="shape"/>
+	</resultMap>
+		
+	<select id="selectRegexGroup" resultMap="regex_group">
+		SELECT
+			pn, `name`
+		FROM
+			regex_group
+	</select>
+	
+	<select id="selectRegexImage" parameterType="Regex" resultMap="regex_shape">
+		SELECT
+			pn, shape
+		FROM
+		<choose>
+			<when test="regexCategory eq 1">	
+				regex_image
+			</when> 
+			<otherwise>
+				regex_title
+			</otherwise>	
+		</choose>
+		WHERE
+			group_pn = #{pn}
+	</select>
+	
+	<insert id="insertRegexImage" parameterType="Regex">
+		INSERT INTO
+			<choose>
+				<when test="regexCategory eq 1">	
+					regex_image
+				</when> 
+				<otherwise>
+					regex_title
+				</otherwise>	
+			</choose>
+			( group_pn, shape )
+		VALUES
+			( #{pn}, #{shape} )
+	</insert>
+	
+	<update id="updateRegexImage" parameterType="Regex">
+		UPDATE
+			<choose>
+				<when test="regexCategory eq 1">	
+					regex_image
+				</when> 
+				<otherwise>
+					regex_title
+				</otherwise>	
+			</choose>
+		SET
+			shape = #{shape}
+		WHERE
+			pn = #{pn}
+	</update>
+	
+	<delete id="deleteRegexImage" parameterType="Integer">
+		DELETE
+		FROM
+			<choose>
+				<when test="regexCategory eq 1">	
+					regex_image
+				</when> 
+				<otherwise>
+					regex_title
+				</otherwise>	
+			</choose>
+		WHERE
+			pn = #{pn}
+	</delete>
+	
+</mapper>
