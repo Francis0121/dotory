@@ -91,6 +91,13 @@
 		     <version>1.9.10</version>
 		</dependency>
 		
+		<!-- Crawler Json Parsing -->
+		<dependency>
+			<groupId>edu.uci.ics</groupId>
+			<artifactId>crawler4j</artifactId>
+			<version>3.4</version>
+		</dependency>
+		
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
