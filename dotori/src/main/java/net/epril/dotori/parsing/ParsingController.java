@@ -1,6 +1,7 @@
 package net.epril.dotori.parsing;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -40,15 +41,21 @@ public class ParsingController {
 
 	@ResponseBody
 	@RequestMapping(value = "/url", method = RequestMethod.POST)
-	public Json postJsonUrlData(@RequestBody Parsing parsing) {
+	public Json postUrlData(@RequestBody Parsing parsing) {
 		Map<String, Object> map;
 		try {
 			map = parsingService.controlParsingData(parsing);
 		} catch (IOException e) {
 			logger.error("Url Parsing Error : ", e);
 			return new Json(AJC.IO_EXCEPTION_WARN, "");
-		}
-		
+		}		
+		return new Json(AJC.SUCCESS, "", map);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/list", method = RequestMethod.POST)
+	public Json postUrlList(@RequestBody ParsingFilter parsingFilter){
+		Map<String, Object> map = parsingService.selectParsingList(parsingFilter);
 		return new Json(AJC.SUCCESS, "", map);
 	}
 

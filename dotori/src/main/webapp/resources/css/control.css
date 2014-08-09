@@ -27,6 +27,7 @@ SECTION.dotory_full_wrap>FOOTER{ width: 100%; position: fixed; bottom: 0; paddin
 
 DIV.dotory_full_content_wrap{width : 100%; float: left;}
 DIV.dotory_full_content{ padding: 10px 20px;}
+DIV.dotory_url_list{float :left; margin: 10px 3%; width: 94%; height: 440px; overflow-y: scroll; overflow-x: hidden; outline: 1px solid #808080;}
 
 ARTICLE.dotory_full_right>HEADER>MENU{ float:left; width: 100%;}
 ARTICLE.dotory_full_right>HEADER>MENU>LI{ float:left; width: 120px; height: 30px; line-height: 30px; padding: 5px 0; text-align: center; color: #fff; background: #000; margin: 10px 5px 0 0; font-size: 87.5%; cursor: pointer;}
@@ -37,4 +38,5 @@ DIV.dotory_url_parsing_data_content{ float :left; margin: 10px 3%; width: 94%; h
 
 LABEL#dotory_url_label{ float: left;}
 INPUT#dotory_url_input{ width: 100%; float: left; margin: 10px 0;}
-BUTTON#dotory_url_post{ float: left;}
+BUTTON#dotory_url_post{ float: left; margin-right: 5px;}
+BUTTON#dotory_list_post{ float: left;}

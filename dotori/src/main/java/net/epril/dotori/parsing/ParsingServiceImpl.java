@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.epril.dotori.util.Pagination;
+
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -23,39 +25,63 @@ import org.springframework.stereotype.Service;
 public class ParsingServiceImpl extends SqlSessionDaoSupport implements
 		ParsingService {
 
-	//TODO Image Parsing, Title Parsing 처리 분리해서 하고 합쳐서하는 함수 따로 구현.
-	
+	// TODO Image Parsing, Title Parsing 처리 분리해서 하고 합쳐서하는 함수 따로 구현.
+
 	@Override
-	public Map<String, Object> controlParsingData(Parsing parsing) throws IOException {
-		Document fullBody =	Jsoup.connect(parsing.getUrl()).userAgent("Mozilla").get();
+	public Map<String, Object> controlParsingData(Parsing parsing)
+			throws IOException {
+		Document fullBody = Jsoup.connect(parsing.getUrl())
+				.userAgent("Mozilla").get();
 		parsing.setText(fullBody.toString());
 		parsing.setTitle(fullBody.getElementsByTag("title").text());
-		
+
 		getSqlSession().insert("parsing.insertParsing", parsing);
 		insertParsingDate(parsing);
-		
+
 		// img Tag Extrace
 		Elements elements = fullBody.select("img");
 		List<Image> images = new ArrayList<Image>();
 		for (Object obj : elements.toArray()) {
 			Element element = (Element) obj;
 			// TODO width, height, color
-			images.add(new Image(parsing.getPn(), element.attr("src"), 100, 100, 1));
+			images.add(new Image(parsing.getPn(), element.attr("src"), 100,
+					100, 1));
 		}
 		insertParsingImageUrl(images);
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("images", images);
 		map.put("text", StringEscapeUtils.escapeHtml4(parsing.getText()));
 		return map;
 	}
-	
-	private void insertParsingDate(Parsing parsing){
+
+	private void insertParsingDate(Parsing parsing) {
 		getSqlSession().insert("parsing.insertParsingDate", parsing);
 	}
-	
-	private void insertParsingImageUrl(List<Image> images){
+
+	private void insertParsingImageUrl(List<Image> images) {
 		getSqlSession().insert("parsing.insertParsingImageUrl", images);
 	}
+
+	// TODO Parsing에 대한 검색 조건 다양화.
+	@Override
+	public Map<String, Object> selectParsingList(ParsingFilter parsingFilter) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		Pagination pagination = parsingFilter.getPagination();
+		
+		int count = selectParsingCount(parsingFilter);
+		if(count == 0){
+			map.put("parsings", new ArrayList<Parsing>());
+			return map; 
+		}
+		
+		pagination.setNumItems(count);
+		List<Parsing> parsings = getSqlSession().selectList("parsing.selectParsingList", parsingFilter);
+		map.put("parsings", parsings);
+		return map;
+	}
 	
+	private int selectParsingCount(ParsingFilter parsingFilter){
+		return getSqlSession().selectOne("parsing.selectParsingCount", parsingFilter);
+	}
 }

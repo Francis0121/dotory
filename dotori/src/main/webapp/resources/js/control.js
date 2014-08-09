@@ -20,6 +20,8 @@ dotory.control.selectRegexList = function(){
 dotory.control.onParsing = function(){
 	$('#dotory_url_post').on('click', dotory.control.urlPost);
 	
+	$('#dotory_list_post').on('click', dotory.control.listPost);
+	
 	$('.dotory_url_menu').on('click', dotory.control.menuOnOff);
 };
 
@@ -43,6 +45,22 @@ dotory.control.urlPost = function(){
 			}
 		}
 	});
+};
+
+dotory.control.listPost = function(){
+	var url = contextPath + '/parsing/list',
+		json = {};
+	
+	$.postJSON(url, json, function(object){
+		var data = object.data,
+			parsings = data.parsings;
+		if(object.code == 200){
+			for(var i=0; i<parsings.length; i++){
+				$('.dotory_url_list').append('<li>'+parsings[i].url+' '+parsings[i].title+'</li>');
+			}
+		}
+	});
+	
 };
 
 dotory.control.menuOnOff = function(){

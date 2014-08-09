@@ -12,4 +12,6 @@ public interface ParsingService {
 
 	Map<String, Object> controlParsingData(Parsing parsing) throws IOException;
 
+	Map<String, Object> selectParsingList(ParsingFilter parsingFilter);
+
 }

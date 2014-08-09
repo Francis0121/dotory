@@ -14,6 +14,10 @@
 				<label for="dotory_input" class="dotory_label" id="dotory_url_label">URL</label>
 				<input type="text" class="dotory_input" id="dotory_url_input"/>
 				<button class="dotory_btn" id="dotory_url_post">Do</button>
+				<button class="dotory_btn" id="dotory_list_post">Load</button>
+			</div>
+			<div class="dotory_url_list">
+				
 			</div>
 		</div>
 	</article>

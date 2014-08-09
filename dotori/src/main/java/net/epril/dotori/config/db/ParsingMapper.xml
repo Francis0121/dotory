@@ -2,6 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="parsing">
 
+	<resultMap type="Parsing" id="parsing_basic">
+		<result column="pn" property="pn"/>
+		<result column="user_pn" property="userPn"/>
+		<result column="url" property="url"/>
+		<result column="title" property="title"/>
+	</resultMap>
+
+	<select id="selectParsingCount" parameterType="ParsingFilter" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			parsing 
+	</select>
+
+	<select id="selectParsingList" parameterType="ParsingFilter" resultMap="parsing_basic">
+		SELECT 
+			pn, user_pn, url, title
+		FROM 
+			parsing
+		ORDER BY
+			pn desc
+		LIMIT #{pagination.itemSeqBegin}, #{pagination.numItemsPerPage}
+	</select>
+
 	<insert id="insertParsing" parameterType="Parsing">
 		INSERT INTO
 			parsing
