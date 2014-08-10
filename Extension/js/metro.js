@@ -11,3 +11,12 @@ metro.changeColor = function(){
 		$("#email").removeClass("blue").addClass("red");
 	});
 };
+/*
+$(document).ready(function (){
+    $('.hScroll').width($('.dotory_content').outerWidth());
+});
+document.documentElement.onmousewheel = function (event) {
+    $('body').scrollLeft($('body').scrollLeft() - event.wheelDelta);
+    event.preventDefault();
+};
+*/

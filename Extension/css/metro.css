@@ -25,7 +25,7 @@ DIV.dotory_content{
 FOOTER.dotory_footer{
 	padding: 10px 25px 13px 25px;
 	width:550px;
-	height:50px;
+	height:30px;
 	float:left;	
 	text-align: right;	
 }
@@ -76,7 +76,7 @@ UL.dotory_icon:nth-child(3n){
 }
 UL.dotory_icon>LI{
 	width: 160px;
-	height: 80px;
+	height: 85px;
 	float: left;
 	margin-bottom: 5px;
 }
