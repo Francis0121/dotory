@@ -1,32 +1,33 @@
 @CHARSET "UTF-8";
+HTML{ width: 600px; height: 400px; overflow: hidden;}
+BODY{ overflow: hidden;}
 
 DIV.dotory_wrap {
-	background : url("../images/background.jpg");
+	background : #000;
 	width: 600px;
 	height: 400px;
 	float: left;
+	overflow-x: scroll; overflow-y: hidden;
 }
 HEADER.dotory_header {
-	padding: 10px 50px 10px 50px;
-	width:500px;
-	height:40px;
+	padding: 10px 25px;
+	width:550px;
+	height:29px;
 	float:left;
-	outline: 1px solid black;
+	border-bottom: 1px solid #000;
 }
 DIV.dotory_content{
-	padding: 3px 0 0 50px;
+	padding:10px 25px 0 25px;
 	width:1000px;
-	height:300px;
+	height:270px;
 	float:left;
 }
 FOOTER.dotory_footer{
-	padding: 5px 50px 5px 50px;
-	width:500px;
-	height:30px;
+	padding: 10px 25px 13px 25px;
+	width:550px;
+	height:50px;
 	float:left;	
-	text-align: right;
-	overflow-x:scroll;
-	overflow-y:hidden;	
+	text-align: right;	
 }
 UL.dotory_top{
 	float:left;
@@ -35,39 +36,51 @@ UL.dotory_top>LI{
 	float:left;
 }
 UL.dotory_top>LI:nth-child(1){
-	margin : 12px 0 0 0;
-	width:350px;
+	width:400px;
 }
 UL.dotory_top>LI:nth-child(1)>H1{
-	font-size: 18px;
-	color:#e6eeee;
+	font-size: 112.5%;
+	color:#fff;
+	line-height: 29px;
 }
 UL.dotory_top>LI:nth-child(2){
-	margin : 12px 0 0 0;
-	width:100px;
+	width:115px;
+	float:left;
+}
+UL.dotory_top>LI:nth-child(2)>SPAN{
+	line-height: 29px;
+	float: left;
+	width: 100%;
+	font-size: 87.5%;
 	color:#e6eeee;
-	float:left;
 	text-align: right;
-	font-size:10px;
 }
+
 UL.dotory_top>LI:nth-child(3){
-	margin : 7px 0 0 5px;
-	width:27px;
-	height:27px;
+	margin: 3px 5px;
 	float:left;
-	background:url("../images/login-icon.jpg");
 }
+UL.dotory_top>LI:nth-child(3)>IMG{
+	width: 24px;
+	height: 24px;
+}
+
 UL.dotory_icon{
-	width:154px;
-	height:300px;
+	margin-right: 5px;
+	width: 160px;
+	height: 270px;
 	float:left;	
 }
+UL.dotory_icon:nth-child(3n){
+	margin-right: 15px;
+}
 UL.dotory_icon>LI{
-	width:150px;
-	height: 96px;
-	float:left;
-	margin: 0 4px 4px 0px;
+	width: 160px;
+	height: 80px;
+	float: left;
+	margin-bottom: 5px;
 }
 LI.fill{
-	background:#009aad;
+	background: #fff;
+	text-indent: -9999px;
 }
