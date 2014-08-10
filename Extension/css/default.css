@@ -66,6 +66,6 @@ pre{
 }
 
 html{
-	overflow-x: hidden;
+	overflow-x: scroll;
 	overflow-y: hidden;
 }
