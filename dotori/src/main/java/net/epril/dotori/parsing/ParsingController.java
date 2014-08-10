@@ -1,7 +1,6 @@
 package net.epril.dotori.parsing;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -12,6 +11,7 @@ import net.epril.dotori.json.AJC;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,7 +38,7 @@ public class ParsingController {
 	public String showParsingPage() {
 		return "parsing";
 	}
-
+	
 	@ResponseBody
 	@RequestMapping(value = "/url", method = RequestMethod.POST)
 	public Json postUrlData(@RequestBody Parsing parsing) {
@@ -53,9 +53,17 @@ public class ParsingController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/list", method = RequestMethod.POST)
-	public Json postUrlList(@RequestBody ParsingFilter parsingFilter){
+	@RequestMapping(value="/list", method = RequestMethod.GET)
+	public Json postUrlList(@ModelAttribute ParsingFilter parsingFilter){
 		Map<String, Object> map = parsingService.selectParsingList(parsingFilter);
+		map.put("parsingFilter", parsingFilter);
+		return new Json(AJC.SUCCESS, "", map);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/detail", method = RequestMethod.POST)
+	public Json postDetailInformation(@RequestBody Parsing parsing){
+		Map<String, Object> map = parsingService.selectDetailInformation(parsing);
 		return new Json(AJC.SUCCESS, "", map);
 	}
 

@@ -8,6 +8,14 @@
 		<result column="url" property="url"/>
 		<result column="title" property="title"/>
 	</resultMap>
+	
+	<resultMap type="Image" id="image_basic">
+		<result column="parsing_pn" property="parsingPn"/>
+		<result column="url" property="url"/>
+		<result column="width" property="width"/>
+		<result column="height" property="height"/>
+		<result column="color" property="color"/>
+	</resultMap>
 
 	<select id="selectParsingCount" parameterType="ParsingFilter" resultType="Integer">
 		SELECT
@@ -24,6 +32,24 @@
 		ORDER BY
 			pn desc
 		LIMIT #{pagination.itemSeqBegin}, #{pagination.numItemsPerPage}
+	</select>
+	
+	<select id="selectDetailInformation" parameterType="Integer" resultType="String">
+		SELECT
+			text
+		FROM
+			parsing
+		WHERE
+			pn = #{value}
+	</select>
+	
+	<select id="selectDetailInfoImages" parameterType="Integer" resultMap="image_basic">
+		SELECT
+			parsing_pn, url, width, height, color
+		FROM
+			parsing_image
+		WHERE
+			parsing_pn = ${value}
 	</select>
 
 	<insert id="insertParsing" parameterType="Parsing">

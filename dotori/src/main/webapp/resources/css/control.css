@@ -27,7 +27,13 @@ SECTION.dotory_full_wrap>FOOTER{ width: 100%; position: fixed; bottom: 0; paddin
 
 DIV.dotory_full_content_wrap{width : 100%; float: left;}
 DIV.dotory_full_content{ padding: 10px 20px;}
-DIV.dotory_url_list{float :left; margin: 10px 3%; width: 94%; height: 440px; overflow-y: scroll; overflow-x: hidden; outline: 1px solid #808080;}
+UL.dotory_url_list{float :left; margin: 10px 3%; width: 94%; height: 440px; overflow-y: scroll; overflow-x: hidden; outline: 1px solid #808080;}
+UL.dotory_url_list>LI{ float: left; padding: 5px 0; font-size: 81.25%; width: 100%; border-bottom: 1px solid #808080; cursor: pointer; }
+UL.dotory_url_list>LI:nth-child(2n-1){ background: #e5e5e5;}
+UL.dotory_url_list>LI:nth-child(2n){ background: #f2f2f2;}
+UL.dotory_url_list>LI:HOVER{ background: #cccccc;}
+UL.dotory_url_list>LI>A{ float: left; width: 99%; margin-left:1%; padding: 5px 0;}
+UL.dotory_url_list>LI>SPAN{ float: left; width: 97%; margin-left:3%; padding: 5px 0;}
 
 ARTICLE.dotory_full_right>HEADER>MENU{ float:left; width: 100%;}
 ARTICLE.dotory_full_right>HEADER>MENU>LI{ float:left; width: 120px; height: 30px; line-height: 30px; padding: 5px 0; text-align: center; color: #fff; background: #000; margin: 10px 5px 0 0; font-size: 87.5%; cursor: pointer;}

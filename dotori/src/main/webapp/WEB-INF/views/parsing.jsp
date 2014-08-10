@@ -16,9 +16,9 @@
 				<button class="dotory_btn" id="dotory_url_post">Do</button>
 				<button class="dotory_btn" id="dotory_list_post">Load</button>
 			</div>
-			<div class="dotory_url_list">
-				
-			</div>
+			<ul class="dotory_url_list">
+			
+			</ul>
 		</div>
 	</article>
 	<article class="dotory_full_right">
@@ -31,6 +31,12 @@
 				<li class="dotory_url_menu" data-type="image">
 					<span>Image Url Data</span>
 				</li>
+				<li class="dotory_url_menu" data-type="html2">
+					<span>Html Source 2</span>
+				</li>
+				<li class="dotory_url_menu" data-type="title">
+					<span>Title Data</span>
+				</li>
 			</menu>
 		</header>
 		<div class="dotory_url_parsing_data_wrap" data-type="html">
@@ -40,6 +46,16 @@
 			</div>
 		</div>
 		<div class="dotory_url_parsing_data_wrap" data-type="image" style="display: none;">
+			<div class="dotory_url_parsing_data_content">
+				
+			</div>		
+		</div>
+		<div class="dotory_url_parsing_data_wrap" data-type="html2" style="display: none;">
+			<div class="dotory_url_parsing_data_content">
+				
+			</div>		
+		</div>
+		<div class="dotory_url_parsing_data_wrap" data-type="title" style="display: none;">
 			<div class="dotory_url_parsing_data_content">
 				
 			</div>		

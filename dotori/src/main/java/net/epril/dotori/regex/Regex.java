@@ -44,6 +44,12 @@ public class Regex {
 		this.regexCategory = regexCategory;
 	}
 
+	public Regex(Integer pn, Integer groupPn, Integer regexCategory) {
+		super();
+		this.groupPn = groupPn;
+		this.regexCategory = regexCategory;
+	}
+
 	public Integer getGroupPn() {
 		return groupPn;
 	}

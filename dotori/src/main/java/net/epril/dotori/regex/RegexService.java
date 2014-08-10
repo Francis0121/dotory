@@ -10,6 +10,16 @@ import java.util.List;
 public interface RegexService {
 
 	/**
+	 * 정규표현식 생성해서 반환해주는 함수
+	 * 
+	 * @param regex
+	 * @return
+	 */
+	public List<String> makeImageRegexList(Regex regex);	
+
+	public List<String> makeTitleRegexList(Regex regex);
+	
+	/**
 	 * @return 정규표현식 그룹 리턴
 	 */
 	public List<Regex> selectRegexGroup();
@@ -38,5 +48,6 @@ public interface RegexService {
 	 *            pn, shape 값 전달
 	 */
 	public void updateRegexImage(Regex regex);
+
 
 }
