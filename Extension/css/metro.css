@@ -6,7 +6,6 @@ DIV.dotory_wrap {
 	height: 400px;
 	float: left;
 }
-
 HEADER.dotory_header {
 	padding: 10px 50px 10px 50px;
 	width:500px;
@@ -16,7 +15,7 @@ HEADER.dotory_header {
 }
 DIV.dotory_content{
 	padding: 3px 0 0 50px;
-	width:550px;
+	width:1000px;
 	height:300px;
 	float:left;
 }
@@ -26,8 +25,8 @@ FOOTER.dotory_footer{
 	height:30px;
 	float:left;	
 	text-align: right;
-	overflow-x: scroll;
-	overflow-y:hidden;
+	overflow-x:scroll;
+	overflow-y:hidden;	
 }
 UL.dotory_top{
 	float:left;
@@ -40,7 +39,7 @@ UL.dotory_top>LI:nth-child(1){
 	width:350px;
 }
 UL.dotory_top>LI:nth-child(1)>H1{
-	font-size: 15px;
+	font-size: 18px;
 	color:#e6eeee;
 }
 UL.dotory_top>LI:nth-child(2){
@@ -49,12 +48,7 @@ UL.dotory_top>LI:nth-child(2){
 	color:#e6eeee;
 	float:left;
 	text-align: right;
-}
-UL.dotory_top>LI:nth-child(2)>H2{
-	font-size:12px;
-}
-UL.dotory_top>LI:nth-child(2)>H3{
-	font-size:8px;
+	font-size:10px;
 }
 UL.dotory_top>LI:nth-child(3){
 	margin : 7px 0 0 5px;
