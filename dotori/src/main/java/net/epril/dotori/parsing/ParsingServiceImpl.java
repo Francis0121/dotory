@@ -137,11 +137,14 @@ public class ParsingServiceImpl extends SqlSessionDaoSupport implements
 	@Override
 	public Map<String, Object> selectDetailInformation(Parsing parsing) {
 		String html = getSqlSession().selectOne("parsing.selectDetailInformation", parsing.getPn());
+		Document document = Jsoup.parse(html);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.putAll(imageFilter(parsing, Jsoup.parse(html)));
+		map.putAll(imageFilter(parsing, document));
 		map.remove("images"); // 새로 계산된 이미지는 필요 없음
 		map.put("images", getSqlSession().selectList("parsing.selectDetailInfoImages", parsing.getPn()));
+
+		map.putAll(titleFilter(parsing, document));
 		return map;
 	}	
 }
