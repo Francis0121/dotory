@@ -2,7 +2,7 @@ jQuery(function($){
 	'use strict';
 	(function () {
 		var $frame  = $('#basic');
-		var $slidee = $frame.children('ul').eq(0);
+		var $slidee = $frame.children('div').eq(0);
 		var $wrap   = $frame.parent();
 
 		// Call Sly on frame

@@ -75,5 +75,5 @@ dotory.image.binding = function(){
 	});
 
 	// style testing sample data ~ TODO delete
-	dotory.image.testing();
+
 };
