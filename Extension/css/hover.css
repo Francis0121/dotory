@@ -1,0 +1,643 @@
+/* Sizes */
+
+.live-tile.half-tile,
+.list-tile.half-tile,
+.copy-tile.half-tile,
+.tile-strip .flip-list > li.half-tile {
+  height: 70px;
+  width: 70px;
+}
+
+.tile-group.eight-tall,
+.tile-strip.eight-tall {
+  height: 1280px;
+}
+.tile-group.nine-tall,
+.tile-strip.nine-tall {
+  height: 1440px;
+}
+.tile-group.ten-tall,
+.tile-strip.ten-tall {
+  height: 1600px;
+}
+
+/* liveTile styles */
+.tile-strip,
+.live-tile,
+.list-tile,
+.copy-tile,
+.slide {
+  float: left;
+}
+.live-tile,
+.list-tile,
+.copy-tile {
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+  z-index: 20;
+}
+.live-tile p,
+.list-tile p,
+.copy-tile p,
+.live-tile .face,
+.list-tile .face,
+.copy-tile .face {
+  display: block;
+  font-size: 1em;
+  line-height: 1.2em;
+  margin: 0;
+}
+.live-tile .face,
+.list-tile .face,
+.copy-tile .face {
+  padding: 0px;
+}
+.live-tile p,
+.list-tile p,
+.copy-tile p {
+  padding: 10px;
+}
+.live-tile.half-tile p,
+.list-tile.half-tile p,
+.copy-tile.half-tile p {
+  padding: 5px;
+}
+.live-tile .face.full,
+.list-tile .face.full,
+.copy-tile .face.full {
+  height: 100%;
+  width: 100%;
+}
+.live-tile img,
+.list-tile img,
+.copy-tile img {
+  border: none;
+}
+.live-tile .tile-title,
+.list-tile .tile-title,
+.copy-tile .tile-title {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0px;
+  font-size: 12px;
+  left: 0px;
+  text-decoration: none;
+  width: 100%;
+  z-index: 30;
+}
+.live-tile a,
+.list-tile a,
+.copy-tile a {
+  color: #fff;
+}
+.live-tile a.tile-title:hover,
+.list-tile a.tile-title:hover,
+.copy-tile a.tile-title:hover {
+  text-decoration: none;
+}
+.live-tile a:link,
+.list-tile a:link,
+.copy-tile a:link,
+.live-tile a:visited,
+.list-tile a:visited,
+.copy-tile a:visited {
+  color: #fff;
+  text-decoration: underline;
+}
+.live-tile a:hover,
+.list-tile a:hover,
+.copy-tile a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.light .copy-tile {
+  color: #000;
+}
+.light .copy-tile.accent {
+  color: #fff;
+}
+.light .copy-tile.accent a,
+.light .copy-tile.accent a:link,
+.light .copy-tile.accent a:visited,
+.light .copy-tile.accent a:hover {
+  color: #fff;
+}
+.light .copy-tile a,
+.light .copy-tile a:link,
+.light .copy-tile a:visited,
+.light .copy-tile a:hover {
+  color: #000;
+}
+.light .copy-tile .face,
+.light .copy-tile .accent {
+  color: #fff;
+}
+.light .copy-tile .face a,
+.light .copy-tile .accent a,
+.light .copy-tile .face a:link,
+.light .copy-tile .accent a:link,
+.light .copy-tile .face a:visited,
+.light .copy-tile .accent a:visited,
+.light .copy-tile .face a:hover,
+.light .copy-tile .accent a:hover {
+  color: #fff;
+}
+.copy-tile p {
+  padding: 5px 5px 0px 5px;
+  font-size: .95em;
+}
+.noselect > div,
+.noselect > .slide,
+.noselect > .slide-front,
+.noselect > .slide-back,
+.noselect > .fade-front,
+.noselect > .fade-back,
+.noselect > .flip-front,
+.noselect > .flip-back {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.live-tile > div,
+.list-tile > div,
+.live-tile > .slide,
+.carousel > .slide,
+.live-tile > .slide-front,
+.live-tile > .slide-back,
+.live-tile > .fade-front,
+.live-tile > .fade-back,
+.live-tile > .flip-front,
+.live-tile > .flip-back {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  top: 0px;
+  left: 0px;
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  z-index: 20;
+}
+.list-tile > div {
+  position: relative;
+  background-color: transparent;
+}
+.live-tile .align-mid {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  max-height: 100%;
+  top: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.live-tile .align-mid-x {
+  display: inline-block;
+  left: 50%;
+  max-width: 100%;
+  position: absolute;
+  -moz-transform: translate(-50%, 0px);
+  -ms-transform: translate(-50%, 0px);
+  -o-transform: translate(-50%, 0px);
+  -webkit-transform: translate(-50%, 0px);
+  transform: translate(-50%, 0px);
+}
+.live-tile .align-mid-y {
+  display: inline-block;
+  max-height: 100%;
+  position: absolute;
+  top: 50%;
+  -moz-transform: translate(0px, -50%);
+  -ms-transform: translate(0px, -50%);
+  -o-transform: translate(0px, -50%);
+  -webkit-transform: translate(0px, -50%);
+  transform: translate(0px, -50%);
+}
+img.full,
+a.full,
+.live-tile .full,
+.list-tile .full {
+  display: block;
+  margin: 0px;
+  height: 100%;
+  text-decoration: none;
+  width: 100%;
+}
+img.full-w,
+a.full-w,
+.live-tile .full-w,
+.list-tile .full-w {
+  display: block;
+  margin: 0px;
+  text-decoration: none;
+  width: 100%;
+}
+img.full-h,
+a.full-h,
+.live-tile .full-h,
+.list-tile .full-h {
+  display: block;
+  margin: 0px;
+  height: 100%;
+}
+.live-tile > .back,
+.live-tile > .slide-back,
+.live-tile > .fade-back,
+.live-tile > .flip-back,
+.flip-list .flip-back {
+  position: absolute;
+  z-index: 10;
+}
+/*  ========== flip-list Styles ==========
+	.flip-list
+	---li
+	------div.flip-front
+	------div.flip-back
+*/
+.flip-list {
+  padding: 0px;
+  margin: 0px;
+}
+.list-tile .flip-list {
+  height: 100%;
+  width: 100%;
+}
+.flip-list > li > a {
+  border: none;
+  outline: none;
+  text-decoration: none;
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+  width: 100%;
+}
+.flip-list > li img {
+  border: none;
+  outline: none;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+.flip-list > li {
+  float: left;
+  list-style-type: none;
+  outline: none;
+  position: relative;
+}
+.flip-list > li > div {
+  border: none;
+  background: white;
+  height: 100%;
+  left: 0px;
+  margin: 0px;
+  overflow: hidden;
+  position: absolute;
+  padding: 0px;
+  top: 0px;
+  width: 100%;
+  z-index: 20;
+}
+.flip-list > li > div.flip-back {
+  height: 0px;
+}
+/* ------ Hardware Accelerated Tiles --------*/
+/* flip */
+.live-tile.flip.ha,
+.flip-list.ha {
+  position: relative;
+  overflow: hidden;
+}
+.live-tile.flip .ha.flip-front,
+.flip-list .ha.flip-front,
+.live-tile.flip .ha.flip-back,
+.flip-list .ha.flip-back {
+  position: absolute;
+  z-index: 20;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.flip-list > li > .ha.flip-back,
+.flip-list > li > .ha.flip-back img {
+  /* override the values set for margin and ensure the back tile is visible  */
+
+  margin: 0px !important;
+  height: 100%;
+}
+
+.bounce {
+  cursor: pointer;
+  outline: 1px solid transparent;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all .2s ease;
+  -moz-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  -moz-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  -o-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.bounce.bounce-c {
+  filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.95, M12=0, M21=0, M22=0.95);
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  -moz-transform: scale(0.95);
+  -o-transform: scale(0.95);
+  transform: scale(0.95);
+}
+.bounce.bounce-t {
+  -webkit-transform: rotateX(20deg);
+  -ms-transform: rotateX(20deg);
+  -moz-transform: rotateX(20deg);
+  -o-transform: rotateX(20deg);
+  transform: rotateX(20deg);
+  -webkit-transform-origin: 0% 100%;
+  -moz-transform-origin: 0% 100%;
+  -ms-transform-origin: 0% 100%;
+  -o-transform-origin: 0% 100%;
+  transform-origin: 0% 100%;
+}
+.bounce.bounce-b {
+  -webkit-transform: rotateX(-20deg);
+  -ms-transform: rotateX(-20deg);
+  -moz-transform: rotateX(-20deg);
+  -o-transform: rotateX(-20deg);
+  transform: rotateX(-20deg);
+  -webkit-transform-origin: 50% 0%;
+  -moz-transform-origin: 50% 0%;
+  -ms-transform-origin: 50% 0%;
+  -o-transform-origin: 50% 0%;
+  transform-origin: 50% 0%;
+}
+.bounce.bounce-r {
+  -webkit-transform: rotateY(20deg);
+  -ms-transform: rotateY(20deg);
+  -moz-transform: rotateY(20deg);
+  -o-transform: rotateY(20deg);
+  transform: rotateY(20deg);
+  -webkit-transform-origin: 0% 50%;
+  -moz-transform-origin: 0% 50%;
+  -ms-transform-origin: 0% 50%;
+  -o-transform-origin: 0% 50%;
+  transform-origin: 0% 50%;
+}
+.bounce.bounce-l {
+  -webkit-transform: rotateY(-20deg);
+  -ms-transform: rotateY(-20deg);
+  -moz-transform: rotateY(-20deg);
+  -o-transform: rotateY(-20deg);
+  transform: rotateY(-20deg);
+  -webkit-transform-origin: 100% 50%;
+  -moz-transform-origin: 100% 50%;
+  -ms-transform-origin: 100% 50%;
+  -o-transform-origin: 100% 50%;
+  transform-origin: 100% 50%;
+}
+.bounce.bounce-tl {
+  -webkit-transform: rotateX(10deg) rotateY(-10deg);
+  -ms-transform: rotateX(10deg) rotateY(-10deg);
+  -moz-transform: rotateX(10deg) rotateY(-10deg);
+  -o-transform: rotateX(10deg) rotateY(-10deg);
+  transform: rotateX(10deg) rotateY(-10deg);
+}
+.bounce.bounce-tr {
+  -webkit-transform: rotateX(10deg) rotateY(10deg);
+  -ms-transform: rotateX(10deg) rotateY(10deg);
+  -moz-transform: rotateX(10deg) rotateY(10deg);
+  -o-transform: rotateX(10deg) rotateY(10deg);
+  transform: rotateX(10deg) rotateY(10deg);
+}
+.bounce.bounce-bl {
+  -webkit-transform: rotateX(-10deg) rotateY(-10deg);
+  -ms-transform: rotateX(-10deg) rotateY(-10deg);
+  -moz-transform: rotateX(-10deg) rotateY(-10deg);
+  -o-transform: rotateX(-10deg) rotateY(-10deg);
+  transform: rotateX(-10deg) rotateY(-10deg);
+}
+.bounce.bounce-br {
+  -webkit-transform: rotateX(-10deg) rotateY(10deg);
+  -ms-transform: rotateX(-10deg) rotateY(10deg);
+  -moz-transform: rotateX(-10deg) rotateY(10deg);
+  -o-transform: rotateX(-10deg) rotateY(10deg);
+  transform: rotateX(-10deg) rotateY(10deg);
+}
+
+.metroBig,
+.metroExtraLarge,
+.face.metroBig,
+.face.metroExtraLarge,
+.live-tile .metroExtraLarge {
+  font-size: 2em;
+  line-height: 1.1em;
+}
+a.metroBig:link,
+a.metroExtraLarge:link,
+a.face.metroBig:link,
+a.face.metroExtraLarge:link,
+a.live-tile .metroExtraLarge:link {
+  text-decoration: none;
+}
+.metroLarger,
+.face.metroLarger,
+.live-tile .metroLarger {
+  font-size: 1.5em;
+  line-height: 1.1em;
+}
+a.metroLarger:link,
+a.face.metroLarger:link,
+a.live-tile .metroLarger:link {
+  text-decoration: none;
+}
+.metroLarge,
+.face.metroLarge,
+.live-tile .metroLarge {
+  font-size: 1.2em;
+  line-height: 1.1em;
+}
+a.metroLarge:link,
+a.face.metroLarge:link,
+a.live-tile .metroLarge:link {
+  text-decoration: none;
+}
+.metroSmall,
+.face.metroSmall,
+.live-tile .metroSmall {
+  font-size: .9em;
+  line-height: 1em;
+}
+a.metroSmall:link,
+a.face.metroSmall:link,
+a.live-tile .metroSmall:link {
+  text-decoration: none;
+}
+.metroSmaller,
+.face.metroSmaller,
+.live-tile .metroSmaller {
+  font-size: .8em;
+  line-height: 1em;
+}
+a.metroSmaller:link,
+a.face.metroSmaller:link,
+a.live-tile .metroSmaller:link {
+  text-decoration: none;
+}
+.metroExtraSmall,
+.face.metroExtraSmall,
+.live-tile .metroExtraSmall {
+  font-size: .7em;
+  line-height: 1em;
+}
+a.metroExtraSmall:link,
+a.face.metroExtraSmall:link,
+a.live-tile .metroExtraSmall:link {
+  text-decoration: none;
+}
+.live-tile .p-top {
+  display: block;
+  position: absolute;
+  right: 0px;
+  text-decoration: none;
+}
+.live-tile .p-right {
+  display: block;
+  position: absolute;
+  right: 0px;
+  text-decoration: none;
+}
+.live-tile .p-bottom {
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  text-decoration: none;
+}
+.live-tile .p-left {
+  display: block;
+  position: absolute;
+  left: 0px;
+  text-decoration: none;
+}
+/***** Theme Definitions *****/
+
+.green .accent,
+.green .accentBg,
+.green .accentBgHover:hover,
+.green .accentBgHover a:hover,
+.green .live-tile > div,
+.green .copy-tile > div,
+.green .live-tile > .face,
+.green .copy-tile > .face,
+.green .live-tile > .slide,
+.green .live-tile > .flip-back,
+.green .live-tile > .flip-front,
+.green .live-tile > .slide-back,
+.green .live-tile > .slide-front,
+.green .list-tile > div,
+.green .flip-list > li > div {
+  background-color: #339933;
+}
+.green .accentColor,
+.green .accentHover:hover,
+.green .accentHover a:hover,
+.green .accentLink a,
+.green .accentLink a:hover,
+.green .accentLink a:visited,
+.green a.accentLink,
+.green a.accentLink:hover,
+.green a.accentLink:visited {
+  color: #339933;
+}
+.green .accentBorder {
+  border-color: #339933;
+}
+.green .accentBorderBottom {
+  border-bottom-color: #339933;
+}
+.green .accentBorderLeft {
+  border-left-color: #339933;
+}
+.green .accentBorderRight {
+  border-right-color: #339933;
+}
+.green .accentBorderTop {
+  border-top-color: #339933;
+}
+/* Local style overrides */
+
+html body .green.accent,
+html body .green.live-tile > .accent,
+html body .green.list-tile > .accent,
+html body .green.copy-tile > .accent,
+html body .green.live-tile > div,
+html body .green.copy-tile > div,
+html body .green.list-tile > div,
+html body .green.live-tile > .face,
+html body .green.list-tile > .face,
+html body .green.copy-tile > .face,
+html body .green.live-tile > .slide,
+html body .green.live-tile > .flip-back,
+html body .green.live-tile > .flip-front,
+html body .green.live-tile > .slide-back,
+html body .green.live-tile > .slide-front,
+html body .green.flip-list > li > .accent,
+html body .green.flip-list > li > .flip-back,
+html body .green.flip-list > li > .flip-front,
+html body .green.slide.accent,
+html body .green.slide-front.accent,
+html body .green.slide-back.accent,
+html body .green.flip-front.accent,
+html body .green.flip-back.accent {
+  background-color: #339933;
+}
+html body .green.accentColor,
+html body .green.accentHover:hover,
+html body .green.accentHover a:hover,
+html body .green.accentLink a,
+html body .green.accentLink a:hover,
+html body .green.accentLink a:visited,
+a.accentLinkhtml body .green,
+a.accentLinkhtml body .green:hover,
+a.accentLinkhtml body .green:visited {
+  color: #339933;
+}
+html body .green.accentBorder {
+  border-color: #339933;
+}
+html body .green.accentBorderBottom {
+  border-bottom-color: #339933;
+}
+html body .green.accentBorderLeft {
+  border-left-color: #339933;
+}
+html body .green.accentBorderRight {
+  border-right-color: #339933;
+}
+html body .green.accentBorderTop {
+  border-top-color: #339933;
+}

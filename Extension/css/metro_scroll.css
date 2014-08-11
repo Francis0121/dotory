@@ -1,7 +1,30 @@
 @CHARSET "UTF-8";
 HTML{ width: 600px; height: 400px; overflow: hidden;}
 BODY{ overflow: hidden;}
-
+.frame {
+	margin-top: 50px;
+	height: 270px;
+	line-height: 270px;
+	overflow: hidden;
+}
+.frame ul ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-size: 50px;
+}
+.frame ul ul li {
+	float: left;
+	width: 160px;
+	height: 85px;
+	margin: 0 5px 0 0;
+	padding: 0;
+	background: #333;
+	color: #ddd;
+	text-align: center;
+	cursor: pointer;
+}
 DIV.dotory_wrap {
 	position: relative;
 	background : #000;
@@ -17,7 +40,7 @@ HEADER.dotory_header {
 	float:left;
 	border-bottom: 1px solid #000;
 }
-DIV.dotory_content{
+UL.dotory_content{
 	padding:10px 25px 0 25px;
 	width:1000px;
 	height:270px;
