@@ -8,6 +8,7 @@ dotory.metro.binding = function() {
 	dotory.metro.navBtn();
 	dotory.metro.horizontalScroll();
 	dotory.metro.mousehover();
+	dotory.metro.pageLoad();
 };
 
 dotory.metro.navBtn = function() {
@@ -70,5 +71,14 @@ dotory.metro.mousehover=function(){
 			background = thiz.children('.metro_background');
 		popup.animate({top:'0px'},300);
 		background.animate({opacity:'1.0'},300);
+	});
+};
+
+dotory.metro.pageLoad=function(){
+	var url='http://localhost:8080/visit/info',
+		json={'userPn':1};
+	
+	$.postJSON(url, json, function(object){
+		console.log(object);
 	});
 };
