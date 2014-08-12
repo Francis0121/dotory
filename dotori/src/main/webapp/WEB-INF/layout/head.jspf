@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Dotori</title>
+<title>Dotory</title>
 
 <%-- favicon image style--%>
 <link rel="image_src" href="${cp }" />

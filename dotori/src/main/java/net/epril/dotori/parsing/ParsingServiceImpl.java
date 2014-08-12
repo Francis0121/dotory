@@ -46,18 +46,38 @@ public class ParsingServiceImpl extends SqlSessionDaoSupport implements
 		Document fullBody = Jsoup.connect(parsing.getUrl())
 				.userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36")
 				.get();
-		parsing.setText(fullBody.toString());
+		parsing.setHtml(fullBody.toString());
 		parsing.setTitle(fullBody.getElementsByTag("title").text());
 
-		getSqlSession().insert("parsing.insertParsing", parsing);
-		insertParsingDate(parsing);
+		// ~ URL, Visit, Data 
+		Integer pn = getSqlSession().selectOne("parsing.existParsingUrl", parsing);
+		if(pn == null || pn.equals(0)){
+			getSqlSession().insert("parsing.insertParsingUrl", parsing);			
+		}else{
+			parsing.setUrlPn(pn);
+		}
+		insertParsingVisit(parsing);
+		insertParsingData(parsing);
 		
 		map.putAll(imageFilter(parsing, fullBody));		
 		insertParsingImageUrl((List<Image>) map.get("images"));
-
+		
 		map.putAll(titleFilter(parsing, fullBody));
 		
 		return map;
+	}
+
+	private void insertParsingVisit(Parsing parsing) {
+		getSqlSession().insert("parsing.insertParsingVisit", parsing);
+	}
+	
+	private void insertParsingData(Parsing parsing) {
+		getSqlSession().insert("parsing.insertParsingData", parsing);
+	}
+	
+	private void insertParsingImageUrl(List<Image> images) {
+		if (images.size() > 0)
+			getSqlSession().insert("parsing.insertParsingImageUrl", images);
 	}
 
 	private Map<String, Object> imageFilter(Parsing parsing, Document document){
@@ -223,16 +243,6 @@ public class ParsingServiceImpl extends SqlSessionDaoSupport implements
 		map.put("htmlTitle", StringEscapeUtils.escapeHtml4(html));
 		return map;
 	}
-	
-	
-	private void insertParsingDate(Parsing parsing) {
-		getSqlSession().insert("parsing.insertParsingDate", parsing);
-	}
-
-	private void insertParsingImageUrl(List<Image> images) {
-		if (images.size() > 0)
-			getSqlSession().insert("parsing.insertParsingImageUrl", images);
-	}
 
 	// TODO Parsing에 대한 검색 조건 다양화.
 	@Override
@@ -268,4 +278,5 @@ public class ParsingServiceImpl extends SqlSessionDaoSupport implements
 		map.putAll(titleFilter(parsing, document));
 		return map;
 	}	
+	
 }

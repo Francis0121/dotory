@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="visit">
+	
+	<resultMap type="Parsing" id="parsing_basic">
+		<result column="pn" property="pn"/>
+		<result column="user_pn" property="userPn"/>
+		<result column="url" property="url"/>
+		<result column="title" property="title"/>
+	</resultMap>
+	
+	<select id="selectVisitCount" parameterType="VisitFilter" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			(
+				SELECT
+					pv.`url_pn`, pv.`user_pn`, pu.`url`, COUNT(pv.`url_pn`) AS `count`
+				FROM
+					`parsing_visit` AS pv
+					LEFT OUTER JOIN `parsing_url`AS pu
+					ON pv.`url_pn` = pu.`pn`
+				WHERE
+					pv.`user_pn` = #{userPn}
+				GROUP BY
+					pv.`url_pn`
+			) pc
+	</select>
+	
+	<select id="selectVisits" parameterType="VisitFilter" resultMap="parsing_basic">
+		SELECT
+			pc.`url_pn`, pc.`user_pn`, pc.`url`, pc.`count`
+		FROM
+			(
+				SELECT
+					pv.`url_pn`, pv.`user_pn`, pu.`url`, COUNT(pv.`url_pn`) AS `count`
+				FROM
+					`parsing_visit` AS pv
+					LEFT OUTER JOIN `parsing_url`AS pu
+					ON pv.`url_pn` = pu.`pn`
+				WHERE
+					pv.`user_pn` = #{userPn}
+				GROUP BY
+					pv.`url_pn`
+			) pc
+		ORDER BY
+			pc.`count` DESC
+	</select>
+		
+</mapper>

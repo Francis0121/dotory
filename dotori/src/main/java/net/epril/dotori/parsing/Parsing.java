@@ -10,9 +10,14 @@ package net.epril.dotori.parsing;
 public class Parsing {
 
 	/**
-	 * 파싱 URL 고유번호
+	 * 방문 고유번호
 	 */
 	private Integer pn;
+
+	/**
+	 * url 고유번호
+	 */
+	private Integer urlPn;
 
 	/**
 	 * 사용자 고유번호
@@ -32,19 +37,19 @@ public class Parsing {
 	/**
 	 * 파싱 URL 전문
 	 */
-	private String text;
+	private String html;
 
 	public Parsing() {
 		super();
 		this.userPn = 1;
 	}
 
-	public Integer getPn() {
-		return pn;
+	public String getHtml() {
+		return html;
 	}
 
-	public String getText() {
-		return text;
+	public Integer getPn() {
+		return pn;
 	}
 
 	public String getTitle() {
@@ -55,16 +60,20 @@ public class Parsing {
 		return url;
 	}
 
+	public Integer getUrlPn() {
+		return urlPn;
+	}
+
 	public Integer getUserPn() {
 		return userPn;
 	}
 
-	public void setPn(Integer pn) {
-		this.pn = pn;
+	public void setHtml(String html) {
+		this.html = html;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setPn(Integer pn) {
+		this.pn = pn;
 	}
 
 	public void setTitle(String title) {
@@ -75,14 +84,18 @@ public class Parsing {
 		this.url = url;
 	}
 
+	public void setUrlPn(Integer urlPn) {
+		this.urlPn = urlPn;
+	}
+
 	public void setUserPn(Integer userPn) {
 		this.userPn = userPn;
 	}
 
 	@Override
 	public String toString() {
-		return "Parsing [pn=" + pn + ", userPn=" + userPn + ", url=" + url
-				+ ", title=" + title + ", text=" + text + "]";
+		return "Parsing [pn=" + pn + ", urlPn=" + urlPn + ", userPn=" + userPn
+				+ ", url=" + url + ", title=" + title + ", html=" + html + "]";
 	}
 
 }

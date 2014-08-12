@@ -2,7 +2,7 @@ package net.epril.dotori.parsing;
 
 public class Image {
 
-	private Integer parsingPn;
+	private Integer visitPn;
 
 	private String url;
 
@@ -16,10 +16,10 @@ public class Image {
 		super();
 	}
 
-	public Image(Integer parsingPn, String url, Integer width, Integer height,
+	public Image(Integer visitPn, String url, Integer width, Integer height,
 			Integer color) {
 		super();
-		this.parsingPn = parsingPn;
+		this.visitPn = visitPn;
 		this.url = url;
 		this.width = width;
 		this.height = height;
@@ -32,10 +32,6 @@ public class Image {
 
 	public Integer getHeight() {
 		return height;
-	}
-
-	public Integer getParsingPn() {
-		return parsingPn;
 	}
 
 	public String getUrl() {
@@ -54,8 +50,12 @@ public class Image {
 		this.height = height;
 	}
 
-	public void setParsingPn(Integer parsingPn) {
-		this.parsingPn = parsingPn;
+	public Integer getVisitPn() {
+		return visitPn;
+	}
+
+	public void setVisitPn(Integer visitPn) {
+		this.visitPn = visitPn;
 	}
 
 	public void setUrl(String url) {
@@ -70,16 +70,16 @@ public class Image {
 	public boolean equals(Object obj) {
 		boolean equalFlag = false;
 
-        if (obj != null && obj instanceof Image){
-            equalFlag = this.url == ((Image) obj).getUrl();
-        }
+		if (obj != null && obj instanceof Image) {
+			equalFlag = this.url == ((Image) obj).getUrl();
+		}
 
-        return equalFlag;
+		return equalFlag;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Image [parsingPn=" + parsingPn + ", url=" + url + ", width="
+		return "Image [visitPn=" + visitPn + ", url=" + url + ", width="
 				+ width + ", height=" + height + ", color=" + color + "]";
 	}
 

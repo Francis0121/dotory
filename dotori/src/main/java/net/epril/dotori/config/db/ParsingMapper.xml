@@ -10,74 +10,104 @@
 	</resultMap>
 	
 	<resultMap type="Image" id="image_basic">
-		<result column="parsing_pn" property="parsingPn"/>
+		<result column="visit_pn" property="visitPn"/>
 		<result column="url" property="url"/>
 		<result column="width" property="width"/>
 		<result column="height" property="height"/>
 		<result column="color" property="color"/>
 	</resultMap>
-
+	
+	<select id="existParsingUrl" parameterType="Parsing" resultType="Integer">
+		SELECT
+			pn
+		FROM
+			parsing_url
+		WHERE
+			url = #{url}
+	</select>	
+	
 	<select id="selectParsingCount" parameterType="ParsingFilter" resultType="Integer">
 		SELECT
 			COUNT(*)
 		FROM
-			parsing 
+			`parsing_visit` AS pv
+			LEFT OUTER JOIN `parsing_url` AS pu
+			ON pv.`url_pn` = pu.`pn`
+		WHERE
+			pv.`user_pn` = 1 
 	</select>
 
 	<select id="selectParsingList" parameterType="ParsingFilter" resultMap="parsing_basic">
-		SELECT 
-			pn, user_pn, url, title
-		FROM 
-			parsing
-		ORDER BY
-			pn desc
+		SELECT
+			pv.pn, pv.url_pn, pv.user_pn, pv.register_date
+		FROM
+			`parsing_visit` AS pv
+			LEFT OUTER JOIN `parsing_url` AS pu
+			ON pv.`url_pn` = pu.`pn`
+		WHERE
+			pv.`user_pn` = 1
 		LIMIT #{pagination.itemSeqBegin}, #{pagination.numItemsPerPage}
 	</select>
 	
 	<select id="selectDetailInformation" parameterType="Integer" resultType="String">
 		SELECT
-			text
+			html
 		FROM
-			parsing
+			`parsing_visit` AS pv
+			LEFT OUTER JOIN `parsing_data` AS pt
+			ON pv.`pn` = pt.`visit_pn`
 		WHERE
-			pn = #{value}
+			pv.`pn` = #{value}
+		AND
+			pv.`user_pn` = 1
 	</select>
 	
 	<select id="selectDetailInfoImages" parameterType="Integer" resultMap="image_basic">
 		SELECT
-			parsing_pn, url, width, height, color
+			visit_pn, url, width, height, color
 		FROM
 			parsing_image
 		WHERE
-			parsing_pn = ${value}
+			visit_pn = ${value}
 	</select>
 
-	<insert id="insertParsing" parameterType="Parsing">
+	<insert id="insertParsingUrl" parameterType="Parsing">
 		INSERT INTO
-			parsing
-			( user_pn, url, title, text	)
+			parsing_url
+			( url )
 		VALUES
-			( #{userPn}, #{url}, #{title}, #{text} )
+			( #{url} )
+		<selectKey keyProperty="urlPn" resultType="Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<insert id="insertParsingVisit" parameterType="Parsing">
+		INSERT INTO
+			parsing_visit
+			( url_pn, user_pn, register_date )
+		VALUES
+			( #{urlPn}, #{userPn}, SYSDATE() )
 		<selectKey keyProperty="pn" resultType="Integer">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
 	</insert>
 	
-	<insert id="insertParsingDate" parameterType="Parsing">
+	<insert id="insertParsingData" parameterType="Parsing">
 		INSERT INTO
-			parsing_date
-			( parsing_pn, invite_date )
+			parsing_data
+			( visit_pn, title, html )
 		VALUES
-			( #{pn}, SYSDATE() )
+			( #{pn}, #{title}, #{html} )
 	</insert>
 	
 	<insert id="insertParsingImageUrl" parameterType="ArrayList">
 		INSERT INTO
 			parsing_image
-			( parsing_pn, url, width, height, color )
+			( visit_pn, url, width, height, color )
 		VALUES
 			<foreach collection="list" item="item" index="index" separator="," open="" close="">
-				( #{item.parsingPn}, #{item.url}, #{item.width}, #{item.height}, #{item.color} ) 
+				( #{item.visitPn}, #{item.url}, #{item.width}, #{item.height}, #{item.color} ) 
 			</foreach>
 	</insert>
 	
