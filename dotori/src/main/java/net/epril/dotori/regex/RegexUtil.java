@@ -10,8 +10,8 @@ package net.epril.dotori.regex;
 public class RegexUtil {
 
 	public static final Integer REGEX_GROUP_TAG = 1;
-	public static final Integer REGEX_GROUP_CLASS = 2;
-	public static final Integer REGEX_GROUP_ID = 3;
+	public static final Integer REGEX_GROUP_DELETE = 2;
+	public static final Integer REGEX_GROUP_SELECT = 3;
 	
 	public static final Integer REGEX_CATEGORY_IMAGE = 1;
 	public static final Integer REGEX_CATEGORY_TITLE = 2;

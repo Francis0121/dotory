@@ -67,6 +67,17 @@ public class Image {
 	}
 
 	@Override
+	public boolean equals(Object obj) {
+		boolean equalFlag = false;
+
+        if (obj != null && obj instanceof Image){
+            equalFlag = this.url == ((Image) obj).getUrl();
+        }
+
+        return equalFlag;
+	}
+	
+	@Override
 	public String toString() {
 		return "Image [parsingPn=" + parsingPn + ", url=" + url + ", width="
 				+ width + ", height=" + height + ", color=" + color + "]";

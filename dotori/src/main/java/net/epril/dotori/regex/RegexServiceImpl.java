@@ -24,6 +24,10 @@ public class RegexServiceImpl extends SqlSessionDaoSupport implements
 	private static final String[] REGEXES_IMAGE_TAG = {	"\\<RPLETTER( .*)?\\>.*\\<\\/RPLETTER\\>",
 														"\\<RPLETTER( .*)?\\>[\\w\\W]*?\\<\\/RPLETTER\\>"	};
 	
+	private static final String REGEX_IMAGE_ID = ".*RPLETTER.*";
+	
+	private static final String REGEX_IMAGE_CLASS = ".*RPLETTER.*";
+	
 	private static final String[] REGEXES_TITLE_TAG = {	"\\<RPLETTER( .*)?\\>.*\\<\\/RPLETTER\\>",
 														"\\<RPLETTER( .*)?\\>[\\w\\W]*?\\<\\/RPLETTER\\>"	};
 	
@@ -43,8 +47,14 @@ public class RegexServiceImpl extends SqlSessionDaoSupport implements
 			}
 			break;
 		case 2:// ID
+			for(Regex r : regexs){
+				strRegexs.add(REGEX_IMAGE_ID.replaceAll(REPLACE_LETTER, r.getShape()));
+			}
 			break;
 		case 3:// ClASS
+			for(Regex r : regexs){
+				strRegexs.add(REGEX_IMAGE_CLASS.replaceAll(REPLACE_LETTER, r.getShape()));
+			}
 			break;
 		}
 		

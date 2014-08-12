@@ -50,4 +50,5 @@ public interface RegexService {
 	public void updateRegexImage(Regex regex);
 
 
+
 }
