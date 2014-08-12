@@ -73,6 +73,17 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<!-- CORS Filter -->
+	<filter>
+	    <filter-name>corsFilter</filter-name>
+	    <filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+	    <filter-name>corsFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 	<!-- errorPage -->
 	<!--error-page>
 		<error-code>400</error-code>
