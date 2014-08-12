@@ -102,6 +102,7 @@ dotory.metro.pageLoad=function(){
 			
 			for(var i=0;i<visits.length;i++){
 				var url=visits[i].url;
+				var title=visits[i].title;
 				if(i%3 == 0){
 					if(i!=0){
 						sub += ulBack;
@@ -114,7 +115,7 @@ dotory.metro.pageLoad=function(){
 				sub += '<li>';
 				sub += '	<div class="metro_background '+color[i%9]+'"></div>';		//color값 처리
 				sub += '		<div class="metro_popup">';
-				sub += '			<a class="metro_popup_link" href="'+url+'">Facebook</a>';
+				sub += '			<a class="metro_popup_link" href="'+url+'">'+title+'</a>';
 				sub += '		</div>';
 				sub += '	</div>';
 				sub += '</li>';
