@@ -10,9 +10,9 @@ DIV.dotory_metro>FOOTER.dotory_footer{ padding: 15px 25px 13px 25px; width:550px
 DIV.dotory_metro UL.dotory_top{ float:left; }
 DIV.dotory_metro UL.dotory_top>LI{ float:left; }
 DIV.dotory_metro UL.dotory_top>LI:nth-child(1){ width:400px; }
-DIV.dotory_metro UL.dotory_top>LI:nth-child(1)>H1{ font-size: 125%; color:#2d2d2d; line-height: 29px; font-weight: normal;}
+DIV.dotory_metro UL.dotory_top>LI:nth-child(1)>H1{ font-size: 125%; color:#272727; line-height: 29px; font-weight: normal; }
 DIV.dotory_metro UL.dotory_top>LI:nth-child(2){ width:115px; float:left; }
-DIV.dotory_metro UL.dotory_top>LI:nth-child(2)>SPAN{ line-height: 29px; float: left; width: 100%; font-size: 87.5%; color:#2d2d2d; text-align: right;}
+DIV.dotory_metro UL.dotory_top>LI:nth-child(2)>SPAN{ line-height: 29px; float: left; width: 100%; font-size: 87.5%; color:#272727; text-align: right;}
 DIV.dotory_metro UL.dotory_top>LI:nth-child(3){ margin: 3px 5px; float:left; }
 DIV.dotory_metro UL.dotory_top>LI:nth-child(3)>IMG{ width: 24px; height: 24px;}
 
@@ -26,10 +26,10 @@ DIV.metro_popup>A.metro_popup_link{ color: #fff; width: 100%; float: left; text-
 DIV.metro_background{width: 160px; height: 85px; float: left;}
 DIV.metro_color_blue{  background:url("../../images/image_on.gif");}
 DIV.metro_color_green{ background: #009e0f; }
-DIV.metro_color_orange{ background: #ff9900; }
+DIV.metro_color_orange{ background: #d99824; }
 DIV.metro_color_red{ background: #cc0000; }
-DIV.metro_color_purple{ background: #6d0042; }
-DIV.metro_color_grayBlue{ background: #b4a7d6; }
+DIV.metro_color_purple{ background: #9ca3b5; }
+DIV.metro_color_grayBlue{ background: #50a8ac; }
 DIV.metro_color_yellowOrange{ background: #ffd966; }
 DIV.metro_color_gray{ background: #999999; }
 DIV.metro_color_softGray{ background: #cccccc; }

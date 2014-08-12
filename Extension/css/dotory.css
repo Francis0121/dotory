@@ -5,7 +5,7 @@ BODY{ overflow: sco;}/* TODO overflow-hidden */
 
 DIV.dotory_fixed_wrap{ width: 600px; height: 400px; overflow: hidden; margin: 20px; outline: 1px solid #808080;}
 DIV.dotory_wrap { width: 600px; height: 400px; float: left; position: relative; top: 0; left: 0;}
-DIV.dotory_metro { background: #fafafa; overflow-x: hidden; overflow-y: hidden; }
+DIV.dotory_metro {background: #fff; overflow-x: hidden; overflow-y: hidden; }
 DIV.dotory_image { background: #1a1a1a; overflow-x: hidden; overflow-y: hidden; top: -400px;}
 DIV.dotory_history { background: #404040; overflow-x: hidden; overflow-y: hidden; top: -400px;}
 
@@ -13,7 +13,7 @@ UL.dotory_common_top{ float:left; }
 UL.dotory_common_top>LI{ float:left;}
 UL.dotory_common_top>LI:nth-child(1){ width: 50px; height:30px; float:left;}
 UL.dotory_common_top>LI:nth-child(2){ width: 480px; line-height: 30px;}
-UL.dotory_common_top>LI:nth-child(2)>H1{ color: #f7f7f5; font-size: 125%; text-indent: 10px; font-weight: normal;}
+UL.dotory_common_top>LI:nth-child(2)>H1{ color: #fdf7f9; font-size: 125%; text-indent: 10px; font-weight: normal;}
 UL.dotory_common_top>LI:nth-child(3){ width: 50px; height:30px; float:left; text-align: right;}
 
 /** BUTTON */
