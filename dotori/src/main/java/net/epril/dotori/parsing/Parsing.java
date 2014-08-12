@@ -39,9 +39,18 @@ public class Parsing {
 	 */
 	private String html;
 
+	/**
+	 * 파싱 URL Count
+	 */
+	private Integer count;
+
 	public Parsing() {
 		super();
 		this.userPn = 1;
+	}
+
+	public Integer getCount() {
+		return count;
 	}
 
 	public String getHtml() {
@@ -66,6 +75,10 @@ public class Parsing {
 
 	public Integer getUserPn() {
 		return userPn;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
 	}
 
 	public void setHtml(String html) {
@@ -95,7 +108,8 @@ public class Parsing {
 	@Override
 	public String toString() {
 		return "Parsing [pn=" + pn + ", urlPn=" + urlPn + ", userPn=" + userPn
-				+ ", url=" + url + ", title=" + title + ", html=" + html + "]";
+				+ ", url=" + url + ", title=" + title + ", html=" + html
+				+ ", count=" + count + "]";
 	}
 
 }
