@@ -3,7 +3,6 @@
 <%-- script --%>
 <script src="${cp}/resources/plugin/jquery-2.1.1.min.js"></script>
 <script src="${cp}/resources/plugin/jquery.json.js"></script>
-<script src="${cp}/resources/js/test.js"></script>
 <script src="${cp}/resources/js/dotory.js"></script>
 <script src="${cp}/resources/js/control.js"></script>
 

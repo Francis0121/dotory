@@ -42,8 +42,8 @@ public class ImageFilter implements Filter{
 		}
 		// 쓸모 없는 테그 제거
 		document = Jsoup.parse(html);
-		
-		// ~ Id, class Delete List
+       	
+        // ~ Id, class Delete List
 		Pattern pattern = Pattern.compile("[\\w:\\-]?id[\\s]*?=[\\s]*?(\"[^\"]+\"|'[^']+'|\\w+)");
 		Matcher matcher = pattern.matcher(document.toString());
 		List<String> deleteRegexs = regexService.makeImageRegexList(new Regex(0, RegexUtil.REGEX_GROUP_DELETE, RegexUtil.REGEX_CATEGORY_IMAGE));

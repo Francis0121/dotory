@@ -40,7 +40,8 @@ dotory.control.urlPost = function(){
 			$('.dotory_url_parsing_data_wrap[data-type=html]>div').html('<pre>'+data.htmlImage+'</pre>');
 			$('.dotory_url_parsing_data_wrap[data-type=html2]>div').html('<pre>'+data.htmlTitle+'</pre>');
 			$('.dotory_url_parsing_data_wrap[data-type=image]>div').html('Total Image Count : ' + images.length);
-	 
+			$('.dotory_url_parsing_data_wrap[data-type=title]>div').html(data.titleText);
+			
 			for(var i=0; i < images.length; i++){
 				$('.dotory_url_parsing_data_wrap[data-type=image]>div').append('<img src="'+images[i].url+'"/>');
 			}
@@ -67,6 +68,7 @@ dotory.control.detail = function(){
 				$('.dotory_url_parsing_data_wrap[data-type=title]>div').html(data.titleText);
 		 
 				for(var i=0; i < images.length; i++){
+					dotory.makeAbsoulteUrl(images[i].url, data.domain);
 					$('.dotory_url_parsing_data_wrap[data-type=image]>div').append('<img src="'+images[i].url+'"/>');
 				}
 			}

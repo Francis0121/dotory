@@ -14,6 +14,8 @@ import net.epril.dotori.util.Pagination;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -43,11 +45,20 @@ public class ParsingServiceImpl extends SqlSessionDaoSupport implements
 		Document fullBody = Jsoup.connect(parsing.getUrl())
 				.userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36")
 				.get();
+		// ~ src attribute change absolute url
+        Elements elems = fullBody.select("[src]");
+        for( Element elem : elems ){
+            if( !elem.attr("src").equals(elem.attr("abs:src")) ){
+                elem.attr("src", elem.attr("abs:src"));
+            }
+        }
 		parsing.setHtml(fullBody.toString());
 		parsing.setTitle(fullBody.getElementsByTag("title").text());
-
+		
+		
+        
 		// ~ URL, Visit, Data 
-		Pattern pattern = Pattern.compile("^(http|https):\\/\\/([a-z0-9-_\\.]*)[\\/\\?]");
+		Pattern pattern = Pattern.compile("^(http|https):\\/\\/([a-z0-9-_\\.]*)[\\/\\?]{0,1}");
 		Matcher matcher = pattern.matcher(parsing.getUrl());
 		if(matcher.find()){
 			String domain = matcher.group();
@@ -63,12 +74,18 @@ public class ParsingServiceImpl extends SqlSessionDaoSupport implements
 		insertParsingVisit(parsing);
 		insertParsingData(parsing);
 		
-		map.putAll(imageFilter.filtering(parsing, fullBody));		
+		map.putAll(imageFilter.filtering(parsing, fullBody));	
+		map.put("url", parsing.getUrl());
 		insertParsingImageUrl((List<Image>) map.get("images"));
 		
 		map.putAll(titleFilter.filtering(parsing, fullBody));
 		
 		return map;
+	}
+	
+	@Override
+	public String selectDomainFromVisitPn(Integer visitPn){
+		return getSqlSession().selectOne("parsing.selectUrlFromVisitPn", visitPn);
 	}
 	
 	private void insertParsingVisit(Parsing parsing) {

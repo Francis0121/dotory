@@ -15,5 +15,7 @@ public interface ParsingService {
 	Map<String, Object> selectParsingList(ParsingFilter parsingFilter);
 
 	Map<String, Object> selectDetailInformation(Parsing parsing);
+	
+	String selectDomainFromVisitPn(Integer visitPn);
 
 }

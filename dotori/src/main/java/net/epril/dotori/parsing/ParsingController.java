@@ -64,6 +64,7 @@ public class ParsingController {
 	@RequestMapping(value="/detail", method = RequestMethod.POST)
 	public Json postDetailInformation(@RequestBody Parsing parsing){
 		Map<String, Object> map = parsingService.selectDetailInformation(parsing);
+		map.put("url", parsingService.selectDomainFromVisitPn(parsing.getPn()));
 		return new Json(AJC.SUCCESS, "", map);
 	}
 
