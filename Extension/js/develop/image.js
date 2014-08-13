@@ -7,5 +7,20 @@ dotory.image.binding = function(){
 		// TODO Effecf
 		$('.dotory_image').hide();
 	});
+	
+	dotory.image.loading();
+};
 
+dotory.image.loading = function(){
+	var url = 'http://localhost:8080/image/list',
+		json = { 'userPn' : 1 };
+	
+	$.postJSON(url, json, function(object){
+		var data = object.data;
+	
+		if(object.code == 200){
+			
+		}
+	});
+	
 };
