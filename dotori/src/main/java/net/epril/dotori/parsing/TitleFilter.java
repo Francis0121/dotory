@@ -33,7 +33,8 @@ public class TitleFilter implements Filter {
 	@Override
 	public Map<String, Object> filtering(Parsing parsing, Document document) {
 		// ~ Elimination Tag
-		StringBuffer text = new StringBuffer(document.getElementsByTag("title").text()+"\n"); 
+		StringBuffer show = new StringBuffer(document.getElementsByTag("title").text()+"<br/>");
+		StringBuffer text = new StringBuffer(document.getElementsByTag("title").text()+" ");
 		String html = document.toString();
 		List<String> strRegexs = regexService.makeTitleRegexList(new Regex(0, RegexUtil.REGEX_GROUP_TAG, RegexUtil.REGEX_CATEGORY_TITLE));
 		for (String regex : strRegexs) {
@@ -101,7 +102,8 @@ public class TitleFilter implements Filter {
 		// ~ Each Tag Text Extract
 		for(Regex tag: tags){
 			Elements elements = document.getElementsByTag(tag.getShape());
-			text.append("Tag["+tag.getShape()+ "] : " +elements.text()+"<br/>");
+			show.append("Tag["+tag.getShape()+ "] : " +elements.text()+"<br/>");
+			text.append(elements.text()+" ");
 
 			logger.debug("Tag " + elements.html() +"\n\n");
 		}
@@ -127,8 +129,8 @@ public class TitleFilter implements Filter {
 		// ~ Each Id Text Textract
 		for(String id : ids){
 			Element element = document.getElementById(id);
-			text.append("Id["+id+"]"+element.text()+"<br/>");
-			
+			show.append("Id["+id+"]"+element.text()+"<br/>");
+			text.append(element.text()+ " ");
 			logger.debug("ID " + element.html() +"\n\n");
 		}
 		
@@ -156,16 +158,17 @@ public class TitleFilter implements Filter {
 			Elements elements = document.getElementsByClass(clazz);
 			if(elements.size() > 0){
 				Element element = elements.get(0);
-				text.append("Class["+clazz+"]"+element.text()+"<br/>");
-				
+				show.append("Class["+clazz+"]"+element.text()+"<br/>");
+				text.append(element.text()+ " ");
 				logger.debug("Class " + element.html() +"\n\n");
 			}			
 		}
-
+		// ~ Slice text space
+		
 		// ~ Return Data
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("htmlTitle", StringEscapeUtils.escapeHtml4(html));
-		map.put("titleText", text.toString());
+		map.put("titleText", show.toString());
 		return map;
 	}
 }
