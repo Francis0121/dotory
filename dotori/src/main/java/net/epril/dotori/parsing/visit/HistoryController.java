@@ -14,16 +14,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("visit")
-public class VisitController {
+public class HistoryController {
 
 	@Inject
-	private VisitService visitService;
+	private HistoryService historyService;
 	
 	@ResponseBody
-	@RequestMapping(value="/info", method=RequestMethod.POST)
+	@RequestMapping(value="/visit/info", method=RequestMethod.POST)
 	public Json postVisitInfo(@RequestBody VisitFilter visitFilter){
-		Map<String, Object> map = visitService.visitInformation(visitFilter);
+		Map<String, Object> map = historyService.selectVisitInformation(visitFilter);
+		return new Json(AJC.SUCCESS, "", map);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/image/list", method=RequestMethod.POST)
+	public Json postImageList(@RequestBody ImageSearchFilter imageSearchFilter){
+		Map<String, Object> map = historyService.selectImageList(imageSearchFilter);
 		return new Json(AJC.SUCCESS, "", map);
 	}
 }

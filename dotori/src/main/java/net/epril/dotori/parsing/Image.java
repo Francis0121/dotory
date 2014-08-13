@@ -6,6 +6,8 @@ public class Image {
 
 	private String url;
 
+	private String link;
+
 	private Integer width;
 
 	private Integer height;
@@ -26,6 +28,17 @@ public class Image {
 		this.color = color;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		boolean equalFlag = false;
+
+		if (obj != null && obj instanceof Image) {
+			equalFlag = this.url == ((Image) obj).getUrl();
+		}
+
+		return equalFlag;
+	}
+
 	public Integer getColor() {
 		return color;
 	}
@@ -34,8 +47,16 @@ public class Image {
 		return height;
 	}
 
+	public String getLink() {
+		return link;
+	}
+
 	public String getUrl() {
 		return url;
+	}
+
+	public Integer getVisitPn() {
+		return visitPn;
 	}
 
 	public Integer getWidth() {
@@ -50,16 +71,16 @@ public class Image {
 		this.height = height;
 	}
 
-	public Integer getVisitPn() {
-		return visitPn;
-	}
-
-	public void setVisitPn(Integer visitPn) {
-		this.visitPn = visitPn;
+	public void setLink(String link) {
+		this.link = link;
 	}
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public void setVisitPn(Integer visitPn) {
+		this.visitPn = visitPn;
 	}
 
 	public void setWidth(Integer width) {
@@ -67,20 +88,10 @@ public class Image {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		boolean equalFlag = false;
-
-		if (obj != null && obj instanceof Image) {
-			equalFlag = this.url == ((Image) obj).getUrl();
-		}
-
-		return equalFlag;
-	}
-
-	@Override
 	public String toString() {
-		return "Image [visitPn=" + visitPn + ", url=" + url + ", width="
-				+ width + ", height=" + height + ", color=" + color + "]";
+		return "Image [visitPn=" + visitPn + ", url=" + url + ", link=" + link
+				+ ", width=" + width + ", height=" + height + ", color="
+				+ color + "]";
 	}
 
 }
