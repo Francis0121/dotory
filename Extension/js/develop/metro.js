@@ -14,8 +14,8 @@ dotory.metro.navBtn = function() {
 		// TODO Effect
 		$('.dotory_image').show();
 		
-		$('.history_images').imagesLoaded(function(){
-			$('.history_images').masonry({
+		dotory.image.container.imagesLoaded(function(){
+			dotory.image.container.masonry({
 				itemSelector : '.history_images>li',
 				columnWidth : 140,
 				transitionDuration: 0.
