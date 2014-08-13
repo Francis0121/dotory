@@ -76,9 +76,9 @@
 	<insert id="insertParsingUrl" parameterType="Parsing">
 		INSERT INTO
 			parsing_url
-			( url )
+			( url, domain )
 		VALUES
-			( #{url} )
+			( #{url}, #{domain} )
 		<selectKey keyProperty="urlPn" resultType="Integer">
 			SELECT LAST_INSERT_ID()
 		</selectKey>

@@ -30,6 +30,11 @@ public class Parsing {
 	private String url;
 
 	/**
+	 * 도메인
+	 */
+	private String domain;
+
+	/**
 	 * 파싱 URL title
 	 */
 	private String title;
@@ -51,6 +56,10 @@ public class Parsing {
 
 	public Integer getCount() {
 		return count;
+	}
+
+	public String getDomain() {
+		return domain;
 	}
 
 	public String getHtml() {
@@ -81,6 +90,10 @@ public class Parsing {
 		this.count = count;
 	}
 
+	public void setDomain(String domain) {
+		this.domain = domain;
+	}
+
 	public void setHtml(String html) {
 		this.html = html;
 	}
@@ -108,8 +121,8 @@ public class Parsing {
 	@Override
 	public String toString() {
 		return "Parsing [pn=" + pn + ", urlPn=" + urlPn + ", userPn=" + userPn
-				+ ", url=" + url + ", title=" + title + ", html=" + html
-				+ ", count=" + count + "]";
+				+ ", url=" + url + ", domain=" + domain + ", title=" + title
+				+ ", html=" + html + ", count=" + count + "]";
 	}
 
 }
