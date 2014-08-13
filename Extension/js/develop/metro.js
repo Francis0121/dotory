@@ -7,7 +7,6 @@ if (typeof dotory.metro == 'undefined') {
 dotory.metro.binding = function() {
 	dotory.metro.navBtn();
 	dotory.metro.horizontalScroll();
-	dotory.metro.mousehover();
 	dotory.metro.pageLoad();
 };
 
@@ -66,6 +65,7 @@ dotory.metro.horizontalScroll = function() {
 };
 
 dotory.metro.mousehover=function(){
+	$('.dotory_icon>li').off('mouseover').off('mouseout');
 	$('.dotory_icon>li').hover(function(){
 		var thiz = $(this),
 			popup = thiz.children('.metro_popup'),
@@ -123,5 +123,6 @@ dotory.metro.pageLoad=function(){
 			sub += ulBack;
 			content.append(sub);
 		}
+		dotory.metro.mousehover();
 	});
 };
