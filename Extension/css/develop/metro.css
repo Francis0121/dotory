@@ -24,7 +24,7 @@ DIV.metro_popup{ width: 160px; height: 85px; position: relative; float: left; ba
 DIV.metro_popup>A.metro_popup_link{ color: #fff; width: 100%; float: left; text-align: center; height: 25px; padding: 30px 0; font-size: 81.25%; line-height: 25px;}
 
 DIV.metro_background{width: 160px; height: 85px; float: left;}
-DIV.metro_color_blue{  background:url("../../images/image_on.gif");}
+DIV.metro_color_blue{  background:#4c669f;}
 DIV.metro_color_green{ background: #009e0f; }
 DIV.metro_color_orange{ background: #d99824; }
 DIV.metro_color_red{ background: #cc0000; }

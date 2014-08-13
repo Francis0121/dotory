@@ -31,39 +31,36 @@
 
 	$.fn.scrollPagination.loadContent = function(obj, opts) {
 		var target = opts.scrollTarget;
-		var mayLoadContent = $(target).scrollTop() + opts.heightOffset >= $(document).height() - $(target).height();
+		var mayLoadContent = $(target).scrollTop() + opts.heightOffset >= $('body').height() - $(target).height();
 		if (mayLoadContent) {
 			$(obj).children().attr('rel', 'loaded');
-			opts.loading.start();
+			//opts.loading.start();
 			
 			var url = opts.contentPage;
-			var json = opts.contentData;
-			var currentPage = $('#__current_page');
-			json.currentPage = currentPage.val();
+			var json = { 'userPn' : 1,
+						 'page' : dotory.image.container.imageSearchFilter.page + 1 };
 			
-			if(Number(json.currentPage) <= Number(opts.maxPage) ){		
-				currentPage.val(Number(json.currentPage)+1);
-
-				$.postJSON(url, json, function(data){
-					if(data){
-						opts.successCallback(data);
-						
+			if(Number(dotory.image.container.imageSearchFilter.page) 
+					<= Number(dotory.image.container.imageSearchFilter.pagination.numPages) ){		
+				$.postJSON(url, json, function(object){
+					var data = object.data,
+					images = data.images;
+					dotory.image.container.imageSearchFilter =  data.imageSearchFilter;
+					if(object.code == 200){
+						opts.successCallback(images);
 						var objectsRendered 	= $(obj).children('[rel!=loaded]');
-						if (opts.afterLoad != null) {
-							opts.afterLoad(objectsRendered);
-						}
-						opts.loading.finished();
+//						if (opts.afterLoad != null) {
+//							opts.afterLoad(objectsRendered);
+//						}
 					}else{
-						opts.errorCallback;
+						//opts.errorCallback;
 					}
+					//opts.loading.finished();
 				});
 			}else{				
-				opts.loading.msg.find('img').hide().parent().find('div').html(
-						opts.loading.finishedMsg).animate({
-					opacity : 1
-				}, 2000, function() {
-					$(this).parent().fadeOut('normal');
-				});
+//				opts.loading.msg.find('img').hide().parent().find('div').html(opts.loading.finishedMsg).animate({ opacity : 1 }, 2000, function() {
+//					$(this).parent().fadeOut('normal');
+//				});
 			}
 		}
 	};
@@ -71,7 +68,6 @@
 	$.fn.scrollPagination.init = function(obj, opts) {
 		var target = opts.scrollTarget;
 		$(obj).attr('scrollPagination', 'enabled');
-		$(obj).append('<input type="hidden" id="__current_page" value="3"/>');
 		$(target).scroll(function(event) {
 			if ($(obj).attr('scrollPagination') == 'enabled') {
 				$.fn.scrollPagination.loadContent(obj, opts);
@@ -116,7 +112,7 @@
 		loading : {
 			finished : undefined,
 			finishedMsg: 'Today end',
-			img: 'loading.gif',
+			img: '../plugin/masonry/loading.gif',
 			msg : null,
 			msgText : 'Loading...',
 			selector : null,
