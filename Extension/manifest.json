@@ -18,6 +18,7 @@
   	"http://*/*", "https://*/*"
   ],
   "background":{
+    "persistent":true,
   	"page":"source/getURL.html"
   }
   
