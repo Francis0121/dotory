@@ -6,7 +6,6 @@ if (typeof dotory.metro == 'undefined') {
  */
 dotory.metro.binding = function() {
 	dotory.metro.navBtn();
-	dotory.metro.horizontalScroll();
 	dotory.metro.pageLoad();
 };
 
@@ -124,5 +123,6 @@ dotory.metro.pageLoad=function(){
 			content.append(sub);
 		}
 		dotory.metro.mousehover();
+		dotory.metro.horizontalScroll();
 	});
 };
