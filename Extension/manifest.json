@@ -18,7 +18,7 @@
   	"http://*/*", "https://*/*"
   ],
   "background":{
-  	"background_page":"getURL.html"
+  	"page":"source/getURL.html"
   }
   
   
