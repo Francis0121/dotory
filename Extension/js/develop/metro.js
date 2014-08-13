@@ -6,7 +6,6 @@ if (typeof dotory.metro == 'undefined') {
  */
 dotory.metro.binding = function() {
 	dotory.metro.navBtn();
-	dotory.metro.horizontalScroll();
 	dotory.metro.pageLoad();
 };
 
@@ -99,7 +98,6 @@ dotory.metro.pageLoad=function(){
 			var color=['metro_color_blue','metro_color_green','metro_color_orange','metro_color_red',
 			           'metro_color_purple','metro_color_grayBlue','metro_color_yellowOrange',
 			           'metro_color_gray','metro_color_softGray'];
-			
 			for(var i=0;i<visits.length;i++){
 				var url=visits[i].url;
 				var title=visits[i].title;
@@ -124,5 +122,6 @@ dotory.metro.pageLoad=function(){
 			content.append(sub);
 		}
 		dotory.metro.mousehover();
+		dotory.metro.horizontalScroll();
 	});
 };
