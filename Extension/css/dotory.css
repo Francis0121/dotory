@@ -8,6 +8,7 @@ DIV.dotory_wrap { width: 600px; height: 400px; float: left; position: relative; 
 DIV.dotory_metro {background: #fff; overflow-x: hidden; overflow-y: hidden; }
 DIV.dotory_image { background: #1a1a1a; overflow-x: hidden; overflow-y: hidden; top: -400px;}
 DIV.dotory_history { background: #404040; overflow-x: hidden; overflow-y: hidden; top: -400px;}
+DIV.dotory_login_content{ text-align: center; border: 1px solid #808080; width: 598px; height: 398px; float: left; }
 
 UL.dotory_common_top{ float:left; }
 UL.dotory_common_top>LI{ float:left;}
@@ -30,3 +31,4 @@ BUTTON.image_btn:HOVER{ background: #f3f3f3;}
 BUTTON#history_back_btn{ }
 BUTTON#history_more_btn{ }
 BUTTON#history_tab_open{ width: 100px;}
+BUTTON#signin{ margin-top: 180px;}

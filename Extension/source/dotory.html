@@ -12,7 +12,13 @@
 <body>
 
 <div class="dotory_fixed_wrap">	
-	
+
+	<div class="dotory_wrap dotory_login" style="display: block;">
+		<div class="dotory_login_content">
+			<button class="metro_btn" id="signin">Sign in</button>
+		</div>
+	</div>
+
 	<!-- Metro -->
 	<div class="dotory_wrap dotory_metro" style="display: block;">
 		<header class="dotory_header">
@@ -20,13 +26,13 @@
 				<li>
 					<h1>Frequently Visited Sites</h1>
 				</li>
-				<li>
-					<span>User Name</span>
+				<li class="user_logout" title="Logout">
+					<span id="user_name">User Name</span>
 				</li>
-				 <li>
+				<li class="user_logout" id="user_image" title="Logout">
 				 	<!-- login image insert here -->
-				 	<img alt="" src="../images/login-icon.jpg">
-				 </li>
+				 	<img alt="" src="../images/login-icon.jpg" >
+				</li>
 			</ul>	
 		</header>
 		<div class="frame" id="basic">
@@ -106,6 +112,8 @@
 	
 <script src="../plugin/jquery-1.8.2.min.js"></script>
 <script src="../plugin/jquery.json.js"></script>
+
+<script src="../plugin/chrome/identity.js"></script>
 
 <script src="../plugin/metro/sly.min.js"></script>
 <script src="../plugin/metro/plugin.js"></script>
