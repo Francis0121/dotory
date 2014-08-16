@@ -18,13 +18,14 @@
     	"https://www.googleapis.com/*",
 		"activeTab",
 		"tabs",
- 		"http://*/*", "https://*/*"
+ 		"http://*/*", "https://*/*" 		
  	],
  	
  	"background":{
 		"persistent":true,
 		"page":"source/getURL.html"
 	},
+		
 	"key" : "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlCSqAd65Tyo8TS8jukzUze8/8CiI+IYf38F1L29xkyR7FdtBB4NQHFqBNdHSRD10ybZyr3PwRNO3IdfM1QAtf/T0ghpimieatfL0XyKnvYChjrNWM+SzbERcK9Gk64XcmcpwP09n8zgnPAwXwZeFZlt7ZjhP8OrmoLk3sBDivvsODgG1WvM/9Crtq4KAnX2XtRUL1dV6WPM3a795kJLgxuIew9darl0bkBojII76P9Lvrgzr+3K2fG216UDk9qU22ilERQcZ/1u5ZpZvj/XaTqcjHZl9Y0T5o18FR/SAKKtV2a4BtiEX61AeOq8ssl2AqVXgL10mw0qWsyC2yGkDdwIDAQAB",
 	"minimum_chrome_version": "29",
 	"oauth2": {
