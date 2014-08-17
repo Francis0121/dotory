@@ -7,7 +7,9 @@ dotory.image.binding = function(){
 		// TODO Effecf
 		$('.dotory_image').hide();
 	});
-	
+	$('#image_more_btn').on('click',function(){
+		chrome.windows.create({url : "../source/ImageWeb.html",type: "normal"});
+	});
 	dotory.image.loading();
 };
 

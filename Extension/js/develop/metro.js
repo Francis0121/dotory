@@ -104,7 +104,7 @@ dotory.metro.pageLoad=function(){
 			
 			for(var i=0;i<visits.length;i++){
 				var count=visits[i].count;
-				if(count>=2){																//자주 방문하는 페이지
+				if(count>=3){																//자주 방문하는 페이지
 					console.log("page : "+visits[i].title);
 					console.log("count : "+count);
 					console.log("cnt : "+cnt);
