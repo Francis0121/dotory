@@ -82,8 +82,8 @@ dotory.metro.mousehover=function(){
 };
 
 dotory.metro.pageLoad=function(){
-	var url='http://localhost:8080/visit/info',
-		json={'userPn':1};
+	var url= dotory.contextPath+'/visit/info',
+		json={'userPn': dotory.user.pn };
 	
 	$.postJSON(url, json, function(object){
 		var content = $('.dotory_content');

@@ -12,8 +12,8 @@ dotory.image.binding = function(){
 };
 
 dotory.image.loading = function(){
-	var url = 'http://localhost:8080/image/list',
-		json = { 'userPn' : 1 };
+	var url = dotory.contextPath + '/image/list',
+		json = { 'userPn' : dotory.user.pn };
 	
 	$.postJSON(url, json, function(object){
 		var data = object.data,
@@ -41,7 +41,7 @@ dotory.image.loading = function(){
 dotory.image.pagination = function(){
 	var $c = dotory.image.container;
 	$c.scrollPagination({
-		'contentPage'	: 'http://localhost:8080/image/list',
+		'contentPage'	: dotory.contextPath + '/image/list',
 		'scrollTarget'	: $('.dotory_image_content'),
 		'successCallback' : function(images){
 			var htmlArray = '';

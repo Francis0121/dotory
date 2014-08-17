@@ -1,7 +1,5 @@
 $(function(){
-	dotory.metro.binding();
-	dotory.history.binding();
-	dotory.image.binding();
+	// ~ signin
 	dotory.signin();
 });
 
@@ -9,7 +7,4 @@ if(typeof dotory == 'undefined'){
 	dotory = {};
 }
 
-dotory.signin = function(){
-	window.onload = googlePlusUserLoader.onload;
-};
-
+dotory.contextPath = 'http://localhost:8080';
