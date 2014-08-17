@@ -53,6 +53,19 @@ public class ParsingController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value="/analysis", method=RequestMethod.POST)
+	public Json postAnalysis(@RequestBody Parsing parsing){
+		try{
+			parsingService.insertAnalysisData(parsing);
+		}catch(Exception e){
+			logger.error("Exception : " + e);
+			return new Json(AJC.ERROR, "Exception", e);
+		}
+		return new Json(AJC.SUCCESS, "", null);
+	}
+	
+	
+	@ResponseBody
 	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public Json postUrlList(@ModelAttribute ParsingFilter parsingFilter){
 		Map<String, Object> map = parsingService.selectParsingList(parsingFilter);

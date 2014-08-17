@@ -1,7 +1,9 @@
 package net.epril.dotori.regex;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.slf4j.Logger;
@@ -61,6 +63,18 @@ public class RegexServiceImpl extends SqlSessionDaoSupport implements
 		logger.debug("String Regex List \n" +strRegexs);
 		
 		return strRegexs;
+	}
+	
+	@Override
+	public Map<String, Object> selectAll(Regex regex) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<Regex> tags = selectRegex(new Regex(0, RegexUtil.REGEX_GROUP_TAG, regex.getRegexCategory()));
+		map.put("tags", tags);
+		List<Regex> deletes = selectRegex(new Regex(0, RegexUtil.REGEX_GROUP_DELETE, regex.getRegexCategory()));
+		map.put("deletes", deletes);
+		List<Regex> selects = selectRegex(new Regex(0, RegexUtil.REGEX_GROUP_SELECT, regex.getRegexCategory()));
+		map.put("selects", selects);
+		return map;
 	}
 	
 	@Override

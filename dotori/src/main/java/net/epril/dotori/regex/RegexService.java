@@ -1,6 +1,7 @@
 package net.epril.dotori.regex;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Francis
@@ -18,6 +19,8 @@ public interface RegexService {
 	public List<String> makeImageRegexList(Regex regex);	
 
 	public List<String> makeTitleRegexList(Regex regex);
+	
+	public Map<String, Object> selectAll(Regex regex);
 	
 	/**
 	 * @return 정규표현식 그룹 리턴
@@ -49,6 +52,7 @@ public interface RegexService {
 	 */
 	public void updateRegexImage(Regex regex);
 
+	
 
 
 }

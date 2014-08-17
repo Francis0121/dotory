@@ -8,6 +8,8 @@
 		<result column="url" property="url"/>
 		<result column="title" property="title"/>
 		<result column="count" property="count"/>
+		<result column="domain" property="domain"/>
+		<result column="favicon" property="favicon"/>
 	</resultMap>
 	
 	<resultMap type="Image" id="image_basic">
@@ -38,11 +40,11 @@
 	
 	<select id="selectVisits" parameterType="VisitFilter" resultMap="parsing_basic">
 		SELECT
-			pc.`url_pn`, pc.`user_pn`, pc.`url`, pc.`count`, pc.`title`
+			pc.`url_pn`, pc.`user_pn`, pc.`url`, pc.`count`, pc.`title`, pc.`domain`, pc.`favicon`
 		FROM
 			(
 				SELECT
-					pv.`url_pn`, pv.`user_pn`, pu.`url`, COUNT(pv.`url_pn`) AS `count`, pd.`title`
+					pv.`url_pn`, pv.`user_pn`, pu.`url`, pu.`domain`, pu.`favicon`, COUNT(pv.`url_pn`) AS `count`, pd.`title`
 				FROM
 					`parsing_visit` AS pv
 					LEFT OUTER JOIN `parsing_url`AS pu

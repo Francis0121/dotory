@@ -8,6 +8,7 @@ public class ParsingFilter extends AbstractListFilter {
 
 	public ParsingFilter() {
 		super();
+		this.userPn = 1;
 	}
 
 	public Integer getUserPn() {

@@ -23,14 +23,13 @@ dotory.control.onParsing = function(){
 	$('#dotory_list_post').on('click', dotory.control.listPost);
 	
 	$('.dotory_url_menu').on('click', dotory.control.menuOnOff);
-	
-	dotory.control.listPost();
 };
 
 dotory.control.urlPost = function(){
 	var thiz = $('#dotory_url_input'),
 		url = contextPath + '/parsing/url',
-		json = { url : thiz.val() };
+		json = { 	url : thiz.val(),
+					userPn : $('#dotory_userPn').val()	};
 	
 	$.postJSON(url, json, function(object){
 		var data = object.data;
@@ -82,7 +81,9 @@ dotory.control.listPost = function(){
 
 	if(dotory.control.parsingFilter != undefined && dotory.control.parsingFilter != ''){
 		var page = dotory.control.parsingFilter.page+1;
-		url+='?page='+page;			
+		url+='?page='+page+'&userPn='+$('#dotory_userPn').val();			
+	}else{
+		url+='?page=1&userPn='+$('#dotory_userPn').val();
 	}
 	
 	$.getJSON(url, function(object){

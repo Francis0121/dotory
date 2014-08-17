@@ -7,6 +7,8 @@
 		<result column="user_pn" property="userPn"/>
 		<result column="url" property="url"/>
 		<result column="title" property="title"/>
+		<result column="domain" property="domain"/>
+		<result column="favicon" property="favicon"/>
 	</resultMap>
 	
 	<resultMap type="Image" id="image_basic">
@@ -34,12 +36,12 @@
 			LEFT OUTER JOIN `parsing_url` AS pu
 			ON pv.`url_pn` = pu.`pn`
 		WHERE
-			pv.`user_pn` = 1 
+			pv.`user_pn` = #{userPn}
 	</select>
 
 	<select id="selectParsingList" parameterType="ParsingFilter" resultMap="parsing_basic">
 		SELECT
-			pv.pn, pu.url, pv.user_pn, pv.register_date, pd.`title`
+			pv.pn, pu.url, pu.domain, pu.favicon, pv.user_pn, pv.register_date, pd.`title`
 		FROM
 			`parsing_visit` AS pv
 			LEFT OUTER JOIN `parsing_url` AS pu
@@ -47,13 +49,13 @@
 			LEFT OUTER JOIN `parsing_data` AS pd
 			ON pd.`visit_pn` = pv.`pn`
 		WHERE
-			pv.`user_pn` = 1
+			pv.`user_pn` = #{userPn}
 		ORDER BY
 			pv.pn DESC
 		LIMIT #{pagination.itemSeqBegin}, #{pagination.numItemsPerPage}
 	</select>
 	
-	<select id="selectDetailInformation" parameterType="Integer" resultType="String">
+	<select id="selectDetailInformation" parameterType="Parsing" resultType="String">
 		SELECT
 			html
 		FROM
@@ -61,9 +63,9 @@
 			LEFT OUTER JOIN `parsing_data` AS pt
 			ON pv.`pn` = pt.`visit_pn`
 		WHERE
-			pv.`pn` = #{value}
+			pv.`pn` = #{pn}
 		AND
-			pv.`user_pn` = 1
+			pv.`user_pn` = #{userPn}
 	</select>
 	
 	<select id="selectDetailInfoImages" parameterType="Integer" resultMap="image_basic">
@@ -91,9 +93,9 @@
 	<insert id="insertParsingUrl" parameterType="Parsing">
 		INSERT INTO
 			parsing_url
-			( url, domain )
+			( url, domain, favicon )
 		VALUES
-			( #{url}, #{domain} )
+			( #{url}, #{domain}, #{favicon} )
 		<selectKey keyProperty="urlPn" resultType="Integer">
 			SELECT LAST_INSERT_ID()
 		</selectKey>

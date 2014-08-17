@@ -11,6 +11,7 @@
 		<div class="dotory_full_content_wrap">
 			<!-- Paging Scroll 에 따라서 로딩 -->
 			<div class="dotory_full_content">
+				<input type="text" id="dotory_userPn" value="2"/>
 				<label for="dotory_input" class="dotory_label" id="dotory_url_label">URL</label>
 				<input type="text" class="dotory_input" id="dotory_url_input"/>
 				<button class="dotory_btn" id="dotory_url_post">Do</button>

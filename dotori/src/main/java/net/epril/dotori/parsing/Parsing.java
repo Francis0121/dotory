@@ -1,5 +1,7 @@
 package net.epril.dotori.parsing;
 
+import java.util.List;
+
 /**
  * 파싱 URL 구조
  * 
@@ -49,6 +51,16 @@ public class Parsing {
 	 */
 	private Integer count;
 
+	/**
+	 * src List
+	 */
+	private List<String> srcs;
+
+	/**
+	 * faviconUrl
+	 */
+	private String favicon;
+
 	public Parsing() {
 		super();
 		this.userPn = 1;
@@ -62,12 +74,20 @@ public class Parsing {
 		return domain;
 	}
 
+	public String getFavicon() {
+		return favicon;
+	}
+
 	public String getHtml() {
 		return html;
 	}
 
 	public Integer getPn() {
 		return pn;
+	}
+
+	public List<String> getSrcs() {
+		return srcs;
 	}
 
 	public String getTitle() {
@@ -94,12 +114,20 @@ public class Parsing {
 		this.domain = domain;
 	}
 
+	public void setFavicon(String favicon) {
+		this.favicon = favicon;
+	}
+
 	public void setHtml(String html) {
 		this.html = html;
 	}
 
 	public void setPn(Integer pn) {
 		this.pn = pn;
+	}
+
+	public void setSrcs(List<String> srcs) {
+		this.srcs = srcs;
 	}
 
 	public void setTitle(String title) {
@@ -122,7 +150,8 @@ public class Parsing {
 	public String toString() {
 		return "Parsing [pn=" + pn + ", urlPn=" + urlPn + ", userPn=" + userPn
 				+ ", url=" + url + ", domain=" + domain + ", title=" + title
-				+ ", html=" + html + ", count=" + count + "]";
+				+ ", html=" + html + ", count=" + count + ", srcs=" + srcs
+				+ ", favicon=" + favicon + "]";
 	}
 
 }

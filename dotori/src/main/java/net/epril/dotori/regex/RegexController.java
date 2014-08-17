@@ -1,12 +1,17 @@
 package net.epril.dotori.regex;
 
+import java.util.Map;
+
 import javax.inject.Inject;
+
+import net.epril.dotori.json.Json;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 정규식 수정을 편하게 하기 위한 페이지 Ajax 처리x
@@ -52,5 +57,14 @@ public class RegexController {
 		regexService.updateRegexImage(regex);
 		return "redirect:/regex/?groupPn="+regex.getGroupPn()+"&regexCategory="+regex.getRegexCategory();
 	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/all", method = RequestMethod.GET)
+	public Json getRegexInfo(@ModelAttribute Regex regex){
+		Map<String, Object> map = regexService.selectAll(regex);
+		return new Json(200, "", map);
+	}
+
 	
 }
