@@ -74,6 +74,10 @@ public class RegexServiceImpl extends SqlSessionDaoSupport implements
 		map.put("deletes", deletes);
 		List<Regex> selects = selectRegex(new Regex(0, RegexUtil.REGEX_GROUP_SELECT, regex.getRegexCategory()));
 		map.put("selects", selects);
+		List<Regex> selTags = selectRegex(new Regex(0, RegexUtil.REGEX_GROUP_SELECT_TAG, regex.getRegexCategory()));
+		map.put("selTags", selTags);
+		List<Regex> srcs = selectRegex(new Regex(0, RegexUtil.REGEX_GROUP_SRC, regex.getRegexCategory()));
+		map.put("srcs", srcs);
 		return map;
 	}
 	

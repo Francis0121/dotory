@@ -67,7 +67,6 @@ dotory.control.detail = function(){
 				$('.dotory_url_parsing_data_wrap[data-type=title]>div').html(data.titleText);
 		 
 				for(var i=0; i < images.length; i++){
-					dotory.makeAbsoulteUrl(images[i].url, data.domain);
 					$('.dotory_url_parsing_data_wrap[data-type=image]>div').append('<img src="'+images[i].url+'"/>');
 				}
 			}

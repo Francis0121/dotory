@@ -58,7 +58,7 @@ public class ParsingController {
 		try{
 			parsingService.insertAnalysisData(parsing);
 		}catch(Exception e){
-			logger.error("Exception : " + e);
+			e.printStackTrace();
 			return new Json(AJC.ERROR, "Exception", e);
 		}
 		return new Json(AJC.SUCCESS, "", null);

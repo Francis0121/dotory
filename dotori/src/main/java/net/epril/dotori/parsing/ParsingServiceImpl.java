@@ -95,7 +95,8 @@ public class ParsingServiceImpl extends SqlSessionDaoSupport implements
 			
 		List<Image> images = new ArrayList<Image>();
 		for(String src : parsing.getSrcs()){
-			images.add(new Image(parsing.getPn(), src, 100, 100, 0));
+			if(src != null && !src.equals(""))
+				images.add(new Image(parsing.getPn(), src, 100, 100, 0));
 		}
 		insertParsingImageUrl(images);
 	}
