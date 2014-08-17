@@ -3,8 +3,4 @@ $(function(){
 	dotory.signin();
 });
 
-if(typeof dotory == 'undefined'){
-	dotory = {};
-}
-
-dotory.contextPath = 'http://localhost:8080';
+dotory.type = dotory.types.main;

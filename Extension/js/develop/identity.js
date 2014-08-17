@@ -70,9 +70,11 @@ function fetchUserInfo(user_info){
 		if(object.code == 200){
 			dotory.user = data.user;
 			// ~ User Signin Success
-			dotory.metro.binding();
-			dotory.history.binding();
-			dotory.image.binding();
+			if(dotory.type == dotory.types.main){
+				dotory.metro.binding();
+				dotory.history.binding();
+				dotory.image.binding();
+			}
 		}
 	});
 }
