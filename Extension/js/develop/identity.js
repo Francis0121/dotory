@@ -124,6 +124,7 @@ function interactiveSignIn() {
     	  	//console.log(chrome.runtime.lastError);
       	} else {
       		$('.dotory_login').fadeOut();
+      		getUserInfo(false);
       		//console.log('Token acquired:'+token+ '. See chrome://identity-internals for details.');
       	}
     });
@@ -148,7 +149,7 @@ function revokeToken() {
 			// @corecode_end removeAndRevokeAuthToken
 			
 			// Update the user interface accordingly
-			console.log('Token revoked and removed from cache. '+ 'Check chrome://identity-internals to confirm.');
+			//console.log('Token revoked and removed from cache. '+ 'Check chrome://identity-internals to confirm.');
 			$('.dotory_login').fadeIn();
 		}
 	});

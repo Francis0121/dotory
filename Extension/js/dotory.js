@@ -1,6 +1,6 @@
 $(function(){
 	// ~ signin
-	getUserInfo(false);
+	dotory.signin();
 });
 
 if(typeof dotory == 'undefined'){
