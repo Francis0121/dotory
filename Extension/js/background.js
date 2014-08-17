@@ -20,6 +20,9 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
         			'userPn' : dotory.user.pn };
         $.postJSON(url,json,function(object){
         	if(object.code==200){
+        		console.log("success");
+        	}else{
+        		console.log("object code is not 200");
         	}
         });
     }

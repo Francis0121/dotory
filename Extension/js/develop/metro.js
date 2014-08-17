@@ -90,33 +90,46 @@ dotory.metro.pageLoad=function(){
 		content.html('');
 		
 		var data = object.data;
+		
 		if(object.code == 200){
 			var ulFront =  '<ul class="dotory_icon clearfix" style="transform: translateZ(0px) translateX(0px) width:1000px">',
 				ulBack = '</ul>';
 			var sub = '';
 			var visits=data.visits;
+			var cnt=0;
+			
 			var color=['metro_color_blue','metro_color_green','metro_color_orange','metro_color_red',
 			           'metro_color_purple','metro_color_grayBlue','metro_color_yellowOrange',
 			           'metro_color_gray','metro_color_softGray'];
+			
 			for(var i=0;i<visits.length;i++){
-				var url=visits[i].url;
-				var title=visits[i].title;
-				if(i%3 == 0){
-					if(i!=0){
-						sub += ulBack;
-						content.append(sub);
-						sub = ulFront;
-					}else{
-						sub = ulFront;						
+				var count=visits[i].count;
+				if(count>=2){																//자주 방문하는 페이지
+					console.log("page : "+visits[i].title);
+					console.log("count : "+count);
+					console.log("cnt : "+cnt);
+					var url=visits[i].url;
+					var title=visits[i].title;
+					if(cnt%3 == 0){
+						if(cnt!=0){
+							console.log("ulback");
+							sub += ulBack;
+							content.append(sub);
+							sub = ulFront;
+						}else{
+							sub = ulFront;						
+						}
 					}
+					sub += '<li>';
+					sub += '	<div class="metro_background '+color[cnt%9]+'"></div>';		//color값 처리
+					sub += '		<div class="metro_popup">';
+					sub += '			<a class="metro_popup_link" href="'+url+'">'+title+'</a>';
+					sub += '		</div>';
+					sub += '	</div>';
+					sub += '</li>';
+				
+					cnt++;
 				}
-				sub += '<li>';
-				sub += '	<div class="metro_background '+color[i%9]+'"></div>';		//color값 처리
-				sub += '		<div class="metro_popup">';
-				sub += '			<a class="metro_popup_link" href="'+url+'">'+title+'</a>';
-				sub += '		</div>';
-				sub += '	</div>';
-				sub += '</li>';
 			}
 			sub += ulBack;
 			content.append(sub);
