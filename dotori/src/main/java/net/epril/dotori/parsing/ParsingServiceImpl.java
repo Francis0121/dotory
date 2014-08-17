@@ -41,7 +41,16 @@ public class ParsingServiceImpl extends SqlSessionDaoSupport implements
 	public Map<String, Object> controlParsingData(Parsing parsing)
 			throws IOException {
 		Map<String, Object> map = new HashMap<String, Object>();
-
+		// ~ URL, Visit, Data 
+		Pattern pattern = Pattern.compile("^(http|https):\\/\\/([a-z0-9-_\\.]*)[\\/\\?]{0,1}");
+		Matcher matcher = pattern.matcher(parsing.getUrl());
+		if(matcher.find()){
+			String domain = matcher.group();
+			parsing.setDomain(domain);
+		}else{
+			return new HashMap<String, Object>();
+		}
+		
 		Document fullBody = Jsoup.connect(parsing.getUrl())
 				.userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36")
 				.get();
@@ -54,16 +63,6 @@ public class ParsingServiceImpl extends SqlSessionDaoSupport implements
         }
 		parsing.setHtml(fullBody.toString());
 		parsing.setTitle(fullBody.getElementsByTag("title").text());
-		
-		
-        
-		// ~ URL, Visit, Data 
-		Pattern pattern = Pattern.compile("^(http|https):\\/\\/([a-z0-9-_\\.]*)[\\/\\?]{0,1}");
-		Matcher matcher = pattern.matcher(parsing.getUrl());
-		if(matcher.find()){
-			String domain = matcher.group();
-			parsing.setDomain(domain);
-		}
 		
 		Integer pn = getSqlSession().selectOne("parsing.existParsingUrl", parsing);
 		if(pn == null || pn.equals(0)){
