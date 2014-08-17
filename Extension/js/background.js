@@ -34,7 +34,9 @@ dotory.imageFiltering = function(content, url, title, favicon){
 		console.log('Error : Doesn`t make Image Regex');
 		return;
 	}
-	
+
+	var domain_regex = /^(http|https):\/\/([a-z0-9-_\.]*)[\/\?]{0,1}/,
+		domain = url.match(domain_regex)[0];
 	var html = content;
 	
 	for(var i=0; i < dotory.regex.tags.length; i++){
@@ -55,11 +57,17 @@ dotory.imageFiltering = function(content, url, title, favicon){
 				}
 			}
 		}
-		var dom = $(html);
+		var dom = $('<div>').append(html);
 		for(var i=0; i<eles.length; i++){
-			dom.find('#'+eles[i]).remove();
+			if(eles[i] == undefined ) continue;
+			var selector = '#'+eles[i].replace(/(:|\.|\[|\]|\/|\(|\))/g, '\\$1');
+			var domIds = dom.find(selector);
+			if(domIds.length != 0){
+				domIds.remove();
+			}
 		}
 		html = $('<div>').append(dom.clone()).html();
+		console.log('Eleminate ID : '+eles);
 	}
 	// ~ class eleminate
 	var clazzs = html.match(/[\w:\-]?class[\s]*?=[\s]*?(\"[^\"]+\"|'[^']+'|\w+)/ig);
@@ -74,12 +82,19 @@ dotory.imageFiltering = function(content, url, title, favicon){
 				}
 			}
 		}
-		dom = $(html);
+		dom = $('<div>').append(html);
 		for(var i=0; i<eles.length; i++){
-			dom.find('.'+eles[i]).remove();
+			if(eles[i] == undefined ) continue;
+			var selector = '.'+eles[i].replace(/(:|\.|\[|\]|\/|\(|\))/g, '\\$1');
+			console.log(selector);
+			var domClazzs = dom.find(selector); 
+			if(domClazzs.length != 0)
+				domClazzs.remove();
 		}
 		html = $('<div>').append(dom.clone()).html();
+		console.log('Eleminate CLASS : '+eles);
 	}
+	var eleHtml = html;
 	// ~ id select
 	ids = html.match(/[\w:\-]?id[\s]*?=[\s]*?(\"[^\"]+\"|'[^']+'|\w+)/ig);
 	var seles = new Array();
@@ -94,11 +109,14 @@ dotory.imageFiltering = function(content, url, title, favicon){
 			}
 		}
 		var container = '';
-		dom = $(html);
+		dom = $('<div>').append(html);
 		for(var i=0; i<seles.length; i++){
-			var find = dom.find('#'+seles[i]);
+			if(seles[i] == undefined) continue;
+			var selector = '#'+seles[i].replace(/(:|\.|\[|\]|\/|\(|\))/g, '\\$1');
+			var find = dom.find(selector);
 			container += $('<div>').append(find.clone()).html();
 		}
+		console.log('Select ID : '+seles);
 	}
 	// ~ class select
 	clazzs = html.match(/[\w:\-]?class[\s]*?=[\s]*?(\"[^\"]+\"|'[^']+'|\w+)/ig);
@@ -113,39 +131,79 @@ dotory.imageFiltering = function(content, url, title, favicon){
 				}
 			}
 		}
-		dom = $(html);
+		dom = $('<div>').append(html);
 		for(var i=0; i<seles.length; i++){
-			var find = dom.find('.'+seles[i]);
+			if(seles[i] == undefined) continue;
+			var selector = '.'+seles[i].replace(/(:|\.|\[|\]|\/|\(|\))/g, '\\$1');
+			var find = dom.find(selector);
 			container += $('<div>').append(find.clone()).html();
 		}
+		console.log('Select CLASS : '+seles);
 	}
 	
 	if(container == '' || container == undefined || container == null){
-		container = html;
+		container = eleHtml;
+		console.log('Container is empty');
 	}
 	
 	var imgs = $('<div>').append(container).find('img');
 	var srcs = new Array();
 	for(var i=0; i<imgs.length; i++){
-		srcs[i] = $(imgs[i]).attr('src');
+		var src = $(imgs[i]).attr('src');		
+		if(src != null && src != '' && srcs.indexOf(src) == -1){
+			if(src.match(domain_regex)){
+				srcs[i] = src;
+			}else{ 
+				srcs[i] = dotory.absolute(url, src);
+			}
+			console.log(srcs[i]);
+		}
 	}
 	
+	for(var i=0; i<dotory.regex.srcs.length; i++){
+		var regex = new RegExp(dotory.regex.srcs[i], 'ig');
+		var stack = new Array();
+		for(var j=0; j<srcs.length; j++){
+			var src = srcs[j];
+			if(src == undefined || src == null || src == '') continue;
+			if(src.match(regex)) stack.push(j);
+		}
+		var size = stack.length;
+		while(size--){
+			srcs.splice(stack.pop(), 1);
+		}
+	}
 	
 	var $url = dotory.contextPath + '/parsing/analysis',
 		json = { 	'userPn' 	:	dotory.user.pn,
 					'srcs'		:	srcs,
 					'html'		: 	content,
-					'domain'	:	url.match(/^(http|https):\/\/([a-z0-9-_\.]*)[\/\?]{0,1}/)[0],
+					'domain'	:	domain,
 					'url'		:	url,
 					'title'		:	title,
-					'favicon'	: 	favicon	};
-	console.log(json);
+					'favicon'	: 	favicon == null ? '' : favicon};
 	
     $.postJSON($url,json,function(object){
     	if(object.code==200){
     		console.log('success');
 		}
     });
+};
+
+dotory.absolute = function(base, relative) {
+    var stack = base.split('/'),
+        parts = relative.split('/');
+    stack.pop(); // remove current file name (or empty string)
+                 // (omit if "base" is the current folder without trailing slash)
+    for (var i=0; i<parts.length; i++) {
+        if (parts[i] == '.')
+            continue;
+        if (parts[i] == '..')
+            stack.pop();
+        else
+            stack.push(parts[i]);
+    }
+    return stack.join('/');
 };
 
 dotory.makeImageRegex = function(){
@@ -155,7 +213,8 @@ dotory.makeImageRegex = function(){
 		if(object.code == 200){
 			var tags = data.tags, 
 				deletes = data.deletes,
-				selects = data.selects;
+				selects = data.selects,
+				srcs = data.srcs;
 			
 			var regexTags = new Array(),
 				count = 0;
@@ -180,10 +239,18 @@ dotory.makeImageRegex = function(){
 				regexSelects[count++] = regex.replace(/RPLETTER/g, selects[i].shape); 
 			}
 			
+			var regexSrcs = new Array();
+			count = 0;
+			for(var i=0; i<srcs.length; i++){
+				var regex = '.*RPLETTER.*';
+				regexSrcs[count++] = regex.replace(/RPLETTER/g, srcs[i].shape);
+			}
+			
 			dotory.regex = {
 				tags : regexTags,
 				deletes : regexDeletes,
-				selects : regexSelects
+				selects : regexSelects,
+				srcs : regexSrcs
 			};
 		}
 	});
