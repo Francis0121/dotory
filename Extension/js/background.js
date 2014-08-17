@@ -188,4 +188,3 @@ dotory.makeImageRegex = function(){
 		}
 	});
 };
->>>>>>> f40d09d3964caf6d6fa6294b6cb49b1db5d84cc3
