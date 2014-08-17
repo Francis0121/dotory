@@ -9,7 +9,6 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     		json={url:tab.url};
         $.postJSON(url,json,function(object){
         	if(object.code==200){
-        		console.log('kkk');
         	}
         });
     }
