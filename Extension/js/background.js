@@ -1,4 +1,3 @@
-dotory.type = dotory.types.background;
 
 $(function(){
 	getUserInfo(false);
@@ -10,28 +9,37 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 		regex = /^(http|https):\/\/([a-z0-9-_\.]*)[\/\?]{0,1}/;
 	
     if(status!='complete' || !tab.url.match(regex)){
-    	console.log('Not match Url ' + tab.url + ' Or Status is not "complete" ' + status);
+    	//console.log('Not match Url ' + tab.url + ' Or Status is not "complete" ' + status);
     	return;
     }    
-    
     chrome.tabs.executeScript(
     	tab.id, 
 		{ code : 'chrome.extension.sendRequest( { content: document.body.innerHTML}, function(response) { console.log("success"); });' }, 
 		function() { 
-			console.log('Send Request done'); 
+//			console.log('Send Request done'); 
+			
 		}
+		
 	);
     
 });
 
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 	dotory.imageFiltering(request.content, sender.tab.url, sender.tab.title, sender.tab.favIconUrl);
+	dotory.getSearchWord(request.content,sender.tab.url);
 });
-
+/****************************************************/
+dotory.getSearchWord=function(content,url){
+	var html=content;
+	var url=url;
+	
+	console.log(url);
+	
+}
 dotory.imageFiltering = function(content, url, title, favicon){
 	
 	if(dotory.regex == null || dotory.regex == undefined){
-		console.log('Error : Doesn`t make Image Regex');
+//		console.log('Error : Doesn`t make Image Regex');
 		return;
 	}
 
@@ -67,7 +75,7 @@ dotory.imageFiltering = function(content, url, title, favicon){
 			}
 		}
 		html = $('<div>').append(dom.clone()).html();
-		console.log('Eleminate ID : '+eles);
+//		console.log('Eleminate ID : '+eles);
 	}
 	// ~ class eleminate
 	var clazzs = html.match(/[\w:\-]?class[\s]*?=[\s]*?(\"[^\"]+\"|'[^']+'|\w+)/ig);
@@ -86,13 +94,13 @@ dotory.imageFiltering = function(content, url, title, favicon){
 		for(var i=0; i<eles.length; i++){
 			if(eles[i] == undefined ) continue;
 			var selector = '.'+eles[i].replace(/(:|\.|\[|\]|\/|\(|\))/g, '\\$1');
-			console.log(selector);
+//			console.log(selector);
 			var domClazzs = dom.find(selector); 
 			if(domClazzs.length != 0)
 				domClazzs.remove();
 		}
 		html = $('<div>').append(dom.clone()).html();
-		console.log('Eleminate CLASS : '+eles);
+//		console.log('Eleminate CLASS : '+eles);
 	}
 	var eleHtml = html;
 	// ~ id select
@@ -116,7 +124,7 @@ dotory.imageFiltering = function(content, url, title, favicon){
 			var find = dom.find(selector);
 			container += $('<div>').append(find.clone()).html();
 		}
-		console.log('Select ID : '+seles);
+//		console.log('Select ID : '+seles);
 	}
 	// ~ class select
 	clazzs = html.match(/[\w:\-]?class[\s]*?=[\s]*?(\"[^\"]+\"|'[^']+'|\w+)/ig);
@@ -138,12 +146,12 @@ dotory.imageFiltering = function(content, url, title, favicon){
 			var find = dom.find(selector);
 			container += $('<div>').append(find.clone()).html();
 		}
-		console.log('Select CLASS : '+seles);
+//		console.log('Select CLASS : '+seles);
 	}
 	
 	if(container == '' || container == undefined || container == null){
 		container = eleHtml;
-		console.log('Container is empty');
+//		console.log('Container is empty');
 	}
 	
 	var imgs = $('<div>').append(container).find('img');
@@ -156,7 +164,7 @@ dotory.imageFiltering = function(content, url, title, favicon){
 			}else{ 
 				srcs[i] = dotory.absolute(url, src);
 			}
-			console.log(srcs[i]);
+//			console.log(srcs[i]);
 		}
 	}
 	
@@ -185,7 +193,7 @@ dotory.imageFiltering = function(content, url, title, favicon){
 	
     $.postJSON($url,json,function(object){
     	if(object.code==200){
-    		console.log('success');
+//    		console.log('success');
 		}
     });
 };

@@ -105,14 +105,14 @@ dotory.metro.pageLoad=function(){
 			for(var i=0;i<visits.length;i++){
 				var count=visits[i].count;
 				if(count>=3){																//자주 방문하는 페이지
-					console.log("page : "+visits[i].title);
-					console.log("count : "+count);
-					console.log("cnt : "+cnt);
 					var url=visits[i].url;
 					var title=visits[i].title;
+
 					if(cnt%3 == 0){
+						/*******************문자열 단어로 쪼개기**********************/
+						var str=title.split(/\s/);
+						
 						if(cnt!=0){
-							console.log("ulback");
 							sub += ulBack;
 							content.append(sub);
 							sub = ulFront;
