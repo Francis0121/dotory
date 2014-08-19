@@ -1,6 +1,7 @@
 package net.epril.dotori.parsing;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -66,10 +67,11 @@ public class ParsingController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/image", method=RequestMethod.POST)
-	public Json postImage(@RequestBody Image image){
+	@RequestMapping(value="/images", method=RequestMethod.POST)
+	public Json postImage(@RequestBody List<Image> images){
 		try{
-			parsingService.insertImage(image);
+			logger.debug(images.toString());
+			parsingService.insertImages(images);
 		}catch(Exception e){
 			e.printStackTrace();
 			return new Json(AJC.ERROR, "Exception", e);

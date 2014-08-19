@@ -1,6 +1,7 @@
 package net.epril.dotori.parsing;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,4 +22,6 @@ public interface ParsingService {
 	Map<String, Object> insertAnalysisData(Parsing parsing);
 
 	void insertImage(Image image);
+
+	void insertImages(List<Image> images);
 }

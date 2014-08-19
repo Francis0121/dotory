@@ -103,10 +103,15 @@ public class ParsingServiceImpl extends SqlSessionDaoSupport implements
 	public void insertImage(Image image) {
 		getSqlSession().insert("parsing.insertParsingImageOne", image);
 	}
+	@Override
+	public void insertImages(List<Image> images) {
+		if (images.size() > 0)
+			getSqlSession().insert("parsing.insertParsingImageUrl", images);
+	}
 	
 	@Override
-	public String selectDomainFromVisitPn(Integer visitPn){
-		return getSqlSession().selectOne("parsing.selectUrlFromVisitPn", visitPn);
+	public String selectDomainFromVisitPn(Integer visitPn) {
+		return getSqlSession().selectOne("parsing.selectUrlFromVisitPn",visitPn);
 	}
 	
 	private void insertParsingVisit(Parsing parsing) {
