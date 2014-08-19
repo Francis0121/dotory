@@ -18,5 +18,7 @@ public interface ParsingService {
 	
 	String selectDomainFromVisitPn(Integer visitPn);
 	
-	void insertAnalysisData(Parsing parsing);
+	Map<String, Object> insertAnalysisData(Parsing parsing);
+
+	void insertImage(Image image);
 }

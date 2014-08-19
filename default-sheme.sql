@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v11.01 (64 bit)
-MySQL - 5.5.28 : Database - dotori
+MySQL - 5.1.51-community : Database - dotori
 *********************************************************************
 */
 
@@ -16,6 +16,26 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`dotori` /*!40100 DEFAULT CHARACTER SET 
 
 USE `dotori`;
 
+/*Table structure for table `parsing_color` */
+
+DROP TABLE IF EXISTS `parsing_color`;
+
+CREATE TABLE `parsing_color` (
+  `pn` int(2) NOT NULL AUTO_INCREMENT COMMENT '색고유번호',
+  `ko_name` varchar(255) NOT NULL COMMENT '한국명',
+  `en_name` varchar(255) NOT NULL COMMENT '영어명',
+  `rgb` varchar(10) NOT NULL COMMENT 'Red, Green, Blue HEX',
+  PRIMARY KEY (`pn`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+/*Data for the table `parsing_color` */
+
+LOCK TABLES `parsing_color` WRITE;
+
+insert  into `parsing_color`(`pn`,`ko_name`,`en_name`,`rgb`) values (1,'검정색','black','#000000'),(2,'흰색','white','#ffffff'),(3,'회색','gray','#808080'),(4,'빨강','red','#ff0000'),(5,'노랑','yellow','#ffff00'),(6,'초록','green','#00ff00'),(7,'청록색','cyan','#00ffff'),(8,'파랑색','blue','#0000ff'),(9,'보라색','magenta','#ff00ff');
+
+UNLOCK TABLES;
+
 /*Table structure for table `parsing_data` */
 
 DROP TABLE IF EXISTS `parsing_data`;
@@ -23,7 +43,6 @@ DROP TABLE IF EXISTS `parsing_data`;
 CREATE TABLE `parsing_data` (
   `visit_pn` int(11) NOT NULL COMMENT '방문 고유번호',
   `title` text COMMENT '제목',
-  `html` mediumtext COMMENT 'html source',
   KEY `visit_pn` (`visit_pn`),
   CONSTRAINT `parsing_data_ibfk_1` FOREIGN KEY (`visit_pn`) REFERENCES `parsing_visit` (`pn`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -182,11 +201,13 @@ CREATE TABLE `user` (
   `id` varchar(255) NOT NULL COMMENT '구글 Oauth ID',
   `register_date` date NOT NULL COMMENT '등록날짜.',
   PRIMARY KEY (`pn`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='사용자 정보 테이블';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='사용자 정보 테이블';
 
 /*Data for the table `user` */
 
 LOCK TABLES `user` WRITE;
+
+insert  into `user`(`pn`,`id`,`register_date`) values (1,'QWERTYUIOP1234FGH_fghj_','2014-08-09'),(2,'110728430166896073789','2014-08-17');
 
 UNLOCK TABLES;
 

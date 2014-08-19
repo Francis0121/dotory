@@ -68,7 +68,7 @@
 			LEFT OUTER JOIN `parsing_visit` AS `pv`
 			ON pi.`visit_pn` = pv.`pn`
 		WHERE
-			pv.`user_pn` = 1
+			pv.`user_pn` = #{userPn}
 	</select>
 	
 	<select id="selectImages" parameterType="ImageSearchFilter" resultMap="image_basic">
@@ -81,7 +81,7 @@
 			LEFT OUTER JOIN `parsing_url` AS `pu`
 			ON pu.`pn` = pv.`url_pn`
 		WHERE
-			pv.`user_pn` = 1
+			pv.`user_pn` = #{userPn}
 		ORDER BY
 			pv.`register_date` DESC
 		LIMIT #{pagination.itemSeqBegin}, #{pagination.numItemsPerPage}

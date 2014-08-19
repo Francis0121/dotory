@@ -83,7 +83,7 @@ public class ParsingServiceImpl extends SqlSessionDaoSupport implements
 	}
 	
 	@Override
-	public void insertAnalysisData(Parsing parsing) {
+	public Map<String, Object> insertAnalysisData(Parsing parsing) {
 		Integer pn = getSqlSession().selectOne("parsing.existParsingUrl", parsing);
 		if(pn == null || pn.equals(0)){
 			getSqlSession().insert("parsing.insertParsingUrl", parsing);			
@@ -93,12 +93,15 @@ public class ParsingServiceImpl extends SqlSessionDaoSupport implements
 		insertParsingVisit(parsing);
 		insertParsingData(parsing);
 			
-		List<Image> images = new ArrayList<Image>();
-		for(String src : parsing.getSrcs()){
-			if(src != null && !src.equals(""))
-				images.add(new Image(parsing.getPn(), src, 100, 100, 0));
-		}
-		insertParsingImageUrl(images);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pn", pn);
+		map.put("visitPn", parsing.getPn());
+		return map;
+	}
+	
+	@Override
+	public void insertImage(Image image) {
+		getSqlSession().insert("parsing.insertParsingImageOne", image);
 	}
 	
 	@Override
@@ -142,13 +145,13 @@ public class ParsingServiceImpl extends SqlSessionDaoSupport implements
 	
 	@Override
 	public Map<String, Object> selectDetailInformation(Parsing parsing) {
-		String html = getSqlSession().selectOne("parsing.selectDetailInformation", parsing);
+//		String html = getSqlSession().selectOne("parsing.selectDetailInformation", parsing);
 //		Document document = Jsoup.parse(html);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 //		map.putAll(imageFilter.filtering(parsing, document));
 		map.put("images", getSqlSession().selectList("parsing.selectDetailInfoImages", parsing.getPn()));
-		map.put("imagesHtml", html);
+//		map.put("imagesHtml", html);
 //		map.putAll(titleFilter.filtering(parsing, document));
 		return map;
 	}	

@@ -55,19 +55,6 @@
 		LIMIT #{pagination.itemSeqBegin}, #{pagination.numItemsPerPage}
 	</select>
 	
-	<select id="selectDetailInformation" parameterType="Parsing" resultType="String">
-		SELECT
-			html
-		FROM
-			`parsing_visit` AS pv
-			LEFT OUTER JOIN `parsing_data` AS pt
-			ON pv.`pn` = pt.`visit_pn`
-		WHERE
-			pv.`pn` = #{pn}
-		AND
-			pv.`user_pn` = #{userPn}
-	</select>
-	
 	<select id="selectDetailInfoImages" parameterType="Integer" resultMap="image_basic">
 		SELECT
 			pi.`visit_pn`, pi.`url`, pi.`width`, pi.`height`, pi.`color`
@@ -115,9 +102,17 @@
 	<insert id="insertParsingData" parameterType="Parsing">
 		INSERT INTO
 			parsing_data
-			( visit_pn, title, html )
+			( visit_pn, title )
 		VALUES
-			( #{pn}, #{title}, #{html} )
+			( #{pn}, #{title} )
+	</insert>
+	
+	<insert id="insertParsingImageOne" parameterType="Image">
+		INSERT INTO
+			parsing_image
+			( visit_pn, url, width, height, color )
+		VALUES
+			( #{visitPn}, #{url}, #{width}, #{height}, #{color} )
 	</insert>
 	
 	<insert id="insertParsingImageUrl" parameterType="ArrayList">

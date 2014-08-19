@@ -55,8 +55,21 @@ public class ParsingController {
 	@ResponseBody
 	@RequestMapping(value="/analysis", method=RequestMethod.POST)
 	public Json postAnalysis(@RequestBody Parsing parsing){
+		Map<String, Object> map; 
 		try{
-			parsingService.insertAnalysisData(parsing);
+			map = parsingService.insertAnalysisData(parsing);
+		}catch(Exception e){
+			e.printStackTrace();
+			return new Json(AJC.ERROR, "Exception", e);
+		}
+		return new Json(AJC.SUCCESS, "", map);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/image", method=RequestMethod.POST)
+	public Json postImage(@RequestBody Image image){
+		try{
+			parsingService.insertImage(image);
 		}catch(Exception e){
 			e.printStackTrace();
 			return new Json(AJC.ERROR, "Exception", e);
