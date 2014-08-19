@@ -145,61 +145,77 @@ dotory.imageFiltering = function(content, url, title, favicon){
 		}
 	}
 	
-	var $url = dotory.contextPath + '/parsing/analysis',
-		json = { 	'userPn' 	:	dotory.user.pn,
-					'srcs'		:	srcs,
+	
+	var $url = dotory.contextPath + '/parsing/analysis';
+	var	json = { 	'userPn' 	:	dotory.user.pn,
 					'html'		: 	content,
 					'domain'	:	domain,
 					'url'		:	url,
 					'title'		:	title,
 					'favicon'	: 	favicon == null ? '' : favicon};
 	
-	dotory.imageSearchCondition(srcs);
 	
-    $.postJSON($url,json,function(object){
+	$.postJSON($url,json,function(object){
+		var data = object.data;
     	if(object.code==200){
-    		console.log('success');
+    		console.log('[Image] Json success');
+    		dotory.imageSearchCondition(srcs, data.visitPn);
 		}
     });
 };
 
-dotory.imageSearchCondition = function(srcs){
+dotory.imageSearchCondition = function(srcs, visitPn){
 	
 	for(var i=0; i<srcs.length; i++){
 		var src = srcs[i];
 		if(src == undefined || src == '' || src == null){
 			continue;
 		}
-		var image = new Image();
-		image.src = src;
-		
-		console.log(src + ' w : ' + image.width + ' h : ' + image.height);
-		// ~ Page loading Control 
-		if(image.width == 0 || image.height == 0){
-			continue;
-		}
-		var canvas = $('<canvas/>')[0];
-		canvas.width = image.width;
-		canvas.height = image.height;
-		canvas.getContext('2d').drawImage(image, 0, 0, image.width, image.height);
-		
-		var start = new Date();
-		console.log('Start : ' + start + ' 0 ');
-		
-		var data = canvas.getContext('2d').getImageData(0, 0, image.width, image.height).data;		
-		var colors = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-		for(var j=0; j<image.width*image.height*4; j+=4){
-			var hsl = dotory.calculateHSL(data[j+0], data[j+1], data[j+2]);
-			colors[dotory.judgeHSL(hsl.hue, hsl.sat, hsl.lgt)]+=1;
-		} 
-		var max = colors.indexOf(Math.max.apply(Math, colors));
-		console.log('Max : ' + max + ' ' +Math.max.apply(Math, colors));
-		
-		var now = new Date();
-		var elapsed = Math.round((now - start)/600);
-		console.log('End : ' + now + ' ' + elapsed);
-	}
 	
+		$('<img/>').load(function() {
+			var thiz = this;
+			console.log('Image loaded correctly');
+			console.log(thiz.src + ' w : ' + thiz.width + ' h : ' + thiz.height);
+			if(thiz.width == 0 || thiz.height == 0){
+				return;
+			}
+			var canvas = $('<canvas/>')[0];
+			canvas.width = thiz.width;
+			canvas.height = thiz.height;
+			canvas.getContext('2d').drawImage(thiz, 0, 0, thiz.width, thiz.height);
+			
+			var start = new Date();
+			console.log('Start : ' + start + ' 0 ');
+			
+			var data = canvas.getContext('2d').getImageData(0, 0, thiz.width, thiz.height).data;		
+			var colors = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+			for(var j=0; j<thiz.width*thiz.height*4; j+=4){
+				var hsl = dotory.calculateHSL(data[j+0], data[j+1], data[j+2]);
+				colors[dotory.judgeHSL(hsl.hue, hsl.sat, hsl.lgt)]+=1;
+			} 
+			var max = colors.indexOf(Math.max.apply(Math, colors));
+			console.log('Max : ' + max + ' ' +Math.max.apply(Math, colors));
+			
+			var now = new Date();
+			var elapsed = Math.round((now - start)/600);
+			console.log('End : ' + now + ' ' + elapsed);
+			
+			var url = dotory.contextPath + '/parsing/image',
+				json = { 	'visitPn' 	: 	visitPn,
+							'url'		:	thiz.src,
+							'width'		:	thiz.width,
+							'height'	:	thiz.height,
+							'color'		:	max	};
+			
+			$.postJSON(url, json, function(object){
+				if(object.code == 200){
+					console.log('[Image] Image insert success');
+				}
+			});
+		}).error(function() { 
+			console.log('Error Loading image ...'); 
+		}).attr('src', src);
+	}
 };
 
 dotory.calculateHSL = function(r, g, b){
