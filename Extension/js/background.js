@@ -26,16 +26,53 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 	dotory.imageFiltering(request.content, sender.tab.url, sender.tab.title, sender.tab.favIconUrl);
-	dotory.getSearchWord(request.content,sender.tab.url);
+	dotory.getSearchWord(request.content,sender.tab.url,sender.tab.title);
 });
 /****************************************************/
-dotory.getSearchWord=function(content,url){
+dotory.getSearchWord=function(content,url,title){
 	var html=content;
 	var url=url;
+	var decodeUri= decodeURIComponent(url);
 	
-	console.log(url);
+	//google search word split
+	if(decodeUri.match(/google/)!=null){
+		console.log(decodeUri.match(/\&q=(.+)/i)[1]);
+		var search=decodeUri.match(/\&q=(.+)/i)[1],
+			searchArray=search.split('+');
+		
+	}
+	//naver
+	if(decodeUri.match(/naver/)!=null){
+		console.log(decodeUri.match(/\&query=(.+)/i)[1]);
+		var search=decodeUri.match(/\&query=(.+)/i)[1],
+			searchArray=search.split(' ');
+	}
+	//daum & nate
+	if(decodeUri.match(/daum/)!=null){
+		console.log(decodeUri.match(/\&q=(.+)&/i)[1]);
+		var search=decodeUri.match(/\&q=(.+)&/i)[1],
+			searchArray=search.split('+');
+		for(var i=0;i<searchArray.length;i++)
+			console.log(searchArray[i]);
+	}
+	//yahoo
+	if(decodeUri.match(/yahoo/)!=null){
+		console.log(decodeUri.match(/\?p=(.+)&/i)[1]);
+		var search=decodeUri.match(/\?p=(.+)&/i)[1],
+			searchArray=search.split('+');
+		for(var i=0;i<searchArray.length;i++){
+			if(i==(searchArray.length-1)){
+				var temp=searchArray[i].split('&');
+				searchArray[i]=temp[0];				
+			}
+		}
+	}
+	//dotory.matchKeyword(searchArray,url,title);
 	
 }
+//dotory.matchKeyword=function(keyword, url){
+//	
+//}
 dotory.imageFiltering = function(content, url, title, favicon){
 	
 	if(dotory.regex == null || dotory.regex == undefined){
