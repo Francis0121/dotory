@@ -191,11 +191,92 @@ dotory.imageFiltering = function(content, url, title, favicon){
 					'title'		:	title,
 					'favicon'	: 	favicon == null ? '' : favicon};
 	
+	dotory.imageSearchCondition(srcs);
+	
     $.postJSON($url,json,function(object){
     	if(object.code==200){
-//    		console.log('success');
+    		console.log('success');
 		}
     });
+};
+
+dotory.imageSearchCondition = function(srcs){
+	
+	for(var i=0; i<srcs.length; i++){
+		var src = srcs[i];
+		if(src == undefined || src == '' || src == null){
+			continue;
+		}
+		var image = new Image();
+		image.src = src;
+		
+		console.log(src + ' w : ' + image.width + ' h : ' + image.height);
+		// ~ Page loading Control 
+		if(image.width == 0 || image.height == 0){
+			continue;
+		}
+		var canvas = $('<canvas/>')[0];
+		canvas.width = image.width;
+		canvas.height = image.height;
+		canvas.getContext('2d').drawImage(image, 0, 0, image.width, image.height);
+		
+		var start = new Date();
+		console.log('Start : ' + start + ' 0 ');
+		
+		var data = canvas.getContext('2d').getImageData(0, 0, image.width, image.height).data;		
+		var colors = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+		for(var j=0; j<image.width*image.height*4; j+=4){
+			var hsl = dotory.calculateHSL(data[j+0], data[j+1], data[j+2]);
+			colors[dotory.judgeHSL(hsl.hue, hsl.sat, hsl.lgt)]+=1;
+		} 
+		var max = colors.indexOf(Math.max.apply(Math, colors));
+		console.log('Max : ' + max + ' ' +Math.max.apply(Math, colors));
+		
+		var now = new Date();
+		var elapsed = Math.round((now - start)/600);
+		console.log('End : ' + now + ' ' + elapsed);
+	}
+	
+};
+
+dotory.calculateHSL = function(r, g, b){
+	r /= 255, g /= 255, b /= 255;
+    var max = Math.max(r, g, b), min = Math.min(r, g, b);
+    var h, s, l = (max + min) / 2;
+
+    if(max == min){
+        h = s = 0; // achromatic
+    }else{
+        var d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch(max){
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+        }
+        h*=60;
+        if (h < 0) {
+            h +=360;
+        }
+    }
+	
+	return { hue : h, sat : s, lgt : l};
+};
+
+dotory.judgeHSL= function(hue, sat, lgt){
+	if (lgt < 0.2)  return dotory.colors.black;
+    if (lgt > 0.8)  return dotory.colors.white;
+
+    if (sat < 0.25) return dotory.colors.gray;
+
+    if (hue < 30)   return dotory.colors.red;
+    if (hue < 90)   return dotory.colors.yellow;
+    if (hue < 150)  return dotory.colors.green;
+    if (hue < 210)  return dotory.colors.cyan;
+    if (hue < 270)  return dotory.colors.blue;
+    if (hue < 330)  return dotory.colors.magenta;
+    
+    return dotory.colors.red;
 };
 
 dotory.absolute = function(base, relative) {
