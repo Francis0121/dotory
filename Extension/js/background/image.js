@@ -158,24 +158,28 @@ dotory.imageFiltering = function(content, url, title, favicon){
 	$.postJSON($url,json,function(object){
 		var data = object.data;
     	if(object.code==200){
-    		console.log('[Image] Json success');
+//    		console.log('[Image] Json success');
     		dotory.imageSearchCondition(srcs, data.visitPn);
 		}
     });
 };
 
 dotory.imageSearchCondition = function(srcs, visitPn){
+	var count = 0;
+	var images = new Array();
 	
 	for(var i=0; i<srcs.length; i++){
 		var src = srcs[i];
 		if(src == undefined || src == '' || src == null){
+			count++;
 			continue;
 		}
-	
+		
 		$('<img/>').load(function() {
+			count++;
 			var thiz = this;
-			console.log('Image loaded correctly');
-			console.log(thiz.src + ' w : ' + thiz.width + ' h : ' + thiz.height);
+//			console.log('Image loaded correctly');
+//			console.log(thiz.src + ' w : ' + thiz.width + ' h : ' + thiz.height);
 			if(thiz.width == 0 || thiz.height == 0){
 				return;
 			}
@@ -185,7 +189,7 @@ dotory.imageSearchCondition = function(srcs, visitPn){
 			canvas.getContext('2d').drawImage(thiz, 0, 0, thiz.width, thiz.height);
 			
 			var start = new Date();
-			console.log('Start : ' + start + ' 0 ');
+//			console.log('Start : ' + start + ' 0 ');
 			
 			var data = canvas.getContext('2d').getImageData(0, 0, thiz.width, thiz.height).data;		
 			var colors = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -194,24 +198,28 @@ dotory.imageSearchCondition = function(srcs, visitPn){
 				colors[dotory.judgeHSL(hsl.hue, hsl.sat, hsl.lgt)]+=1;
 			} 
 			var max = colors.indexOf(Math.max.apply(Math, colors));
-			console.log('Max : ' + max + ' ' +Math.max.apply(Math, colors));
+//			console.log('Max : ' + max + ' ' +Math.max.apply(Math, colors));
 			
 			var now = new Date();
 			var elapsed = Math.round((now - start)/600);
-			console.log('End : ' + now + ' ' + elapsed);
+//			console.log('End : ' + now + ' ' + elapsed);
 			
-			var url = dotory.contextPath + '/parsing/image',
-				json = { 	'visitPn' 	: 	visitPn,
+			var	image = { 	'visitPn' 	: 	visitPn,
 							'url'		:	thiz.src,
 							'width'		:	thiz.width,
 							'height'	:	thiz.height,
 							'color'		:	max	};
+			images.push(image);
 			
-			$.postJSON(url, json, function(object){
-				if(object.code == 200){
-					console.log('[Image] Image insert success');
-				}
-			});
+			if(count == srcs.length){
+				var url = dotory.contextPath + '/parsing/images';
+				$.postJSON(url, images, function(object){
+					if(object.code == 200){
+//						console.log('[Image] Image insert success');
+					}
+				});
+			}
+			
 		}).error(function() { 
 			console.log('Error Loading image ...'); 
 		}).attr('src', src);
