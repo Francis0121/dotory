@@ -8,6 +8,7 @@ import net.epril.dotori.json.AJC;
 import net.epril.dotori.json.Json;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,8 +28,8 @@ public class HistoryController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/image/list", method=RequestMethod.POST)
-	public Json postImageList(@RequestBody ImageSearchFilter imageSearchFilter){
+	@RequestMapping(value="/image/list", method=RequestMethod.GET)
+	public Json postImageList(@ModelAttribute ImageSearchFilter imageSearchFilter){
 		Map<String, Object> map = historyService.selectImageList(imageSearchFilter);
 		return new Json(AJC.SUCCESS, "", map);
 	}
