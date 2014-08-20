@@ -158,7 +158,7 @@ dotory.imageFiltering = function(content, url, title, favicon){
 	
     $.postJSON($url,json,function(object){
     	if(object.code==200){
-    		console.log('success');
+//    		console.log('success');
 		}
     });
 };
@@ -173,7 +173,7 @@ dotory.imageSearchCondition = function(srcs){
 		var image = new Image();
 		image.src = src;
 		
-		console.log(src + ' w : ' + image.width + ' h : ' + image.height);
+//		console.log(src + ' w : ' + image.width + ' h : ' + image.height);
 		// ~ Page loading Control 
 		if(image.width == 0 || image.height == 0){
 			continue;
@@ -184,7 +184,7 @@ dotory.imageSearchCondition = function(srcs){
 		canvas.getContext('2d').drawImage(image, 0, 0, image.width, image.height);
 		
 		var start = new Date();
-		console.log('Start : ' + start + ' 0 ');
+//		console.log('Start : ' + start + ' 0 ');
 		
 		var data = canvas.getContext('2d').getImageData(0, 0, image.width, image.height).data;		
 		var colors = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -193,11 +193,11 @@ dotory.imageSearchCondition = function(srcs){
 			colors[dotory.judgeHSL(hsl.hue, hsl.sat, hsl.lgt)]+=1;
 		} 
 		var max = colors.indexOf(Math.max.apply(Math, colors));
-		console.log('Max : ' + max + ' ' +Math.max.apply(Math, colors));
+//		console.log('Max : ' + max + ' ' +Math.max.apply(Math, colors));
 		
 		var now = new Date();
 		var elapsed = Math.round((now - start)/600);
-		console.log('End : ' + now + ' ' + elapsed);
+//		console.log('End : ' + now + ' ' + elapsed);
 	}
 	
 };

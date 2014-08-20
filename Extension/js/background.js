@@ -1,5 +1,3 @@
-var keywordArray=new Array([],[]), //검색어 저장 배열
-	count=0;
 
 $(function(){
 	getUserInfo(false);
@@ -29,6 +27,4 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 	dotory.imageFiltering(request.content, sender.tab.url, sender.tab.title, sender.tab.favIconUrl);
 	dotory.getSearchWord(request.content,sender.tab.url,sender.tab.title);
-	for(var i=0;i<keywordArray.length;i++)
-		console.log(keywordArray[i]);
 });
