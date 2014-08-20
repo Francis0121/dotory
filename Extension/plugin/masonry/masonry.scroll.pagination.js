@@ -37,7 +37,7 @@
 			//opts.loading.start();
 			
 			var url = opts.contentPage;
-			var json = { 'userPn' : 1,
+			var json = { 'userPn' : dotory.user.pn,
 						 'page' : dotory.image.container.imageSearchFilter.page + 1 };
 			
 			if(Number(dotory.image.container.imageSearchFilter.page) 

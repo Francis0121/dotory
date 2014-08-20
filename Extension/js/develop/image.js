@@ -14,10 +14,9 @@ dotory.image.binding = function(){
 };
 
 dotory.image.loading = function(){
-	var url = dotory.contextPath + '/image/list',
-		json = { 'userPn' : dotory.user.pn };
+	var url = dotory.contextPath + '/image/list?page=1&userPn='+dotory.user.pn;
 	
-	$.postJSON(url, json, function(object){
+	$.getJSON(url, function(object){
 		var data = object.data,
 			images = data.images;
 		
@@ -35,7 +34,6 @@ dotory.image.loading = function(){
 				dotory.image.container.append(html);
 			}
 		}
-//		setTimeout('dotory.image.pagination()', 0);
 	});
 	
 };
