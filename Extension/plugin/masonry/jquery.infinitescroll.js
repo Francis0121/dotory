@@ -590,8 +590,7 @@
 
                     break;
                 case 'json':
-                    instance._debug('Using ' + (method.toUpperCase()) + ' via $.ajax() method');
-                    console.log(desturl);
+                    instance._debug('Using ' + (method.toUpperCase()) + ' via $.ajax() method');                    
                     $.ajax({
                         dataType: 'json',
                         type: 'GET',

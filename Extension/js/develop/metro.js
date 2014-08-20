@@ -24,7 +24,7 @@ dotory.metro.navBtn = function() {
 		});
 		
 		$container.infinitescroll({
-				debug : true,
+				debug : false,
 				dataType: 'json',
 				binder: $('.dotory_image_content'),
 				navSelector  : '#page-nav',    // selector for the paged navigation 
