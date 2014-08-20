@@ -30,9 +30,9 @@ dotory.metro.navBtn = function() {
 				navSelector  : '#page-nav',    // selector for the paged navigation 
 				nextSelector : '#page-nav a',  // selector for the NEXT link (to page 2)
 				itemSelector : '.history_images>li',     // selector for all items you'll retrieve
-				loading: {
+				loading:{
 					finishedMsg: 'No more pages to load.',
-					img: 'http://i.imgur.com/6RMhx.gif'
+					img: '../../images/loading.gif'
 				},
 				appendCallback: false,
 				parameter : '&userPn='+dotory.user.pn,
