@@ -65,4 +65,10 @@ public class HistoryServiceImpl extends SqlSessionDaoSupport implements
 		return images;
 	}
 	
+	@Override
+	public Map<String, Object> selectColors() {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("colors", getSqlSession().selectList("history.selectColors"));
+		return map;
+	}
 }

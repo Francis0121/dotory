@@ -8,4 +8,6 @@ public interface HistoryService {
 
 	Map<String, Object> selectImageList(ImageSearchFilter imageSearchFilter);
 
+	Map<String, Object> selectColors();
+
 }

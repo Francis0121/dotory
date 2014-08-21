@@ -33,4 +33,11 @@ public class HistoryController {
 		Map<String, Object> map = historyService.selectImageList(imageSearchFilter);
 		return new Json(AJC.SUCCESS, "", map);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/colors", method=RequestMethod.GET)
+	public Json getColors(){
+		Map<String, Object> map = historyService.selectColors();
+		return new Json(AJC.SUCCESS, "", map);
+	}
 }

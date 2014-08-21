@@ -20,6 +20,13 @@
 		<result column="color" property="color"/>
 	</resultMap>
 	
+	<resultMap type="Color" id="color_basic">
+		<result column="pn" property="pn"/>
+		<result column="ko_name" property="koName"/>
+		<result column="en_name" property="enName"/>
+		<result column="rgb" property="rgb"/>
+	</resultMap>	
+	
 	<select id="selectVisitCount" parameterType="VisitFilter" resultType="Integer">
 		SELECT
 			COUNT(*)
@@ -69,12 +76,26 @@
 			ON pi.`visit_pn` = pv.`pn`
 		WHERE
 			pv.`user_pn` = #{userPn}
+		<if test="width != null">
+		AND
 		<![CDATA[
-		AND
-			width >= 140
-		AND
-			height >= 85
+			pi.`width` >= #{width}
 		]]>
+		</if>
+		<if test="height != null">
+		AND
+		<![CDATA[
+			pi.`height` >= #{height}
+		]]>
+		</if>
+		AND
+			(
+				DATE_FORMAT(pv.`register_date`,'%d-%m-%Y') BETWEEN #{from} AND #{to}
+			)
+		<if test="color != null and color != 0">
+		AND
+			pi.`color` = #{color}
+		</if>
 	</select>
 	
 	<select id="selectImages" parameterType="ImageSearchFilter" resultMap="image_basic">
@@ -88,15 +109,36 @@
 			ON pu.`pn` = pv.`url_pn`
 		WHERE
 			pv.`user_pn` = #{userPn}
-		<![CDATA[	
+		<if test="width != null">
 		AND
-			width >= 140
-		AND
-			height >= 85
+		<![CDATA[
+			pi.`width` >= #{width}
 		]]>
+		</if>
+		<if test="height != null">
+		AND
+		<![CDATA[
+			pi.`height` >= #{height}
+		]]>
+		</if>		
+		AND
+			(
+				DATE_FORMAT(pv.`register_date`,'%d-%m-%Y') BETWEEN #{from} AND #{to}
+			)
+		<if test="color != null and color != 0">
+		AND
+			pi.`color` = #{color}
+		</if>
 		ORDER BY
 			pv.`register_date` DESC
 		LIMIT #{pagination.itemSeqBegin}, #{pagination.numItemsPerPage}
 	</select>
+		
+	<select id="selectColors" resultMap="color_basic">
+		SELECT
+			pn, ko_name, en_name, rgb
+		FROM
+			parsing_color
+	</select>	
 		
 </mapper>

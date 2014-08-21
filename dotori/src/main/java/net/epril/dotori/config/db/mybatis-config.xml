@@ -5,6 +5,7 @@
 		<typeAlias type="net.epril.dotori.regex.Regex" alias="Regex"/>
 		<typeAlias type="net.epril.dotori.user.User" alias="User"/>
 		<typeAlias type="net.epril.dotori.parsing.Image" alias="Image"/>
+		<typeAlias type="net.epril.dotori.parsing.Color" alias="Color"/>
 		<typeAlias type="net.epril.dotori.parsing.Parsing" alias="Parsing"/>
 		<typeAlias type="net.epril.dotori.parsing.ParsingFilter" alias="ParsingFilter"/>
 		<typeAlias type="net.epril.dotori.parsing.visit.VisitFilter" alias="VisitFilter"/>
