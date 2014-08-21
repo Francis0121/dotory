@@ -74,7 +74,7 @@ function fetchUserInfo(user_info){
 				dotory.metro.binding();
 				dotory.history.binding();
 				dotory.image.binding();
-			}else if(dotory.type = dotory.types.web){
+			}else if(dotory.type == dotory.types.web){
 				dotory.web.binding();
 			}
 		}
