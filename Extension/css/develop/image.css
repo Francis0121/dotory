@@ -8,3 +8,4 @@ UL.history_images{ float:left; width: 580px;}
 UL.history_images>LI{ margin : 3px; float:left; color:#000; background-color: #fff;  width: 134px; text-indent: -9999px;}
 UL.history_images>LI>A{ float: left; }
 UL.history_images>LI>A>IMG{ float: left; width: 134px;}
+DIV#infscr-loading{ position: absolute; top: -9999px;}
