@@ -268,7 +268,7 @@
             if (!!opts.pathParse) {
 
                 this._debug('pathParse manual');
-                return opts.pathParse(path, this.options.state.currPage+1);
+                return opts.pathParse(path, dotory.web.container.imageSearchFilter.page+2);
 
             } else if (path.match(/^(.*?)\b2\b(.*?$)/)) {
                 path = path.match(/^(.*?)\b2\b(.*?$)/).slice(1);
@@ -325,7 +325,6 @@
             }
 
             opts.state.isDone = true;
-            opts.state.currPage = 1; // if you need to go back to this instance
             opts.state.isPaused = false;
             opts.state.isBeyondMaxPage = false;
             this._binding('unbind');
@@ -543,10 +542,9 @@
                 box, desturl, method, condition;
 
             // increment the URL bit. e.g. /page/3/
-            opts.state.currPage++;
 
             // Manually control maximum page
-            if ( opts.maxPage !== undefined && opts.state.currPage > opts.maxPage ){
+            if ( opts.maxPage !== undefined && (dotory.web.container.imageSearchFilter.page+1) > opts.maxPage ){
                 opts.state.isBeyondMaxPage = true;
                 this.destroy();
                 return;
@@ -555,8 +553,7 @@
             // if we're dealing with a table we can't use DIVs
             box = $(opts.contentSelector).is('table, tbody') ? $('<tbody/>') : $('<div/>');
 
-            desturl = (typeof path === 'function') ? path(opts.state.currPage) : path.join(opts.state.currPage);
-            console.log(desturl);
+            desturl = (typeof path === 'function') ? path(dotory.web.container.imageSearchFilter.page+1) : path.join(dotory.web.container.imageSearchFilter.page+1);
             instance._debug('heading into ajax', desturl);
 
             method = (opts.dataType === 'html' || opts.dataType === 'json' ) ? opts.dataType : 'html+callback';
@@ -592,6 +589,9 @@
                     break;
                 case 'json':
                     instance._debug('Using ' + (method.toUpperCase()) + ' via $.ajax() method');                    
+                    if(dotory.web.container.imageSearchFilter.page > dotory.web.container.imageSearchFilter.pagination.numPages){
+                    	return;
+                    }
                     $.ajax({
                         dataType: 'json',
                         type: 'GET',
