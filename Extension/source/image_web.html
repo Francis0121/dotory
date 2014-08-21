@@ -9,58 +9,67 @@
 </head>
 <body>
 
-<div class="dotory_web_wrap">
-	<header class="dotory_web_header">
-	<ul class="web_top">
-		<li><!-- 시작 날짜 -->
-			<p>조회기간: <input type="text" id="datepicker1"> ~ <input type="text" id="datepicker2"></p>
+<header class="web_header">
+	<h1>
+		<img alt="Dotory" src="../images/acorn-48.png" class="logo_image">
+		<span class="logo_text">Dotory</span>
+	</h1>
+	
+	<div class="web_search_cond_wrap">
+		<button type="button" id="btn_searchCond">&lt;</button>
+	</div>
+	
+	<ul class="web_search_condition">
+		<li class="date">
+			<label>Date Range</label>
+			<input type="text" id="web_datepicker_1" name="web_datepicker_1" readonly="readonly" placeholder="From"/>
+			<button type="button" class="no_event_btn">&gt;</button>
+			<input type="text" id="web_datepicker_2" name="web_datepicker_2" readonly="readonly" placeholder="To"/>
 		</li>
-		<li><!-- size -->
-			<select name="size"><!-- style="width:70;" -->
-			   <option value="0" selected> size </option>
-			   <option value="1"> 1 </option>
-			   <option value="2"> 2 </option>
-			   <option value="3"> 3 </option>
+		<li class="size">
+			<label for="web_width">Width</label>
+			<select name="web_width" id="web_width">
+				<option value="">All</option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
+			</select>
+			
+			<label for="web_height">Height</label>
+			<select name="web_height" id="web_height">
+				<option value="">All</option>
+				<option value=""></option>
+				<option value=""></option>
+				<option value=""></option>
 			</select>
 		</li>
-		<li><!-- color -->
-			<select name="color"><!-- style="width:70;" -->
-			   <option value="0" selected> color </option>
-			   <option value="1"> 1 </option>
-			   <option value="2"> 2 </option>
-			   <option value="3"> 3 </option>
+		<li class="color">
+			<label for="web_color">Color</label>
+			<select id="web_color" name="web_color">
+			   <option value="">ALL</option>
 			</select>
 		</li>
-		<li><!-- search -->
-			<input type="text" name="search" placeholder="search" size="20">
+		<li class="button">
+			<button type="button" id="btn_search">Search</button>
 		</li>
 	</ul>
-	</header>
-	<div class="dotory_web_content">
-		<ul class="history_web_images">
-			<li>images1</li>
-			<li>images2</li>
-			<li>images3</li>
-			<li>images4</li>
-			<li>images5</li>
-			<li>images6</li>
-			<li>images7</li>
-			<li>images8</li>
-			<li>images9</li>
-			<li>images10</li>
-			<li>images11</li>
-			<li>images12</li>
-			<li>images13</li>
-			<li>images14</li>
-			<li>images15</li>
-			<li>images11</li>
-			<li>images12</li>
-			<li>images13</li>
-			<li>images14</li>
-			<li>images15</li>
+	
+</header>
+
+<section class="web_section">
+	<article class="web_article">
+		<ul class="history_images">
+		
 		</ul>
-	</div>
-</div>
+		<nav id="page-nav">
+			<a href="http://localhost:8080/image/list?page=2"></a>
+		</nav>
+	</article>
+</section>
+
+<footer class="web_footer">
+	<span class="copyright">(C) Secmem Dotory. All rights reserved. Made by. Francis, Yejin</span>
+</footer>
 
 <script src="../plugin/jquery-1.8.2.min.js"></script>
 <script src="../plugin/jquery.json.js"></script>
@@ -77,5 +86,7 @@
 
 <script src="../js/default.js"></script><!-- No change 'Script' order -->
 <script src="../js/web.js"></script>
+<script src="../js/develop/identity.js"></script>
+
 </body>
 </html>

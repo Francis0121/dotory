@@ -18,7 +18,7 @@ dotory.metro.navBtn = function() {
 		// initialize Masonry after all images have loaded  
 		$container.imagesLoaded( function() {
 			$container.masonry({
-				  columnWidth: 140,
+				  columnWidth: 200,
 				  itemSelector: '.history_images>li'
 			});
 		});
