@@ -136,8 +136,16 @@ dotory.web.loading = function(){
 	
 };
 
-dotory.web.content = function(){
+dotory.web.content = function(json_parameter){
+	var json = {	
+			userPn : dotory.user.pn,
+			from : $('#web_datepicker_1').val(),
+			to : $('#web_datepicker_2').val(),
+			width : $('#web_width').val(),
+			height : $('#web_height').val(),
+			color : $('#web_color').val()};
 	
+	var parameter = '&'+EncodeQueryData(json);
 	var $container = $('.history_images');
 	// initialize Masonry after all images have loaded  
 	$container.imagesLoaded( function() {
@@ -158,8 +166,11 @@ dotory.web.content = function(){
 				finishedMsg: 'No more pages to load.',
 				img: '../../images/loading.gif'
 			},
+			state :{
+				currPage: 1
+			},
 			appendCallback: false,
-			parameter : '&userPn='+dotory.user.pn,
+			parameter : parameter,
 			maxPage : dotory.web.container.imageSearchFilter.pagination.numPages
 		},
 		// 	trigger Masonry as a callback
@@ -187,3 +198,10 @@ dotory.web.content = function(){
 		}
     );
 };
+
+function EncodeQueryData(data){
+	var ret = [];
+	for (var d in data)
+	 ret.push(encodeURIComponent(d) + "=" + encodeURIComponent(data[d]));
+	return ret.join("&");
+}

@@ -556,6 +556,7 @@
             box = $(opts.contentSelector).is('table, tbody') ? $('<tbody/>') : $('<div/>');
 
             desturl = (typeof path === 'function') ? path(opts.state.currPage) : path.join(opts.state.currPage);
+            console.log(desturl);
             instance._debug('heading into ajax', desturl);
 
             method = (opts.dataType === 'html' || opts.dataType === 'json' ) ? opts.dataType : 'html+callback';
@@ -658,7 +659,6 @@
 
         // Check to see next page is needed
         scroll: function infscr_scroll() {
-
             var opts = this.options,
             state = opts.state;
 
