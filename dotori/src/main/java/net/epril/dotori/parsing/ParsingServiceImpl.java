@@ -91,14 +91,22 @@ public class ParsingServiceImpl extends SqlSessionDaoSupport implements
 			parsing.setUrlPn(pn);
 		}
 		insertParsingVisit(parsing);
+		if(parsing.getKeywordpn()==null)
+			insertParsingKeyword(parsing);
 		insertParsingData(parsing);
 			
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pn", pn);
 		map.put("visitPn", parsing.getPn());
+		map.put("keywordpn", parsing.getKeywordpn());
 		return map;
 	}
 	
+	private void insertParsingKeyword(Parsing parsing) {
+		getSqlSession().insert("parsing.insertParsingKeyword",parsing);
+		
+	}
+
 	@Override
 	public void insertImage(Image image) {
 		getSqlSession().insert("parsing.insertParsingImageOne", image);

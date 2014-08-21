@@ -56,6 +56,7 @@ public class ParsingController {
 	@ResponseBody
 	@RequestMapping(value="/analysis", method=RequestMethod.POST)
 	public Json postAnalysis(@RequestBody Parsing parsing){
+		logger.debug(parsing.toString());
 		Map<String, Object> map; 
 		try{
 			map = parsingService.insertAnalysisData(parsing);

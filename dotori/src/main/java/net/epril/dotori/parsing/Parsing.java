@@ -12,6 +12,11 @@ import java.util.List;
 public class Parsing {
 
 	/**
+	 * 키워드 고유번호
+	 */
+	private Integer keywordpn;
+
+	/**
 	 * 방문 고유번호
 	 */
 	private Integer pn;
@@ -61,6 +66,8 @@ public class Parsing {
 	 */
 	private String favicon;
 
+	private String keyword;
+
 	public Parsing() {
 		super();
 		this.userPn = 1;
@@ -80,6 +87,14 @@ public class Parsing {
 
 	public String getHtml() {
 		return html;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public Integer getKeywordpn() {
+		return keywordpn;
 	}
 
 	public Integer getPn() {
@@ -122,6 +137,14 @@ public class Parsing {
 		this.html = html;
 	}
 
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public void setKeywordpn(Integer keywordpn) {
+		this.keywordpn = keywordpn;
+	}
+
 	public void setPn(Integer pn) {
 		this.pn = pn;
 	}
@@ -148,10 +171,11 @@ public class Parsing {
 
 	@Override
 	public String toString() {
-		return "Parsing [pn=" + pn + ", urlPn=" + urlPn + ", userPn=" + userPn
-				+ ", url=" + url + ", domain=" + domain + ", title=" + title
-				+ ", html=" + html + ", count=" + count + ", srcs=" + srcs
-				+ ", favicon=" + favicon + "]";
+		return "Parsing [keywordpn=" + keywordpn + ", pn=" + pn + ", urlPn="
+				+ urlPn + ", userPn=" + userPn + ", url=" + url + ", domain="
+				+ domain + ", title=" + title + ", html=" + html + ", count="
+				+ count + ", srcs=" + srcs + ", favicon=" + favicon
+				+ ", keyword=" + keyword + "]";
 	}
 
 }

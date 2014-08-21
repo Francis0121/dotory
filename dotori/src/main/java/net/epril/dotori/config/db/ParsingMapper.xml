@@ -99,12 +99,24 @@
 		</selectKey>
 	</insert>
 	
+	<insert id="insertParsingKeyword" parameterType="Parsing">
+		INSERT INTO
+			parsing_keyword
+			(keyword)
+		VALUES
+			(#{keyword})
+		<selectKey keyProperty="keywordpn" resultType="Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	
 	<insert id="insertParsingData" parameterType="Parsing">
 		INSERT INTO
 			parsing_data
-			( visit_pn, title )
+			( visit_pn, title, keyword_pn )
 		VALUES
-			( #{pn}, #{title} )
+			( #{pn}, #{title}, #{keywordpn} )
 	</insert>
 	
 	<insert id="insertParsingImageOne" parameterType="Image">
