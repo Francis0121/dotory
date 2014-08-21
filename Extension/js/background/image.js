@@ -1,5 +1,5 @@
 
-dotory.imageFiltering = function(content, url, title, favicon){
+dotory.imageFiltering = function(content, url, title, favicon,keyword,index){
 	
 	if(dotory.regex == null || dotory.regex == undefined){
 //		console.log('Error : Doesn`t make Image Regex');
@@ -148,18 +148,21 @@ dotory.imageFiltering = function(content, url, title, favicon){
 	
 	var $url = dotory.contextPath + '/parsing/analysis';
 	var	json = { 	'userPn' 	:	dotory.user.pn,
-					'html'		: 	content,
 					'domain'	:	domain,
 					'url'		:	url,
 					'title'		:	title,
-					'favicon'	: 	favicon == null ? '' : favicon};
-	
+					'favicon'	: 	favicon == null ? '' : favicon,
+					'keyword'	: 	keyword != null ? keyword[0] : null,
+					'keywordpn' : 	keywordPns[index]};
+					
 	
 	$.postJSON($url,json,function(object){
 		var data = object.data;
     	if(object.code==200){
 //    		console.log('[Image] Json success');
     		dotory.imageSearchCondition(srcs, data.visitPn);
+    		keywordPns[index]=data.keywordpn;
+    		console.log(keywordPns[index]);
 		}
     });
 };
