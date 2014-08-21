@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v11.01 (64 bit)
-MySQL - 5.1.51-community : Database - dotori
+MySQL - 5.5.28 : Database - dotori
 *********************************************************************
 */
 
@@ -43,7 +43,10 @@ DROP TABLE IF EXISTS `parsing_data`;
 CREATE TABLE `parsing_data` (
   `visit_pn` int(11) NOT NULL COMMENT '방문 고유번호',
   `title` text COMMENT '제목',
+  `keyword_pn` int(11) DEFAULT NULL COMMENT '키워드 고유번호',
   KEY `visit_pn` (`visit_pn`),
+  KEY `keyword_pn` (`keyword_pn`),
+  CONSTRAINT `parsing_data_ibfk_2` FOREIGN KEY (`keyword_pn`) REFERENCES `parsing_keyword` (`pn`) ON DELETE CASCADE,
   CONSTRAINT `parsing_data_ibfk_1` FOREIGN KEY (`visit_pn`) REFERENCES `parsing_visit` (`pn`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -70,6 +73,22 @@ CREATE TABLE `parsing_image` (
 /*Data for the table `parsing_image` */
 
 LOCK TABLES `parsing_image` WRITE;
+
+UNLOCK TABLES;
+
+/*Table structure for table `parsing_keyword` */
+
+DROP TABLE IF EXISTS `parsing_keyword`;
+
+CREATE TABLE `parsing_keyword` (
+  `pn` int(11) NOT NULL AUTO_INCREMENT COMMENT '키워드 고유번호',
+  `keyword` varchar(255) NOT NULL COMMENT '키워드 내용',
+  PRIMARY KEY (`pn`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `parsing_keyword` */
+
+LOCK TABLES `parsing_keyword` WRITE;
 
 UNLOCK TABLES;
 
@@ -102,7 +121,7 @@ CREATE TABLE `parsing_url` (
   `domain` varchar(255) NOT NULL COMMENT '정규식으로 걸러진 Domain',
   `favicon` varchar(255) NOT NULL COMMENT 'Favicon Url',
   PRIMARY KEY (`pn`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
 
 /*Data for the table `parsing_url` */
 
@@ -124,7 +143,7 @@ CREATE TABLE `parsing_visit` (
   KEY `user_pn` (`user_pn`),
   CONSTRAINT `parsing_visit_ibfk_1` FOREIGN KEY (`url_pn`) REFERENCES `parsing_url` (`pn`) ON UPDATE NO ACTION,
   CONSTRAINT `parsing_visit_ibfk_2` FOREIGN KEY (`user_pn`) REFERENCES `user` (`pn`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=222 DEFAULT CHARSET=utf8;
 
 /*Data for the table `parsing_visit` */
 
@@ -207,7 +226,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 
-insert  into `user`(`pn`,`id`,`register_date`) values (1,'QWERTYUIOP1234FGH_fghj_','2014-08-09'),(2,'110728430166896073789','2014-08-17');
+insert  into `user`(`pn`,`id`,`register_date`) values (1,'117413766640864335409','2014-08-09'),(2,'110728430166896073789','2014-08-17');
 
 UNLOCK TABLES;
 
