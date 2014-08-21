@@ -5,6 +5,7 @@ if(typeof dotory == 'undefined'){
 dotory.contextPath = 'http://localhost:8080';
 dotory.types = {
 	main : 'MAIN',
+	web : 'WEB',
 	background : 'BACKGROUND'
 };
 

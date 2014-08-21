@@ -1,66 +1,45 @@
 @CHARSET "UTF-8";
-html, body{
-	width:100%;
-	height:100%;
+HTML{ width: 100%; overflow-x:hidden; overflow-y:scroll;}
+BODY{ width: 100%; }
+
+HEADER.web_header{ width: 100%; height: 80px; position: fixed; top: 0; left: 0; background: #fafafa; box-shadow:  0.5px 0.5px 3px 0px rgba(128,128,128,1); z-index: 10;}
+FOOTER.web_footer{ width: 100%; height: 30px; position: fixed; bottom: 0; left: 0; background: #fafafa; box-shadow:  0.5px 0.5px 3px 0px rgba(128,128,128,1); z-index: 10;}
+SECTION.web_section{ width: 100%; margin: 80px 0 30px 0;}
+ARTICLE.web_article{ min-width: 900px; max-width:96%; margin: 0 auto;}
+
+UL.history_images{}
+UL.history_images>LI{ width: 240px; margin: 5px;}
+UL.history_images>LI IMG{ width: 240px;}
+
+
+/** Header*/
+HEADER.web_header>H1{float: left; width: 200px;}
+HEADER.web_header>H1>IMG.logo_image{ float: left; width: 48px; height: 47px; margin: 15px 15px 20px 15px;}
+HEADER.web_header>H1>SPAN.logo_text{ float: left; font-weight: normal; height: 75px; line-height: 75px; font-size: 112.5%; color: #323232;}
+
+UL.web_search_condition{ float: right; width: 550px;}
+UL.web_search_condition>LI{ float:left; margin: 4px 0 0 0; }
+UL.web_search_condition>LI>LABEL{ float :left; color: #454e59; font-size: 87.5%; height: 22px; padding: 6px 8px; line-height: 22px;}
+UL.web_search_condition>LI.date{ float: left; }
+UL.web_search_condition>LI.date>INPUT{ float :left; background : #fff; border: 1px solid #dae0e8; box-sizing: border-box; color: #454e59; cursor: pointer;display: block; font-size: 87.5%; 	height:34px; line-height: 20px; padding : 6px 8px; width : 201px; }
+UL.web_search_condition>LI.date>INPUT:FOCUS{ border: 1px solid #91d5d8; }
+UL.web_search_condition>LI.date>INPUT#web_datepicker_1{ border-radius : 3px 0 0 3px;}
+UL.web_search_condition>LI.date>INPUT#web_datepicker_2{ border-radius : 0 3px 3px 0;}
+UL.web_search_condition>LI.date>BUTTON.no_event_btn{ cursor: auto; float: left; border: 1px solid #dae0e8; background: #fff; min-width: 45px; height: 34px; padding: 6px 8px; 
+	background: #fff url("../images/right_arrow.png") no-repeat 18px 9px; text-indent: -9999px; 
 }
-DIV.dotory_web_wrap{
-	background-color: #fff;
-	width:100%;
-	height:100%;
-	float:left;
-}
-HEADER.dotory_web_header{
-	padding: 30px 10px 30px 10px;
-	width:100%;
-	height:30px;
-	float:left;
-}
-UL.web_top{
-	float:left;
-}
-UL.web_top>LI{
-	float:left;
-}
-UL.web_top>LI:nth-child(1){
-	margin: 0 5px 0 0;
-	width:410px;
-	height:30px;
-	float:left;
-}
-UL.web_top>LI:nth-child(2){
-	margin: 0 5px 0 0;
-	width:51px;
-	height:30px;
-	float:left;
-}
-UL.web_top>LI:nth-child(3){
-	margin: 0 15px 0 0;
-	width:55px;
-	height:30px;
-	float:left;
-}
-UL.web_top>LI:nth-child(4){
-	margin: 0 15px 0 0;
-	width:153px;
-	height:30px;
-	float:left;
-}
-DIV.dotory_web_content{
-	padding: 10px 10px 0px 10px;
-	width:100%;
-	height:566px;
-	float:left;
-	overflow-y: scroll;
-}
-UL.history_web_images{
-	float:left;
-}
-UL.history_web_images>LI{
-	float:left;	
-	width:200px;
-	height:150px;
-	float:left;
-	margin: 0 4px 4px 0px;
-	color:#e6eeee;
-	background-color: #009aad;
-}
+
+UL.web_search_condition>LI.size{ float: left;}
+UL.web_search_condition>LI.size>SELECT{ float :left; border-radius:3px; background : #fff; border: 1px solid #dae0e8; box-sizing: border-box; color: #454e59; cursor: pointer;display: block; font-size: 87.5%; 	height:34px; line-height: 20px; padding : 6px 8px; width : 100px; }
+UL.web_search_condition>LI.size>SELECT:FOCUS{ border: 1px solid #91d5d8; }
+UL.web_search_condition>LI.color{ }
+UL.web_search_condition>LI.color>SELECT{ float :left; border-radius:3px; background : #fff; border: 1px solid #dae0e8; box-sizing: border-box; color: #454e59; cursor: pointer;display: block; font-size: 87.5%; 	height:34px; line-height: 20px; padding : 6px 8px; width : 100px; }
+UL.web_search_condition>LI.color>SELECT:FOCUS{border: 1px solid #91d5d8; }
+UL.web_search_condition>LI.button{ margin-left: 5px; }
+UL.web_search_condition>LI.button>BUTTON{ background-color: #5ccdde; border: 1px solid #5ccdde; border-radius :3px; color: #fff; padding: 6px 12px; font-size: 87.5%; cursor: pointer; margin: 2px;}
+
+DIV.web_search_cond_wrap{ float: right; width: 40px; height: 80px; border-left: 1px solid #ced9db;}
+DIV.web_search_cond_wrap>button { padding: 5px; height: 70px; width: 30px; background: url("../images/btn_search_cond.png") no-repeat; text-indent: -9999px; cursor: pointer;	}
+
+/** Footer*/
+FOOTER.web_footer>SPAN.copyright{ width: 100%; text-align: center; display: block; font-size: 68.75%; color: #818181; line-height: 30px;}
