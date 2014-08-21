@@ -154,7 +154,7 @@ dotory.web.content = function(json_parameter){
 				'itemSelector': '.history_images>li'
 		});
 	});
-	
+
 	$container.infinitescroll({
 			debug : false,
 			dataType: 'json',
@@ -163,21 +163,19 @@ dotory.web.content = function(json_parameter){
 			nextSelector : '#page-nav a',  // selector for the NEXT link (to page 2)
 			itemSelector : '.history_images>li',     // selector for all items you'll retrieve
 			loading:{
-				finishedMsg: 'No more pages to load.',
-				img: '../../images/loading.gif'
-			},
-			state :{
-				currPage: 1
+				finishedMsg: '',
+				img: ''
 			},
 			appendCallback: false,
-			parameter : parameter,
-			maxPage : dotory.web.container.imageSearchFilter.pagination.numPages
+			parameter : parameter//,
+			//maxPage : dotory.web.container.imageSearchFilter.pagination.numPages
 		},
 		// 	trigger Masonry as a callback
 		function(object, opts) {
 			var data = object.data, images = data.images;
 			var content = '';
 			if(object.code == 200){
+				dotory.web.container.imageSearchFilter = data.imageSearchFilter;
 				for(var i=0; i<images.length; i++){
 					var image = images[i];
 					var html = 	'<li>';
