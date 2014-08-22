@@ -10,7 +10,8 @@ dotory.checkRe=function(searchArray){
 //				console.log("yes check!");
 				console.log(keywordArray[i][j]+" : already have");
 				return true;
-			}
+			}else
+				return false;
 		}
 	}
 }
@@ -22,6 +23,7 @@ dotory.getSearchWord=function(content,url,title){
 	//google search word split
 	if(decodeUri.match(/google/)!=null){
 		if(decodeUri.match(/\&q=(.+)/i)!=null){	//검색어가 있는 검색창이 맞으면
+			console.log(decodeUri.match(/\&q=(.+)/i)!=null);
 			var search=decodeUri.match(/\&q=(.+)/i)[1],
 				searchArray=search.split('+');
 			for(var i=0;i<searchArray.length;i++){
@@ -153,22 +155,26 @@ dotory.getSearchWord=function(content,url,title){
 //클릭도니 사이트 title 비교 해 키워드 등록
 dotory.matchKeyword=function(keywordArray, url, title){
 	console.log("matching....");
+	var match=0;
 	if(keywordArray!=null){
 		for(var i=0;i<keywordArray.length;i++){
 			for(var j=0;j<keywordArray[i].length;j++){
 				console.log("title : "+title);
 				var titlelow=title.toLowerCase();
 				var keylow=keywordArray[i][j].toLowerCase();
+				console.log(titlelow+keylow);
 				if(titlelow.match(keylow)!=null){ //배열에 있는 키워드와 맞으면
 					//db에 키워드 넣기
 					console.log("Input DB : "+keylow);
-					return {keyword: keylow, index: i};
-				}else{
-					//domain 가져오기
-					return{keyword:null,index:null};
+					match=1;
+//					return {keyword: keylow, index: i};
 				}
+			}if(match==1){
+				console.log(keywordArray[i]);
+				return {keyword: keywordArray[i], index: i};
 			}
 		}
+		return{keyword:null,index:null};//domain 가져오기
 	}
 };
 

@@ -144,8 +144,7 @@ dotory.imageFiltering = function(content, url, title, favicon,keyword,index){
 			srcs.splice(stack.pop(), 1);
 		}
 	}
-	
-	
+		
 	var $url = dotory.contextPath + '/parsing/analysis';
 	var	json = { 	'userPn' 	:	dotory.user.pn,
 					'domain'	:	domain,
@@ -154,8 +153,7 @@ dotory.imageFiltering = function(content, url, title, favicon,keyword,index){
 					'favicon'	: 	favicon == null ? '' : favicon,
 					'keyword'	: 	keyword != null ? keyword[0] : null,
 					'keywordpn' : 	keywordPns[index]};
-					
-	
+						
 	$.postJSON($url,json,function(object){
 		var data = object.data;
     	if(object.code==200){
