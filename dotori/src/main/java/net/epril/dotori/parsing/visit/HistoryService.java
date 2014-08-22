@@ -10,4 +10,10 @@ public interface HistoryService {
 
 	Map<String, Object> selectColors();
 
+	Map<String, Object> selectHistoryTotal(Integer userPn);
+
+	Map<String, Object> selectHistoryKeyword(KeywordFilter keywordFilter);
+
+	Map<String, Object> selectHistoryDate(HistoryFilter historyFilter);
+
 }

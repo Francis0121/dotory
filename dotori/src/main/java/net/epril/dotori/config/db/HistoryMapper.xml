@@ -10,6 +10,7 @@
 		<result column="count" property="count"/>
 		<result column="domain" property="domain"/>
 		<result column="favicon" property="favicon"/>
+		<result column="keyword" property="keyword"/>
 	</resultMap>
 	
 	<resultMap type="Image" id="image_basic">
@@ -33,36 +34,50 @@
 		FROM
 			(
 				SELECT
-					pv.`url_pn`, pv.`user_pn`, pu.`url`, COUNT(pv.`url_pn`) AS `count`
+					pk.keyword, pk.pn, pv.`url_pn`, pv.`user_pn`, pu.`url`, COUNT(pv.`url_pn`) AS `count`
 				FROM
 					`parsing_visit` AS pv
 					LEFT OUTER JOIN `parsing_url`AS pu
 					ON pv.`url_pn` = pu.`pn`
+					LEFT OUTER JOIN parsing_data AS pd 
+					ON pv.pn = pd.visit_pn
+					LEFT OUTER JOIN parsing_keyword AS pk
+					ON pd.keyword_pn = pk.pn
 				WHERE
 					pv.`user_pn` = #{userPn}
 				GROUP BY
 					pv.`url_pn`
 			) pc
+		WHERE
+		<![CDATA[
+				pc.count>=3
+		]]>
 	</select>
 	
 	<select id="selectVisits" parameterType="VisitFilter" resultMap="parsing_basic">
 		SELECT
-			pc.`url_pn`, pc.`user_pn`, pc.`url`, pc.`count`, pc.`title`, pc.`domain`, pc.`favicon`
+			pc.`url_pn`, pc.`user_pn`, pc.`url`, pc.`count`, pc.`title`, pc.`domain`, pc.`favicon`, pc.`keyword`
 		FROM
 			(
 				SELECT
-					pv.`url_pn`, pv.`user_pn`, pu.`url`, pu.`domain`, pu.`favicon`, COUNT(pv.`url_pn`) AS `count`, pd.`title`
+					pv.`url_pn`, pv.`user_pn`, pu.`url`, pu.`domain`, pu.`favicon`, COUNT(pv.`url_pn`) AS `count`, pd.`title`, pk.`keyword`
 				FROM
 					`parsing_visit` AS pv
 					LEFT OUTER JOIN `parsing_url`AS pu
 					ON pv.`url_pn` = pu.`pn`
-					LEFT OUTER JOIN `parsing_data` AS pd
-					ON pd.`visit_pn` = pv.`pn`
+					LEFT OUTER JOIN parsing_data AS pd 
+					ON pv.pn = pd.visit_pn
+					LEFT OUTER JOIN parsing_keyword AS pk
+					ON pd.keyword_pn = pk.pn
 				WHERE
 					pv.`user_pn` = #{userPn}
 				GROUP BY
 					pv.`url_pn`
 			) pc
+		WHERE
+		<![CDATA[
+			pc.count>=3
+		]]>
 		ORDER BY
 			pc.`count` DESC
 	</select>
@@ -140,5 +155,72 @@
 		FROM
 			parsing_color
 	</select>	
+	
+	<resultMap type="Keyword" id="keyword_basic">
+		<result column="domain" property="domain"/>
+		<result column="title" property="title"/>
+		<result column="favicon" property="favicon"/>
+		<result column="url" property="url"/>
+		<result column="pn" property="keywordPn"/>
+		<result column="keyword" property="keyword"/>
+		<result column="register_date" property="date"/> 
+	</resultMap>
+	
+	<resultMap type="HDate" id="date_basic">
+		<result column="register_date" property="date"/>
+		<result column="count" property="count"/>
+	</resultMap>
+
 		
+	<select id="selectHistoryKeyword" parameterType="KeywordFilter"	resultMap="keyword_basic">
+		SELECT 
+			pu.domain,pd.title, pu.favicon, pu.url, pk.pn, pk.keyword, pv.register_date
+		FROM
+			`parsing_visit` AS pv
+			LEFT OUTER JOIN `parsing_data` AS pd
+			ON pv.pn=pd.visit_pn
+			LEFT OUTER JOIN `parsing_url` AS pu
+			ON pv.url_pn=pu.pn
+			LEFT OUTER JOIN `parsing_keyword` AS pk
+			ON pd.keyword_pn=pk.pn
+		WHERE
+			pv.user_pn=#{userPn}
+		AND 
+			DATE_FORMAT(pv.`register_date`,'%d-%m-%Y')=#{date}
+		GROUP BY
+			pv.url_pn
+		ORDER BY
+			pv.register_date DESC		
+	</select>
+	
+	<select id="selectHistoryDate" parameterType="HistoryFilter" resultMap="date_basic">
+		SELECT
+			i.register_date, COUNT(i.register_date) AS `count`
+		FROM
+			(
+				SELECT DATE_FORMAT(pv.`register_date`,'%d-%m-%Y') AS register_date FROM `parsing_visit` AS pv
+				WHERE pv.user_pn=#{userPn}
+				GROUP BY pv.url_pn
+			) AS i
+		GROUP BY
+			i.register_date
+	</select>
+	
+	<select id="selectHistoryDateCount" parameterType="HistoryFilter" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			(
+				SELECT
+					i.register_date, COUNT(i.register_date) AS COUNT
+				FROM
+					(
+						SELECT DATE_FORMAT(pv.`register_date`,'%d-%m-%Y') AS register_date FROM `parsing_visit` AS pv
+						WHERE pv.user_pn=#{userPn}
+						GROUP BY pv.url_pn
+					) AS i
+				GROUP BY
+					i.register_date
+			) AS hc
+	</select>
 </mapper>

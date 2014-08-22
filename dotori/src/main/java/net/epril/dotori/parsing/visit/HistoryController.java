@@ -40,4 +40,25 @@ public class HistoryController {
 		Map<String, Object> map = historyService.selectColors();
 		return new Json(AJC.SUCCESS, "", map);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/history/total",method=RequestMethod.GET)
+	public Json getHistoryTotal(@ModelAttribute Integer userPn){
+		Map<String,Object> map=historyService.selectHistoryTotal(userPn);
+		return new Json(AJC.SUCCESS,"",map);		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/history/keyword",method=RequestMethod.GET)
+	public Json getHistoryKeyword(@ModelAttribute KeywordFilter keywordFilter){
+		Map<String,Object> map=historyService.selectHistoryKeyword(keywordFilter);
+		return new Json(AJC.SUCCESS,"",map);		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/history/date",method=RequestMethod.GET)
+	public Json getHistoryDate(@ModelAttribute HistoryFilter historyFilter){
+		Map<String,Object> map=historyService.selectHistoryDate(historyFilter);
+		return new Json(AJC.SUCCESS,"",map);		
+	}
 }

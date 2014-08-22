@@ -71,4 +71,42 @@ public class HistoryServiceImpl extends SqlSessionDaoSupport implements
 		map.put("colors", getSqlSession().selectList("history.selectColors"));
 		return map;
 	}
+	@Override
+	public Map<String, Object> selectHistoryTotal(Integer userPn) {
+		KeywordFilter kf=new KeywordFilter(userPn);
+		HistoryFilter hf=new HistoryFilter(userPn);
+		Map<String,Object> map= new HashMap<String, Object>();
+		map.putAll(selectHistoryKeyword(kf));
+		map.putAll(selectHistoryDate(hf));
+		return map;
+	}
+	
+	@Override
+	public Map<String, Object> selectHistoryKeyword(KeywordFilter keywordFilter) {
+		Map<String,Object> map=new HashMap<String, Object>();
+		List<Keyword> keywords = getSqlSession().selectList("history.selectHistoryKeyword", keywordFilter);
+		map.put("keywords", keywords);
+		return map;
+	}
+	
+	@Override
+	public Map<String, Object> selectHistoryDate(HistoryFilter historyFilter) {
+		Pagination pagination = historyFilter.getPagination();
+		Map<String,Object> map=new HashMap<String, Object>();
+		int count = selectHistoryDateCount(historyFilter);
+		if(count == 0){
+			return map;
+		}
+		pagination.setNumItems(count);
+		
+		List<HDate> dates = getSqlSession().selectList("history.selectHistoryDate", historyFilter);
+		map.put("dates", dates);
+		return map;
+		
+	}
+
+	private int selectHistoryDateCount(HistoryFilter historyFilter) {
+		return getSqlSession().selectOne("history.selectHistoryDateCount",historyFilter);
+	}
+	
 }

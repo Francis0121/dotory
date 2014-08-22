@@ -10,5 +10,9 @@
 		<typeAlias type="net.epril.dotori.parsing.ParsingFilter" alias="ParsingFilter"/>
 		<typeAlias type="net.epril.dotori.parsing.visit.VisitFilter" alias="VisitFilter"/>
 		<typeAlias type="net.epril.dotori.parsing.visit.ImageSearchFilter" alias="ImageSearchFilter"/>
+		<typeAlias type="net.epril.dotori.parsing.visit.HDate" alias="HDate"/>
+		<typeAlias type="net.epril.dotori.parsing.visit.Keyword" alias="Keyword"/>
+		<typeAlias type="net.epril.dotori.parsing.visit.HistoryFilter" alias="HistoryFilter"/>
+		<typeAlias type="net.epril.dotori.parsing.visit.KeywordFilter" alias="KeywordFilter"/>
 	</typeAliases>
 </configuration>
