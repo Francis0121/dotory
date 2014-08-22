@@ -28,3 +28,14 @@ dotory.colors = {
 	magenta :9
 };
 
+dotory.loading = {
+	start : function(){
+		var thiz = $('.dotory_loading_extension');
+		if(thiz.css('display') == 'none'){
+			$('.dotory_loading_extension').fadeIn();		
+		}
+	},
+	finsih : function(){
+		$('.dotory_loading_extension').fadeOut();		
+	}
+}

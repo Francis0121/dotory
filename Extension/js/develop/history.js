@@ -7,9 +7,18 @@ if(typeof dotory.history == 'undefined'){
  * History Binding
  */
 dotory.history.binding = function(){
+	
+	$('#history_btn').on('click', function() {
+		var thiz = $('.dotory_history'); 
+		thiz.css('display', 'block');
+		thiz.animate( { top : '-400px' }, 750);
+	});
+	
 	$('#history_back_btn').on('click', function(){
-		// TODO Effecf
-		$('.dotory_history').hide();
+		var thiz = $('.dotory_history'); 
+		thiz.animate( { top : '0px' }, 750, function(){
+			thiz.css('display', 'none');			
+		});
 	});
 
 	// style testing sample data ~ TODO delete

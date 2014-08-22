@@ -37,6 +37,7 @@ function xhrWithAuth(method, url, interactive, callback) {
 }
 
 function getUserInfo(interactive) {
+	dotory.loading.start(); // sing-in-start
 	xhrWithAuth('GET', 'https://www.googleapis.com/plus/v1/people/me', interactive, onUserInfoFetched);
 }
   // @corecode_end getProtectedData
@@ -78,6 +79,7 @@ function fetchUserInfo(user_info){
 				dotory.web.binding();
 			}
 		}
+		dotory.loading.finsih(); // sign-in-loading-finish (ajax send message finish) 
 	});
 }
   
@@ -116,6 +118,7 @@ function onImageFetched(e) {
 	you need to call removeCachedAuthToken()
 **/
 function interactiveSignIn() {
+	dotory.loading.start(); // sign-in-loading-start
 	// @corecode_begin getAuthToken
 	// @description This is the normal flow for authentication/authorization
 	// on Google properties. You need to add the oauth2 client_id and scopes

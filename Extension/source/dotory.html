@@ -2,6 +2,8 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="../plugin/scrollbar/jquery.mCustomScrollbar.css">
+
 	<link rel="stylesheet" type="text/css" href="../css/default.css">
 	<link rel="stylesheet" type="text/css" href="../css/dotory.css">
 	<link rel="stylesheet" type="text/css" href="../css/develop/metro.css">
@@ -94,7 +96,7 @@
 				<button type="button" class="image_btn" id="image_back_btn">Back</button>
 			</li>
 			<li>
-				<h1>History</h1>
+				<h1>Image</h1>
 			</li>
 			<li>
 				<button type="button" class="image_btn" id="image_more_btn">More</button>
@@ -103,12 +105,18 @@
 		</header>
 		<div class="dotory_image_content">
 			<ul class="history_images">
-				
+				<li><a><img alt="" src="http://i.imgur.com/xSiTFij.jpg"></a></li>
+				<li><a><img alt="" src="http://i.imgur.com/6Lo8oun.jpg"></a></li>
+				<li><a><img alt="" src="https://avatars1.githubusercontent.com/u/3874599?v=2&amp;s=32"></a></li>
 			</ul>
 		</div>
 		<nav id="page-nav">
 			<a href="http://localhost:8080/image/list?page=2"></a>
 		</nav>
+	</div>
+	
+	<div class="dotory_loading_extension" style="display: none;">
+		<span>Loading...</span>
 	</div>
 	
 </div>	
@@ -121,7 +129,9 @@
 
 <script src="../plugin/masonry/masonry.pkgd.js"></script>
 <script src="../plugin/masonry/imagesloaded.pkgd.js"></script>
-<script src="../plugin/masonry/jquery.infinitescroll.js"></script>
+<script src="../plugin/masonry/jquery.infinitescroll-extension.js"></script>
+
+<script src="../plugin/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 
 <script src="../js/default.js"></script><!-- No change 'Script' order -->
 <script src="../js/dotory.js"></script>
