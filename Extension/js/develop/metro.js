@@ -54,7 +54,7 @@ dotory.metro.mousehover=function(){
 			popup = thiz.children('.metro_popup'),
 			background = thiz.children('.metro_background');
 		
-		popup.animate({top:'-85px'},300);
+		popup.animate({top:'-90px'},300);
 		background.animate({opacity:'.6'},300);
 	}, function(){
 		var thiz = $(this),
@@ -103,10 +103,10 @@ dotory.metro.pageLoad=function(){
 				}
 				sub += '<li>';
 				sub += '	<div class="metro_background '+color[cnt%9]+'">';
-				sub += ' 		'+keyword+'</div>';		//color값 처리
-				sub += '		<div class="metro_popup">';
-				sub += '			<a class="metro_popup_link" href="'+url+'">'+title+'</a>';
-				sub += '		</div>';
+				sub += ' 	'+keyword;
+				sub += '	</div>';		//color값 처리
+				sub += '	<div class="metro_popup">';
+				sub += '		<a class="metro_popup_link" href="'+url+'">'+title+'</a>';
 				sub += '	</div>';
 				sub += '</li>';
 			

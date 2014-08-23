@@ -41,10 +41,14 @@
 			<div class="dotory_content">			 
 			</div>
 		</div>
-		<footer class="dotory_footer">
-			<button type="button" class="metro_btn" id="img_btn">images</button>
-			<button type="button" class="metro_btn" id="history_btn">history</button>
-		</footer>
+		<aside class="dotory_aside">
+			<div>
+				<button type="button" class="metro_btn" id="img_btn">images</button>
+			</div>
+			<div>
+				<button type="button" class="metro_btn" id="history_btn">history</button>
+			</div>
+		</aside>
 	</div>
 	
 	<!-- History -->
@@ -89,25 +93,26 @@
 	</div>
 	
 	<!-- Image -->
-	<div class="dotory_image dotory_wrap" style="display: none;">
+	<div class="dotory_image dotory_wrap" style="display: block;">
 		<header class="dotory_image_header">
 		<ul class="dotory_common_top image_top">
 			<li>
 				<button type="button" class="image_btn" id="image_back_btn">Back</button>
 			</li>
 			<li>
-				<h1>Image</h1>
+				<h1 class="image_title">
+					<img alt="Dotory Icon" src="../images/acorn-48.png">
+					<span>History of image</span>
+				</h1>
 			</li>
 			<li>
-				<button type="button" class="image_btn" id="image_more_btn">More</button>
+				<button type="button" id="image_more_btn">More</button>
 			</li>
 		</ul>
 		</header>
 		<div class="dotory_image_content">
 			<ul class="history_images">
-				<li><a><img alt="" src="http://i.imgur.com/xSiTFij.jpg"></a></li>
-				<li><a><img alt="" src="http://i.imgur.com/6Lo8oun.jpg"></a></li>
-				<li><a><img alt="" src="https://avatars1.githubusercontent.com/u/3874599?v=2&amp;s=32"></a></li>
+
 			</ul>
 		</div>
 		<nav id="page-nav">

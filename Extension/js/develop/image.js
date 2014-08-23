@@ -6,7 +6,7 @@ dotory.image.binding = function(){
 	$('#img_btn').on('click', function() {
 		var thiz = $('.dotory_image'); 
 		thiz.css('display', 'block');
-		thiz.animate( { top : '-400px' }, 750);
+		thiz.animate( { left : '0' }, 750);
 		
 		$('.dotory_image_content').mCustomScrollbar({
 			mouseWheel:{ enable: true },
@@ -71,7 +71,7 @@ dotory.image.binding = function(){
 	
 	$('#image_back_btn').on('click', function(){
 		var thiz = $('.dotory_image'); 
-		thiz.animate( { top : '0px' }, 750, function(){
+		thiz.animate( { left : '600px' }, 750, function(){
 			thiz.css('display', 'none');
 		});
 	});
