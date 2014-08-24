@@ -64,7 +64,9 @@ dotory.metro.mousehover=function(){
 		background.animate({opacity:'1.0'},300);
 	});
 };
-
+function openURL(url){
+	chrome.tabs.create({url:'url'});
+}
 dotory.metro.pageLoad=function(){
 	var url= dotory.contextPath+'/visit/info',
 		json={'userPn': dotory.user.pn };
@@ -106,7 +108,7 @@ dotory.metro.pageLoad=function(){
 				sub += ' 	'+keyword;
 				sub += '	</div>';		//color값 처리
 				sub += '	<div class="metro_popup">';
-				sub += '		<a class="metro_popup_link" href="'+url+'">'+title+'</a>';
+				sub += '		<a class="metro_popup_link" href="'+url+'" onClick="openURL(url)">'+title+'</a>';
 				sub += '	</div>';
 				sub += '</li>';
 			

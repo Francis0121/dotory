@@ -158,7 +158,7 @@ dotory.imageFiltering = function(content, url, title, favicon,keyword,index){
 		var data = object.data;
     	if(object.code==200){
 //    		console.log('[Image] Json success');
-    		console.log("recieved keyword"+keyword);
+//    		console.log("recieved keyword"+keyword);
     		dotory.imageSearchCondition(srcs, data.visitPn);
     		keywordPns[index]=data.keywordpn;
     		console.log(keywordPns[index]);
