@@ -85,6 +85,7 @@ dotory.history.makeKeywordHtml = function(keywords){
 		// ~ check box
 		$object = pageHtml.find('.opened_page_check');
 		$object.attr('value', keyword.keyword);
+		$object.removeAttr('checked');
 
 		pageWrap.append(pageHtml);
 		pageHtml = $(pageHtml.clone());
@@ -102,6 +103,7 @@ dotory.history.makeKeywordHtml = function(keywords){
 		// ~ check box
 		$object = pageHtml.find('.opened_page_check');
 		$object.attr('value', '');
+		$object.removeAttr('checked');
 
 		pageWrap.append(pageHtml);
 		pageHtml = $(pageHtml.clone());
