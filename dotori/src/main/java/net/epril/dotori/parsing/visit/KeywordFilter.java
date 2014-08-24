@@ -1,6 +1,7 @@
 package net.epril.dotori.parsing.visit;
 
 import net.epril.dotori.util.AbstractListFilter;
+import net.epril.dotori.util.DateUtil;
 
 public class KeywordFilter extends AbstractListFilter{
 
@@ -10,6 +11,7 @@ public class KeywordFilter extends AbstractListFilter{
 	
 	public KeywordFilter() {
 		super();
+		this.date = DateUtil.getToday("DD-MM-YYYY");
 		// TODO Auto-generated constructor stub
 	}
 
