@@ -6,7 +6,7 @@ FOOTER.dotory_history_footer{ padding: 0 10px 0 10px; width:580px;height:40px;fl
 LI.dotory_history_head{ margin-left: -10px;}
 DIV.dotory_history_content{ width:600px; height: 300px; float:left; margin-top: 5px;}
 DIV.current_content{ width:400px; float:left; overflow-y: hidden; overflow-x: hidden; padding: 5px 0 15px 10px; margin-left: 10px; height: 280px; }
-HEADER.current_content_header{ position: fixed; background: #fff; left: -395px; top : 55px; width: 400px; z-index: 10; display: block; padding: 10px 0 10px 10px; }
+HEADER.current_content_header{ position: fixed; background: #fff; left: -395px; top : 55px; width: 400px; z-index: 10; display: block; padding: 10px 0 10px 10px; display: none;}
 HEADER.current_content_header>DIV.left{ float: left; width: 385px;}
 HEADER.current_content_header>DIV.right{ float: left; width: 15px; opacity:0.9;}
 HEADER.current_content_header>DIV.right>BUTTON{ width: 15px; float: left; cursor: pointer;  min-height: 100%;}
