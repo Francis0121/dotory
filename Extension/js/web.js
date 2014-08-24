@@ -14,6 +14,28 @@ dotory.web.binding = function(){
 	dotory.web.searchCond();
 	dotory.web.loading();
 	dotory.web.search();
+	dotory.web.topBtn();
+};
+
+dotory.web.topBtn = function(){
+	
+	$('#scroll_top').bind('click', function(){
+		$('html, body').animate({scrollTop:0}, 'slow');
+	});
+	
+	move = function(){
+		var wrap =$('.scroll_top_wrap')
+			element = document.documentElement, body = document.body,
+			scrollY = document.all ? (!element.scrollTop ? body.scrollTop : element.scrollTop) : (window.pageYOffset ? window.pageYOffset : window.scrollY);	
+		
+		if(scrollY == 100){
+			wrap.slideUp('fast');
+		}else{
+			wrap.slideDown('fast');
+		}
+	};
+
+	$(window).scroll(move);
 };
 
 dotory.web.search = function(){

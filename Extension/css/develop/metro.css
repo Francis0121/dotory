@@ -16,9 +16,9 @@ BUTTON#img_btn:ACTIVE{ background-position: 0 -120px;}
 BUTTON#history_btn{ background-position: -60px 0;}
 BUTTON#history_btn:HOVER{ background-position: -60px -60px;}
 BUTTON#history_btn:ACTIVE{ background-position: -60px -120px;}
-BUTTON#image_more_btn{ border-radius: 3px; border : 1px solid #ededed; width: 42px; height: 42px; background: url('../../images/btn_expand_splite.png') no-repeat; text-indent: -9999px; margin-top: -5px; cursor: pointer;}
-BUTTON#image_more_btn:HOVER{background-position: 0 -40px;}
-BUTTON#image_more_btn:ACTIVE{background-position: 0 -80px;}
+BUTTON#image_more_btn{ border-radius: 3px; border : 1px solid #ededed; width: 32px; height: 32px; background: url('../../images/btn_expand_splite.png') no-repeat; text-indent: -9999px; margin-top: 0px; cursor: pointer;}
+BUTTON#image_more_btn:HOVER{background-position: 0 -30px;}
+BUTTON#image_more_btn:ACTIVE{background-position: 0 -60px;}
 
 DIV.dotory_metro UL.dotory_top{ float:left; }
 DIV.dotory_metro UL.dotory_top>LI{ float:left; }

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,13 +57,13 @@
 		<header class="dotory_history_header">
 			<ul class="dotory_common_top history_top">
 				<li>
-					<button type="button" class="image_btn" id="history_back_btn">Back</button>
+					<button type="button" class="image_btn" id="history_back_btn" title="Back">Back</button>
 				</li>
 				<li>
 					<h1>History</h1>
 				</li>
 				<li>
-					<button type="button" class="image_btn" id="history_more_btn">More</button>
+					<button type="button" class="image_btn" id="history_more_btn" title="More">More</button>
 				</li>
 			</ul>
 		</header>
@@ -97,16 +98,16 @@
 		<header class="dotory_image_header">
 		<ul class="dotory_common_top image_top">
 			<li>
-				<button type="button" class="image_btn" id="image_back_btn">Back</button>
+				<button type="button" class="image_btn" id="image_back_btn" title="Back">Back</button>
 			</li>
 			<li>
 				<h1 class="image_title">
-					<img alt="Dotory Icon" src="../images/acorn-48.png">
+<!-- 					<img alt="Dotory Icon" src="../images/acorn-48.png"> -->
 					<span>History of image</span>
 				</h1>
 			</li>
 			<li>
-				<button type="button" id="image_more_btn">More</button>
+				<button type="button" id="image_more_btn" title="More">More</button>
 			</li>
 		</ul>
 		</header>
@@ -118,6 +119,9 @@
 		<nav id="page-nav">
 			<a href="http://localhost:8080/image/list?page=2"></a>
 		</nav>
+		<div id="image_scroll_top" class="btn_scroll_top">
+			Top
+		</div>
 	</div>
 	
 	<div class="dotory_loading_extension" style="display: none;">
