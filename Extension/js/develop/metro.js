@@ -64,12 +64,10 @@ dotory.metro.mousehover=function(){
 		background.animate({opacity:'1.0'},300);
 	});
 };
-function openURL(url){
-	chrome.tabs.create({url:'url'});
-}
 dotory.metro.pageLoad=function(){
 	var url= dotory.contextPath+'/visit/info',
 		json={'userPn': dotory.user.pn };
+	var sendUrl=new Array();
 	
 	$.postJSON(url, json, function(object){
 		var content = $('.dotory_content');
@@ -89,11 +87,15 @@ dotory.metro.pageLoad=function(){
 			           'metro_color_gray','metro_color_softGray'];
 			
 			for(var i=0;i<visits.length;i++){
-			var count=visits[i].count;												//자주 방문하는 페이지
+				var count=visits[i].count;												//자주 방문하는 페이지
 				var url=visits[i].url;
 				var title=visits[i].title;
 				var keyword=visits[i].keyword;
-
+				
+				/************************************/
+				sendUrl[i]=url;
+				/************************************/
+				
 				if(cnt%3 == 0){					
 					if(cnt!=0){
 						sub += ulBack;
@@ -108,16 +110,33 @@ dotory.metro.pageLoad=function(){
 				sub += ' 	'+keyword;
 				sub += '	</div>';		//color값 처리
 				sub += '	<div class="metro_popup">';
-				sub += '		<a class="metro_popup_link" href="'+url+'" onClick="openURL(url)">'+title+'</a>';
+				sub += '		<a class="metro_popup_link" href="'+url+'" id="urls'+i+'">'+title+'</a>';
 				sub += '	</div>';
 				sub += '</li>';
 			
 				cnt++;
+			
 			}
 			sub += ulBack;
 			content.append(sub);
+
 		}
 		dotory.metro.mousehover();
 		dotory.metro.horizontalScroll();
 	});
+	console.log("???");
+	openUrl(sendUrl);
+	console.log("!!!");
+};
+
+function openUrl(url){
+	var id=new Array();
+	for(var i=0;i<url.length;i++){
+		id='urls'+i;
+		console.log(id+"  "+url[i]);
+		var temp=document.getElementById("id").value;
+		console.log(temp);
+//		temp.addEventListener("click",function(){chrome.tabs.create('url[i]');},false);
+	}
+	
 };
