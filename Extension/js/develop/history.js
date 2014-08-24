@@ -19,6 +19,8 @@ dotory.history.binding = function(){
 	
 	$('#history_back_btn').on('click', function(){
 		$('.current_content_header').hide();
+		$('.current_content_header').css({left : '-395px'});
+		$('#btn_keyword_expand').css('background-position', '0 35px');
 		var thiz = $('.dotory_history'); 
 		thiz.animate( { left : '600px' }, 750, function(){
 			thiz.css('display', 'none');			
@@ -141,12 +143,15 @@ dotory.history.headerEvent = function(){
 		});
 		
 	$('#btn_keyword_expand').off('click').on('click', function(){
-		var selector = $('.current_content_header');
+		var selector = $('.current_content_header'),
+			thiz = $(this);
 		
 		if(selector.css('left') == '0px'){
 			selector.animate({left : '-395px'},'750');
+			thiz.css('background-position', '0 35px');
 		}else{
 			selector.animate({left : '0px'},'750');
+			thiz.css('background-position', '-15px 35px');
 		}
 	});
 };

@@ -9,7 +9,7 @@ DIV.current_content{ width:400px; float:left; overflow-y: hidden; overflow-x: hi
 HEADER.current_content_header{ position: fixed; background: #fff; left: -395px; top : 55px; width: 400px; z-index: 10; display: block; padding: 10px 0 10px 10px; display: none;}
 HEADER.current_content_header>DIV.left{ float: left; width: 385px;}
 HEADER.current_content_header>DIV.right{ float: left; width: 15px; opacity:0.9;}
-HEADER.current_content_header>DIV.right>BUTTON{ width: 15px; float: left; cursor: pointer;  min-height: 100%;}
+HEADER.current_content_header>DIV.right>BUTTON{ width: 15px; float: left; cursor: pointer;  min-height: 100%; background: url("../../images/btn_hide_keyword.png") no-repeat 0px 35px #d6d6d6; border-radius : 0 3px 3px 0; }
 H2.page_head{ color:#000; font-weight: normal; font-size: 100%; float: left; margin-top: 5px; }
 H2.page_head>SPAN.text{ float: left; font-size: 93.75%; color: #181515; width: 100%; margin-bottom: 10px;}
 H2.page_head>SPAN.keyword_total{ float: left; width: 260px; width: 100%; margin-bottom: 10px;}
