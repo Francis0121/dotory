@@ -11,10 +11,16 @@ dotory.history.binding = function(){
 	$('#history_btn').on('click', function() {
 		var thiz = $('.dotory_history'); 
 		thiz.css('display', 'block');
-		thiz.animate( { left : '0px' }, 750);
+		thiz.animate( { left : '0px' }, 750, function(){
+			$('.current_content_header').show();
+		});
+		
 	});
 	
 	$('#history_back_btn').on('click', function(){
+		$('.current_content_header').hide();
+		$('.current_content_header').css({left : '-395px'});
+		$('#btn_keyword_expand').css('background-position', '0 35px');
 		var thiz = $('.dotory_history'); 
 		thiz.animate( { left : '600px' }, 750, function(){
 			thiz.css('display', 'none');			
@@ -42,6 +48,7 @@ dotory.history.total = function(){
 		var data = object.data;
 		
 		if(object.code == 200){
+			dotory.history.keywordFilter = data.keywordFilter;
 			dotory.history.makeKeywordHtml(data.keywords);
 			
 			dotory.history.historyFilter = data.historyFilter;
@@ -80,6 +87,25 @@ dotory.history.makeKeywordHtml = function(keywords){
 		// ~ check box
 		$object = pageHtml.find('.opened_page_check');
 		$object.attr('value', keyword.keyword);
+		$object.removeAttr('checked');
+
+		pageWrap.append(pageHtml);
+		pageHtml = $(pageHtml.clone());
+	}
+	if(keywords.length == 0){
+		var $object = pageHtml.find('.opend_page_link');
+		$object.attr('href', '#');
+		
+		$object = pageHtml.find('.opend_page_link').find('.title');
+		$object.text('No Data');
+		
+		$object = pageHtml.find('.opend_page_link').find('.date');
+		$object.text(dotory.history.keywordFilter.date);
+		
+		// ~ check box
+		$object = pageHtml.find('.opened_page_check');
+		$object.attr('value', '');
+		$object.removeAttr('checked');
 
 		pageWrap.append(pageHtml);
 		pageHtml = $(pageHtml.clone());
@@ -102,6 +128,32 @@ dotory.history.makeKeywordHtml = function(keywords){
 	
 	dotory.history.pageEvent();
 	dotory.history.keywrodEvent();
+	dotory.history.headerEvent();
+	
+};
+
+dotory.history.headerEvent = function(){
+	$('#btn_keyword_expand_wrap').css(
+		{ 'height': Number($('.current_content_header').css('height').replace(/px/, '')) 
+					+ Number($('.current_content_header').css('padding-top').replace(/px/, ''))
+					+ Number($('.current_content_header').css('padding-bottom').replace(/px/, ''))
+					+ 'px',
+					'margin-top' : '-'+$('.current_content_header').css('padding-top'),
+					'margin-bottom': '-'+$('.current_content_header').css('padding-bottom')
+		});
+		
+	$('#btn_keyword_expand').off('click').on('click', function(){
+		var selector = $('.current_content_header'),
+			thiz = $(this);
+		
+		if(selector.css('left') == '0px'){
+			selector.animate({left : '-395px'},'750');
+			thiz.css('background-position', '0 35px');
+		}else{
+			selector.animate({left : '0px'},'750');
+			thiz.css('background-position', '-15px 35px');
+		}
+	});
 };
 
 dotory.history.pageEvent = function(){
@@ -197,7 +249,8 @@ dotory.history.getKeyword = function(date){
 	$.getJSON(url, json,function(object){
 		var data = object.data;
 		
-		if(object.code == 200){	
+		if(object.code == 200){
+			dotory.history.keywordFilter = data.keywordFilter;
 			dotory.history.makeKeywordHtml(data.keywords);
 		}
 	});
@@ -213,6 +266,7 @@ dotory.history.getDate = function(date){
 		var data = object.data;
 		
 		if(object.code == 200){
+			dotory.history.historyFilter = data.historyFilter;
 			dotory.history.makeDateHtml(data.dates);
 		}
 	});

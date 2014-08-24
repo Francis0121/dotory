@@ -52,7 +52,8 @@ dotory.image.binding = function(){
 				},
 				appendCallback: false,
 				parameter : '&userPn='+dotory.user.pn,
-				maxPage : dotory.image.container.imageSearchFilter.pagination.numPages
+				maxPage : dotory.image.container.imageSearchFilter.pagination.numPages,
+				prefill : true
 			},
 			// 	trigger Masonry as a callback
 			function(object, opts) {

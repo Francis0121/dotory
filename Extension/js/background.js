@@ -27,9 +27,11 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 	var keyword=dotory.getSearchWord(request.content,sender.tab.url,sender.tab.title);
 //	console.log("keyword : "+keyword.keyword+" index : "+keyword.index);
-	var stringKeyword=""; //배열 keyword를 string으로 붙여줄 객체
-	for(var i=0;i<keyword.keyword.length;i++){
-		stringKeyword=stringKeyword+" "+keyword.keyword[i];
+	var stringKeyword = ''; //배열 keyword를 string으로 붙여줄 객체
+	if(keyword != undefined && keyword.keyword != undefined){
+		for(var i=0;i<keyword.keyword.length;i++){
+			stringKeyword=stringKeyword+" "+keyword.keyword[i];
+		}
 	}
 	dotory.imageFiltering(request.content, sender.tab.url, sender.tab.title, sender.tab.favIconUrl,stringKeyword,keyword.index);
 //	console.log("recieved : "+RecievedKeyword[RecievedKeyword.length-1]);
