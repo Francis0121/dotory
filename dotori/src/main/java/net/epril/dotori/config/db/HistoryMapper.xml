@@ -174,7 +174,7 @@
 		
 	<select id="selectHistoryKeyword" parameterType="KeywordFilter"	resultMap="keyword_basic">
 		SELECT 
-			pu.domain,pd.title, pu.favicon, pu.url, pk.pn, pk.keyword, pv.register_date
+			pu.domain,pd.title, pu.favicon, pu.url, pk.pn, pk.keyword, DATE_FORMAT(pv.`register_date`,'%d-%m-%Y %h:%i:%s') AS register_date
 		FROM
 			`parsing_visit` AS pv
 			LEFT OUTER JOIN `parsing_data` AS pd
