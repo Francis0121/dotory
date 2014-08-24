@@ -67,11 +67,17 @@ dotory.history.makeKeywordHtml = function(keywords){
 		if(keywordArray.indexOf(keyword.keyword) == -1){
 			keywordArray.push(keyword.keyword);
 		}
-		
+		// ~ Title
 		var $object = pageHtml.find('.opend_page_link');
 		$object.attr('href', keyword.url);
+		
+		$object = pageHtml.find('.opend_page_link').find('.title');
 		$object.text(keyword.title);
 		
+		$object = pageHtml.find('.opend_page_link').find('.date');
+		$object.text(keyword.date);
+		
+		// ~ check box
 		$object = pageHtml.find('.opened_page_check');
 		$object.attr('value', keyword.keyword);
 
@@ -93,6 +99,61 @@ dotory.history.makeKeywordHtml = function(keywords){
 		keywordTotal.append(keywordHtml);
 		keywordHtml = $(keywordHtml.clone());
 	}
+	
+	dotory.history.pageEvent();
+	dotory.history.keywrodEvent();
+};
+
+dotory.history.pageEvent = function(){
+	$('.opened_page_list_wrap>li').off('click').on('click', function(){
+		var thiz = $(this),
+			checkbox = thiz.find('input[type=checkbox]');
+		
+		if(checkbox.attr('checked') == undefined){
+			checkbox.attr('checked', 'checked');
+		}else{
+			checkbox.removeAttr('checked');
+		}
+	});
+};
+
+dotory.history.keywrodEvent = function(){
+	$('.keyword_total>a').off('click').on('click', function(){
+		var thiz = $(this),
+			keyword = thiz.attr('data-keyword');
+		
+		var lis = $('.opened_page_list_wrap').find('li');
+		
+		for(var i=0; i<lis.length; i++){
+			var li = lis[i],
+				checkbox = $(li).find('input[type=checkbox]');
+			
+			checkbox.removeAttr('checked');
+			if(checkbox.val() == keyword){
+				checkbox.attr('checked', 'checked');
+			}
+		}
+	});
+	
+	$('#all_checked').off('click').on('click', function(){
+		var lis = $('.opened_page_list_wrap').find('li');
+		
+		for(var i=0; i<lis.length; i++){
+			var li = lis[i],
+				checkbox = $(li).find('input[type=checkbox]');
+			checkbox.attr('checked', 'checked');
+		}
+	});
+	
+	$('#all_unchecked').off('click').on('click', function(){
+		var lis = $('.opened_page_list_wrap').find('li');
+		
+		for(var i=0; i<lis.length; i++){
+			var li = lis[i],
+				checkbox = $(li).find('input[type=checkbox]');
+			checkbox.removeAttr('checked');
+		}
+	});
 };
 
 dotory.history.makeDateHtml = function(dates){
