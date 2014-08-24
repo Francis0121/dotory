@@ -26,6 +26,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 	var keyword=dotory.getSearchWord(request.content,sender.tab.url,sender.tab.title);
+	console.log(keyword);
 	dotory.imageFiltering(request.content, sender.tab.url, sender.tab.title, sender.tab.favIconUrl,keyword.keyword,keyword.index);
 //	console.log("recieved : "+RecievedKeyword[RecievedKeyword.length-1]);
 });
