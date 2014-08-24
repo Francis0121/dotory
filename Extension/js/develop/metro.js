@@ -92,9 +92,7 @@ dotory.metro.pageLoad=function(){
 				var title=visits[i].title;
 				var keyword=visits[i].keyword;
 				
-				/************************************/
 				sendUrl[i]=url;
-				/************************************/
 				
 				if(cnt%3 == 0){					
 					if(cnt!=0){
@@ -123,20 +121,37 @@ dotory.metro.pageLoad=function(){
 		}
 		dotory.metro.mousehover();
 		dotory.metro.horizontalScroll();
+
+		openUrl(sendUrl);
 	});
-	console.log("???");
-	openUrl(sendUrl);
-	console.log("!!!");
 };
 
 function openUrl(url){
 	var id=new Array();
-	for(var i=0;i<url.length;i++){
-		id='urls'+i;
-		console.log(id+"  "+url[i]);
-		var temp=document.getElementById("id").value;
-		console.log(temp);
-//		temp.addEventListener("click",function(){chrome.tabs.create('url[i]');},false);
-	}
-	
+	document.addEventListener('click',function(){
+		for(var i=0;i<url.length;i++){
+			(function(){
+				id='urls'+i;
+				var temp=document.getElementById(id);
+				var location=temp.href;
+				temp.onclick=function(){
+					chrome.tabs.create({active:true,url:location});
+				};
+			})();
+		}
+	});
 };
+//	for(var i=0;i<url.length;i++){
+//		id='urls'+i;
+//		var temp=document.getElementById(id);
+//		var tempurl=url[i];
+//		console.log(tempurl);
+//		temp.addEventListener('click',function(){alert("id : "+id+"  //  url : "+tempurl);chrome.tabs.create({url:tempurl})
+//		,false);
+//		}
+	//}
+	
+//};
+//function open(pickedUrl){
+//	chrome.tabs.create({url:pickedUrl})
+//}
