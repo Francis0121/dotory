@@ -102,6 +102,22 @@ dotory.history.makeKeywordHtml = function(keywords){
 	
 	dotory.history.pageEvent();
 	dotory.history.keywrodEvent();
+	
+	$('#btn_keyword_expand_wrap').css({ 'height': Number($('.current_content_header').css('height').replace(/px/, '')) 
+											+ Number($('.current_content_header').css('padding-top').replace(/px/, ''))
+											+ Number($('.current_content_header').css('padding-bottom').replace(/px/, ''))
+											+ 'px',
+									'margin-top' : '-'+$('.current_content_header').css('padding-top'),
+									'margin-bottom': '-'+$('.current_content_header').css('padding-bottom')});
+	$('#btn_keyword_expand').off('click').on('click', function(){
+		var selector = $('.current_content_header');
+		
+		if(selector.css('left') == '0px'){
+			$('.current_content_header').animate({left : '-395px'},'750');
+		}else{
+			$('.current_content_header').animate({left : '0px'},'750');
+		}
+	})
 };
 
 dotory.history.pageEvent = function(){
