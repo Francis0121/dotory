@@ -79,6 +79,7 @@ public class HistoryServiceImpl extends SqlSessionDaoSupport implements
 		map.putAll(selectHistoryKeyword(keywordFilter));
 		map.putAll(selectHistoryDate(historyFilter));
 		map.put("historyFilter", historyFilter);
+		map.put("keywordFilter", keywordFilter);
 		return map;
 	}
 	
