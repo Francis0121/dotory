@@ -22,7 +22,8 @@ dotory.history.binding = function(){
 	});
 
 	// style testing sample data ~ TODO delete
-	dotory.history.testing();
+//	dotory.history.testing();
+	dotory.history.loading();
 };
 
 dotory.history.testing = function(){
@@ -40,4 +41,29 @@ dotory.history.testing = function(){
 	for(var i=0; i<10; i++){
 		parent.append(li.clone());
 	}
+};
+
+dotory.history.loading=function(){
+	var url=dotory.contextPath+'/history/keyword',
+		json={'userPn':dotory.user.pn};
+	
+	$.getJSON(url, json,function(object){
+		var data = object.data;
+	
+			dotory.history.container= $('.opened_page_list_wrap'); 
+			
+			if(object.code==200){	
+//				console.log("total keywords load success");
+				var keywords=data.keywords;
+				console.log(keywords.length);
+				for(var i=0; i<keywords.length; i++){
+					var keyword = keywords[i];
+					var html = 	'<li>';
+						html +=	'	<input type="checkbox" class="opened_page_check"/>';
+						html += '		<a href="">'+keyword+'</a>';
+						html += '</li>';	
+					dotory.history.container.append(html);
+				}
+			}
+	});
 };

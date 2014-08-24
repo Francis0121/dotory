@@ -19,13 +19,14 @@ dotory.checkRe=function(searchArray){
 dotory.getSearchWord=function(content,url,title){
 	var html=content;
 	var decodeUri= decodeURIComponent(url);
-
+		
 	//google search word split
 	if(decodeUri.match(/google/)!=null){
 		if(decodeUri.match(/\&q=(.+)/i)!=null){	//검색어가 있는 검색창이 맞으면
 			console.log(decodeUri.match(/\&q=(.+)/i)!=null);
-			var search=decodeUri.match(/\&q=(.+)/i)[1],
-				searchArray=search.split('+');
+			var search=decodeUri.match(/\&q=(.+)/i)[1];
+			search=search.replace(/\+/g, ' ');
+			var	searchArray=search.split(' ');
 			for(var i=0;i<searchArray.length;i++){
 				if(i==(searchArray.length-1)){
 					var temp=searchArray[i].split('&');
@@ -56,8 +57,9 @@ dotory.getSearchWord=function(content,url,title){
 	else if(decodeUri.match(/naver/)!=null){
 		if(decodeUri.match(/\&query=(.+)/i)!=null){
 //			console.log(decodeUri.match(/\&query=(.+)/i));
-			var search=decodeUri.match(/\&query=(.+)/i)[1],
-				searchArray=search.split('+');
+			var search=decodeUri.match(/\&query=(.+)/i)[1];
+			search=search.replace(/\+/g, ' ');
+			var	searchArray=search.split(' ');
 			for(var i=0;i<searchArray.length;i++){
 				if(i==(searchArray.length-1)){
 					var temp=searchArray[i].split('&');
@@ -87,8 +89,9 @@ dotory.getSearchWord=function(content,url,title){
 	else if(decodeUri.match(/daum/)!=null){
 		if(decodeUri.match(/\&q=(.+)/i)!=null){
 //			console.log(decodeUri.match(/\&query=(.+)/i));
-			var search=decodeUri.match(/\&q=(.+)/i)[1],
-				searchArray=search.split('+');
+			var search=decodeUri.match(/\&q=(.+)/i)[1];
+			search=search.replace(/\+/g, ' ');
+			var	searchArray=search.split(' ');
 			for(var i=0;i<searchArray.length;i++){
 				if(i==(searchArray.length-1)){
 					var temp=searchArray[i].split('&');
@@ -118,7 +121,9 @@ dotory.getSearchWord=function(content,url,title){
 		if(decodeUri.match(/\&p=(.+)/i)!=null){
 //			console.log(decodeUri.match(/\&p=(.+)/i)[1]);
 			var search=decodeUri.match(/\&p=(.+)/i)[1];
-			var	searchArray=search.split('+');
+			search=search.replace(/\+/g, ' ');
+			console.log(search);
+			var	searchArray=search.split(' ');
 			for(var i=0;i<searchArray.length;i++){
 				if(i==(searchArray.length-1)){
 					var temp=searchArray[i].split('&');
