@@ -18,6 +18,7 @@ public class KeywordFilter extends AbstractListFilter{
 	public KeywordFilter(Integer userPn) {
 		super();
 		this.userPn = userPn;
+		this.date = DateUtil.getToday("DD-MM-YYYY");
 	}
 
 	public String getDate() {

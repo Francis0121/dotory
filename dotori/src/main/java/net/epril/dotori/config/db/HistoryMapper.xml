@@ -204,6 +204,8 @@
 			) AS i
 		GROUP BY
 			i.register_date
+		ORDER BY
+			i.register_date DESC
 	</select>
 	
 	<select id="selectHistoryDateCount" parameterType="HistoryFilter" resultType="Integer">

@@ -73,11 +73,12 @@ public class HistoryServiceImpl extends SqlSessionDaoSupport implements
 	}
 	@Override
 	public Map<String, Object> selectHistoryTotal(Integer userPn) {
-		KeywordFilter kf=new KeywordFilter(userPn);
-		HistoryFilter hf=new HistoryFilter(userPn);
+		KeywordFilter keywordFilter=new KeywordFilter(userPn);
+		HistoryFilter historyFilter=new HistoryFilter(userPn);
 		Map<String,Object> map= new HashMap<String, Object>();
-		map.putAll(selectHistoryKeyword(kf));
-		map.putAll(selectHistoryDate(hf));
+		map.putAll(selectHistoryKeyword(keywordFilter));
+		map.putAll(selectHistoryDate(historyFilter));
+		map.put("historyFilter", historyFilter);
 		return map;
 	}
 	
