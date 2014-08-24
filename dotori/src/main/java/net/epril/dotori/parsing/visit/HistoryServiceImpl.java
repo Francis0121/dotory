@@ -59,7 +59,7 @@ public class HistoryServiceImpl extends SqlSessionDaoSupport implements
 			return new ArrayList<Image>();
 		}
 		pagination.setNumItems(count);
-		pagination.setNumItemsPerPage(20);
+		pagination.setNumItemsPerPage(30);
 		
 		List<Image> images = getSqlSession().selectList("history.selectImages", imageSearchFilter);
 		return images;
