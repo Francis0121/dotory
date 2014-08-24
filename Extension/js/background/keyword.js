@@ -164,7 +164,7 @@ dotory.matchKeyword=function(keywordArray, url, title){
 	if(keywordArray!=null){
 		for(var i=0;i<keywordArray.length;i++){
 			for(var j=0;j<keywordArray[i].length;j++){
-				console.log("title : "+title);
+//				console.log("title : "+title);
 				var titlelow=title.toLowerCase();
 				var keylow=keywordArray[i][j].toLowerCase();
 				console.log(titlelow+keylow);
