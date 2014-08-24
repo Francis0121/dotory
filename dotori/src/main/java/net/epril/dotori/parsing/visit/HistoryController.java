@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import net.epril.dotori.json.AJC;
 import net.epril.dotori.json.Json;
+import net.epril.dotori.parsing.Parsing;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -43,8 +44,8 @@ public class HistoryController {
 	
 	@ResponseBody
 	@RequestMapping(value="/history/total",method=RequestMethod.GET)
-	public Json getHistoryTotal(@ModelAttribute Integer userPn){
-		Map<String,Object> map=historyService.selectHistoryTotal(userPn);
+	public Json getHistoryTotal(@ModelAttribute Parsing parsing){
+		Map<String,Object> map=historyService.selectHistoryTotal(parsing.getUserPn());
 		return new Json(AJC.SUCCESS,"",map);		
 	}
 	
