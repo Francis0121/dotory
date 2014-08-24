@@ -3,6 +3,8 @@
 /** Image */
 HEADER.dotory_image_header{ padding: 10px 10px 10px 10px; width:580px; height:30px; float:left; box-shadow:  0.5px 0.5px 3px 0px rgba(128,128,128,1);}
 
+H1.image_title>SPAN{ float: left; margin: 1px 0 0 -10px;}
+
 DIV.dotory_image_content{ padding: 10px 10px 0px 10px; width:580px; height:340px; float:left; overflow-y: hidden; overflow-x: hidden;}
 UL.history_images{ float:left; width: 580px;}
 UL.history_images>LI{ margin : 3px; float:left; color:#000; background-color: #fff;  width: 134px; text-indent: -9999px;}
@@ -11,3 +13,5 @@ UL.history_images>LI>A>IMG{ float: left; width: 134px;}
 DIV#infscr-loading{ position: fixed; bottom: 0; left :0; z-index: 10; background: #000; width: 35%; margin: 0 30%; height: 100px; opacity:.5; border-radius: 10px;}
 DIV#infscr-loading>IMG{ display: block; margin: 0 auto; width: 70px; height: 70px; }
 DIV#infscr-loading>DIV{ color: #fff; font-size: 75%; margin: 10px auto; text-decoration: none; width: 100%; text-align: center;}
+DIV.btn_scroll_top{ position: fixed; padding-top: 11px; width: 40px; height: 22px; border: 1px solid #bdbdbd; background: #f9f9f9; color: #000; bottom: -2px; right: 30px; text-align: center; font-size: 75%; border-radius: 3px; cursor: pointer; box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.5); display: none;}
+DIV.btn_scroll_top:HOVER { background: #f2f2f2; color: #000	;}

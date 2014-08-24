@@ -4,38 +4,30 @@ HTML{ width: 600px; height: 400px; overflow: hidden;}
 BODY{ overflow: hidden;}
 
 DIV.dotory_fixed_wrap{ width: 600px; height: 400px; overflow: hidden; margin: 0px; outline: 1px solid #808080;}
-DIV.dotory_wrap { width: 600px; height: 400px; float: left; position: relative; top: 0; left: 0;}
-DIV.dotory_metro {background: #fff; overflow-x: hidden; overflow-y: hidden; }
-DIV.dotory_image { background: #fff; overflow-x: hidden; overflow-y: hidden; }
-DIV.dotory_history { background: #404040; overflow-x: hidden; overflow-y: hidden; }
+DIV.dotory_wrap { width: 600px; height: 400px; float: left; position: absolute; top: 0; left: 0;}
+DIV.dotory_metro {background: #fff; overflow-x: hidden; overflow-y: hidden; background: linear-gradient(135deg, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%); /* W3C */}
+DIV.dotory_image { background: #fff; overflow-x: hidden; overflow-y: hidden; left: 600px; }
+DIV.dotory_history { background: #404040; overflow-x: hidden; overflow-y: hidden; left: 600px;}
+DIV.dotory_login{ z-index: 5; background: #fff;}
 DIV.dotory_login_content{ text-align: center; width: 600px; height: 400px; float: left; }
 DIV.dotory_loading_extension{ display:none; position: fixed; top:0; left:0; z-index: 10; background: #000; width: 600px; height: 400px; float: left; background: url("../images/loading.gif") no-repeat #fff 250px 125px; opacity: 0.8; text-indent: -9999px;}
 
 UL.dotory_common_top{ float:left; }
 UL.dotory_common_top>LI{ float:left;}
-UL.dotory_common_top>LI:nth-child(1){ width: 50px; height:30px; float:left;}
+UL.dotory_common_top>LI:nth-child(1){ width: 50px; height:40px; float:left;}
 UL.dotory_common_top>LI:nth-child(2){ width: 480px; line-height: 30px;}
 UL.dotory_common_top>LI:nth-child(2)>H1{ color: #3d3d3d; font-size: 125%; text-indent: 10px; font-weight: normal; }
 UL.dotory_common_top>LI:nth-child(3){ width: 50px; height:30px; float:left; text-align: right;}
 
 /** BUTTON */
-BUTTON.metro_btn{ margin: 1px 0 1px 5px; width: 120px; height: 38px; line-height: 38px; font-size: 87.5%; color: #000; cursor: pointer; }
-BUTTON.metro_btn:HOVER { background: #808080; }
-
-BUTTON#img_btn{ background: #1a1a1a; color: #fff;}
-BUTTON#img_btn:HOVER{ background: #000; }
-BUTTON#history_btn{ background: #404040; color: #fff;}
-BUTTON#history_btn:HOVER{ background: #262626; }
-
 BUTTON.image_btn{ width: 50px; height: 30px; border-radius: 5px; background: #fff; color: #000; cursor: pointer;}
 BUTTON.image_btn:HOVER{ background: #f3f3f3;}
 BUTTON#history_back_btn{ }
 BUTTON#history_more_btn{ }
 BUTTON#history_tab_open{ width: 100px;}
-BUTTON#image_back_btn{ width: 40px; height: 40px; border-radius: 20px; background: url("../images/btn_down_arrow.png") no-repeat; text-indent: -9999px; margin: -5px 0 0 5px;}
-BUTTON#image_back_btn:ACTIVE{ background-position: 0 -40px;}
-BUTTON#image_back_btn:HOVER{ background-position: 0 -80px;}
-BUTTON#image_more_btn{ width: 40px; height: 40px; background: url('../images/btn_more.png') no-repeat; text-indent: -9999px; margin-top: -5px;}
+BUTTON#image_back_btn{ width: 40px; height: 40px; background: url("../images/btn_right_arrow_splite.png") no-repeat; text-indent: -9999px; margin-top: -4px;}
+BUTTON#image_back_btn:HOVER{ background-position: 0 -40px;}
+BUTTON#image_back_btn:ACTIVE{ background-position: 0 -80px;}
 BUTTON#signin{ margin-top: 165px; background: url("../images/btn_google_signin.png") no-repeat; width: 220px; height: 40px; text-indent: -9999px;}
 BUTTON#signin:HOVER { background-position: 0 -80px; }
 BUTTON#signin:ACTIVE { background-position: 0 -40px; }
