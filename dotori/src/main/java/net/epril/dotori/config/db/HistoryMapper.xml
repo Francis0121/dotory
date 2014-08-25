@@ -209,7 +209,7 @@
 			(
 				SELECT DATE_FORMAT(pv.`register_date`,'%d-%m-%Y') AS register_date FROM `parsing_visit` AS pv
 				WHERE pv.user_pn=#{userPn}
-				GROUP BY pv.url_pn
+				GROUP BY pv.url_pn, pv.`register_date`
 			) AS i
 		GROUP BY
 			i.register_date
@@ -228,7 +228,7 @@
 					(
 						SELECT DATE_FORMAT(pv.`register_date`,'%d-%m-%Y') AS register_date FROM `parsing_visit` AS pv
 						WHERE pv.user_pn=#{userPn}
-						GROUP BY pv.url_pn
+						GROUP BY pv.url_pn, pv.`register_date`
 					) AS i
 				GROUP BY
 					i.register_date
