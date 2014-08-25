@@ -104,6 +104,7 @@ dotory.image.binding = function(){
 
 dotory.image.loading = function(){
 	var url = dotory.contextPath + '/image/list?page=1&userPn='+dotory.user.pn;
+	var sendUrl=new Array();
 	
 	$.getJSON(url, function(object){
 		var data = object.data,
@@ -115,14 +116,31 @@ dotory.image.loading = function(){
 		if(object.code == 200){
 			for(var i=0; i<images.length; i++){
 				var image = images[i];
+				sendUrl[i]=image.link;
+				
 				var html = 	'<li>';
-					html +=	'	<a href="'+image.link+'">';
+					html +=	'	<a href="'+image.link+' id="url'+i+'">';
 					html += '		<img src="'+image.url+'"/>';
 					html +=	'	</a>';
 					html += '</li>';	
 				dotory.image.container.append(html);
 			}
+//			openUrl(sendUrl);
 		}
-	});
-	
+	});	
+};
+
+function openUrl(url){
+	var id=new Array();
+	for(var i=0;i<url.length;i++){
+		(function(){
+			id='urls'+i;
+//			console.log("id : "+id);
+			var temp=document.getElementById(id);
+			var location=temp.href;
+			temp.onclick=function(){
+				chrome.tabs.create({url:location});
+			};
+		})();
+	}
 };

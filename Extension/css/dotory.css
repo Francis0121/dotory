@@ -5,7 +5,9 @@ BODY{ overflow: hidden;}
 
 DIV.dotory_fixed_wrap{ width: 600px; height: 400px; overflow: hidden; margin: 0px; outline: 1px solid #808080;}
 DIV.dotory_wrap { width: 600px; height: 400px; float: left; position: absolute; top: 0; left: 0;}
-DIV.dotory_metro {background: #fff; overflow-x: hidden; overflow-y: hidden; background: linear-gradient(135deg, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%); /* W3C */}
+DIV.dotory_metro {background: #fff; overflow-x: hidden; overflow-y: hidden;
+background: url("../images/background.jpg");}
+/* linear-gradient(135deg, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%);W3C} */
 DIV.dotory_image { background: #f7f7f7; overflow-x: hidden; overflow-y: hidden; left: 600px; }
 DIV.dotory_history { background: #f7f7f7; overflow-x: hidden; overflow-y: hidden; left: 600px; }
 DIV.dotory_login{ z-index: 5; background: #fff;}
