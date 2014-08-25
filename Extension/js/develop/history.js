@@ -35,7 +35,14 @@ dotory.history.binding = function(){
 	
 	$('.date_history').mCustomScrollbar({
 		mouseWheel:{ enable: true },
-		alwaysShowScrollbar: 2
+		alwaysShowScrollbar: 2,
+		callbacks:{
+			whileScrolling:function(){
+				if(this.mcs.topPct > 90){
+					dotory.history.getDate();
+				}
+			}
+		}
 	});
 };
 /********************탭열기***************************/
@@ -274,9 +281,10 @@ dotory.history.makeDateHtml = function(dates){
 	var dateHtml = $(dateWrap.find('li')[0]);
 	var historyFilter = dotory.history.historyFilter;
 	// ~ dates
-	if(historyFilter.pagination.page != 1){		
+	if(historyFilter.page == 1){		
 		dateWrap.html('');
 	}
+	dateHtml = $(dateHtml.clone());
 	for (var i=0; i < dates.length; i++){			
 		var date = dates[i];
 			
@@ -318,11 +326,14 @@ dotory.history.getKeyword = function(date){
 };
 
 // ~ Date Pagination
-dotory.history.getDate = function(date){
+dotory.history.getDate = function(){
 	var url = dotory.contextPath+'/history/date',
 		json = { 	'userPn' 	: 	dotory.user.pn,
-					'date'		:	date	};
+					'page'		:	dotory.history.historyFilter.page + 1};
 	
+	if(dotory.history.historyFilter.page + 1 > dotory.history.historyFilter.pagination.numPages){
+		return;
+	}
 	$.getJSON(url, json, function(object){
 		var data = object.data;
 		
