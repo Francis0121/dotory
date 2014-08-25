@@ -52,7 +52,7 @@ dotory.history.tabOpen=function(keywords){
 			url = keyword.url,
 			checkbox = $(li).find('input[type=checkbox]');
 		if(checkbox.attr('checked')){
-			console.log(url);
+			//console.log(url);
 			urlArray[urlArray.length]=url;			
 		}
 	}

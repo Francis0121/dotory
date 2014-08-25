@@ -64,7 +64,9 @@ dotory.metro.mousehover=function(){
 		background.animate({opacity:'1.0'},300);
 	});
 };
+
 dotory.metro.pageLoad=function(){
+	console.log('loading... start');
 	var url= dotory.contextPath+'/visit/info',
 		json={'userPn': dotory.user.pn };
 	var sendUrl=new Array();
@@ -144,6 +146,8 @@ dotory.metro.pageLoad=function(){
 		dotory.metro.onloadImage();
 
 		openUrl(sendUrl);
+		console.log('loadin End');
+		dotory.loading.finsih(); // sign-in-loading-finish && load-metro (ajax send message finish)
 	});
 };
 

@@ -23,11 +23,12 @@ dotory.isFrameset = function(content, json, index){
 							frameSrc = dotory.absolute(json.url, frameSrc);
 							frameSrcs.push(frameSrc);
 						}
-						console.log('Frame src : '+frameSrc);
+						//console.log('Frame src : '+frameSrc);
 					}
 				}
 			}
 		}
+		console.log('Doing frame src : ' + frameSrc);
 	}else{
 		return true;
 	}
@@ -279,7 +280,7 @@ dotory.imageSearchCondition = function(srcs, visitPn){
 			}
 			
 		}).error(function() { 
-			console.log('Error Loading image ...'); 
+			console.log('Error Loading image '); 
 		}).attr('src', src);
 	}
 };

@@ -137,7 +137,7 @@ function openImageUrl(url){
 			id='url'+i;
 			var save=document.getElementById(id);
 			var loc=save.href;
-			console.log("id : "+id+"  href : "+loc);
+			//console.log("id : "+id+"  href : "+loc);
 			save.onclick=function(){
 				alert(loc);
 				chrome.tabs.create({url:loc});
