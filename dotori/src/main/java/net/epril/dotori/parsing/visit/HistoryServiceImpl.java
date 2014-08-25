@@ -78,8 +78,6 @@ public class HistoryServiceImpl extends SqlSessionDaoSupport implements
 		Map<String,Object> map= new HashMap<String, Object>();
 		map.putAll(selectHistoryKeyword(keywordFilter));
 		map.putAll(selectHistoryDate(historyFilter));
-		map.put("historyFilter", historyFilter);
-		map.put("keywordFilter", keywordFilter);
 		return map;
 	}
 	
@@ -88,6 +86,7 @@ public class HistoryServiceImpl extends SqlSessionDaoSupport implements
 		Map<String,Object> map=new HashMap<String, Object>();
 		List<Keyword> keywords = getSqlSession().selectList("history.selectHistoryKeyword", keywordFilter);
 		map.put("keywords", keywords);
+		map.put("keywordFilter", keywordFilter);
 		return map;
 	}
 	
@@ -95,6 +94,7 @@ public class HistoryServiceImpl extends SqlSessionDaoSupport implements
 	public Map<String, Object> selectHistoryDate(HistoryFilter historyFilter) {
 		Pagination pagination = historyFilter.getPagination();
 		Map<String,Object> map=new HashMap<String, Object>();
+		map.put("historyFilter", historyFilter);
 		int count = selectHistoryDateCount(historyFilter);
 		if(count == 0){
 			return map;
