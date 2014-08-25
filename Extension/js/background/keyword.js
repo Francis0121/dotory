@@ -3,11 +3,9 @@ var keywordArray=new Array([],[]); //검색어 저장 배열
 
 //검색 키워드 중복있는지 체크
 dotory.checkRe=function(searchArray){
-//	console.log("check?");
 	for(var i=0;i<keywordArray.length;i++){
 		for(var j=0;j<keywordArray[i].length;j++){
 			if(searchArray[j].match(keywordArray[i][j])){
-//				console.log("yes check!");
 				console.log(keywordArray[i][j]+" : already have");
 				return true;
 			}else
@@ -15,147 +13,95 @@ dotory.checkRe=function(searchArray){
 		}
 	}
 }
-//검색엔진 별 검색어 찾기
-dotory.getSearchWord=function(content,url,title){
-	var html=content;
-	var decodeUri= decodeURIComponent(url);
+
+// ~ https://www.google.co.kr/webhp?sourceid=chrome-instant&ion=1&espv=2&es_th=1&ie=UTF8#q=metro+ui+css+template&revid=1010655525
+// ~ https://www.google.co.kr/?gws_rd=ssl#newwindow=1&q=google+translate&revid=-1
+// ~ https://www.google.co.kr/?gws_rd=ssl#newwindow=1&q=anything
+dotory.queryMatch = function(url,title){
+	var domain_regexs = [ /google/, /naver/, /daum/, /yahoo/, /nate/, /bing/ ];
+	var query_regexs = [ 	
+		                    [ /q=/  ], // google
+							[ /query=/i ], // naver
+							[ /q=/i ], // daum
+							[ /p=/i ], // yahoo 
+		                    [ /q=/i	], // nate
+		                    [ /q=/i	] // bing
+		               ]; 
+	
+	url = decodeURIComponent(url)
+	var factor = '';
+	var factorList = new Array();
+	if(url.match(/\?.+/i) != null){
+		factor = url.match(/\?.+/i)[0];
+		factor = factor.replace(/\?/, '');
+	}else{
+		return { keyword:null,index:null };
+	}
+	
+	
+	if( factor != '' && factor != null || factor != undefined){
+		factorList = factor.split(/\&/);
+	}
+	
+	// ~ Google Exception ... (ex: ie=UTF-8#query=search_keyword)
+	for(var i=0; i<factorList.length; i++){
+		var atom = factorList[i];
+		if(atom.match(/\#/) != null){
+			var array = atom.split(/\#/);
+			for(var j=0; j<array.length; j++){
+				if(j == 0){
+					factorList[i] = array[j];
+				}else{
+					factorList.push(array[j]);
+				}
+			}
+		}
+	}
+	
+	for(var i=0; i<domain_regexs.length; i++){
+		var domain_regex = domain_regexs[i];
+	
+		var search = '';
+		var searchList = new Array();
 		
-	//google search word split
-	if(decodeUri.match(/google/)!=null){
-		if(decodeUri.match(/\&q=(.+)/i)!=null){	//검색어가 있는 검색창이 맞으면
-			console.log(decodeUri.match(/\&q=(.+)/i)!=null);
-			var search=decodeUri.match(/\&q=(.+)/i)[1];
-			search=search.replace(/\+/g, ' ');
-			var	searchArray=search.split(' ');
-			for(var i=0;i<searchArray.length;i++){
-				if(i==(searchArray.length-1)){
-					var temp=searchArray[i].split('&');
-					searchArray[i]=temp[0];		
+		if(url.match(domain_regex) != null){
+			var regex =  query_regexs[i][0];
+			for(var i=0; i<factorList.length; i++){
+				if(factorList[i].match(regex) != null){
+					search = factorList[i];
+					break;
 				}
 			}
-			if(dotory.checkRe(searchArray)){	//들어온 검색어가 이미 있는 검색어이면
-				var result=dotory.matchKeyword(keywordArray,url,title);
-				if(result!=null)
-					return {keyword:keywordArray[result.index],index:result.index};
-				else return{keyword:null,index:null};
-			}
-			else{
-				keywordArray[keywordArray.length]=searchArray;
-//				console.log("new keyword : "+keywordArray[keywordArray.length-1]);
-				return {keyword:keywordArray[keywordArray.length-1],index:keywordArray.length-1};
-			}
+			search = search.replace(regex, '');
+			search = search.replace(/\+/g, ' ');
+			//console.log('URL : ' + url + ' Search : '+ search );
 		}else{
-			var result=dotory.matchKeyword(keywordArray,url,title);
+			continue;
+		}
+		
+		searchList = search.split(' ');
+		//console.log('Keyword List='+searchList);
+		
+		// ~ Search Keyword is matching
+		if(dotory.checkRe(searchList)){	
+			var result = dotory.matchKeyword(keywordArray, url, title);
 			if(result!=null)
-				return {keyword:keywordArray[result.index],index:result.index};
-			else
-				return{keyword:null,index:null};
+				return { keyword:keywordArray[result.index], index:result.index };
+			else 
+				return { keyword:null, index:null};
+		}else{
+			keywordArray[keywordArray.length]=searchList;
+			return { keyword: keywordArray[keywordArray.length-1], index:keywordArray.length-1 };
 		}
 	}
 	
-	//naver
-	else if(decodeUri.match(/naver/)!=null){
-		if(decodeUri.match(/\&query=(.+)/i)!=null){
-//			console.log(decodeUri.match(/\&query=(.+)/i));
-			var search=decodeUri.match(/\&query=(.+)/i)[1];
-			search=search.replace(/\+/g, ' ');
-			var	searchArray=search.split(' ');
-			for(var i=0;i<searchArray.length;i++){
-				if(i==(searchArray.length-1)){
-					var temp=searchArray[i].split('&');
-					searchArray[i]=temp[0];				
-				}
-			}
-			if(dotory.checkRe(searchArray)){	//들어온 검색어가 이미 있는 검색어이면
-				var result=dotory.matchKeyword(keywordArray,url,title);
-				if(result!=null)
-					return {keyword:keywordArray[result.index],index:result.index};
-				else return{keyword:null,index:null};
-						
-			}
-			else{
-				keywordArray[keywordArray.length]=searchArray;
-				return {keyword:keywordArray[keywordArray.length-1],index:keywordArray.length-1};
-			}
-		}else{
-			var result=dotory.matchKeyword(keywordArray,url,title);
-			if(result!=null)
-				return {keyword:keywordArray[result.index],index:result.index};
-			else return{keyword:null,index:null};
-		}
-	}
-	
-	//daum & nate
-	else if(decodeUri.match(/daum/)!=null){
-		if(decodeUri.match(/\&q=(.+)/i)!=null){
-//			console.log(decodeUri.match(/\&query=(.+)/i));
-			var search=decodeUri.match(/\&q=(.+)/i)[1];
-			search=search.replace(/\+/g, ' ');
-			var	searchArray=search.split(' ');
-			for(var i=0;i<searchArray.length;i++){
-				if(i==(searchArray.length-1)){
-					var temp=searchArray[i].split('&');
-					searchArray[i]=temp[0];				
-				}
-			}
-			if(dotory.checkRe(searchArray)){	//들어온 검색어가 이미 있는 검색어이면
-				var result=dotory.matchKeyword(keywordArray,url,title);
-				if(result!=null)
-					return {keyword:keywordArray[result.index],index:result.index};
-				else return{keyword:null,index:null};
-			}
-			else{
-				keywordArray[keywordArray.length]=searchArray;
-				return {keyword:keywordArray[keywordArray.length-1],index:keywordArray.length-1};
-			}
-		}else{
-			var result=dotory.matchKeyword(keywordArray,url,title);
-			if(result!=null)
-				return {keyword:keywordArray[result.index],index:result.index};
-			else return{keyword:null,index:null};
-		}
-	}
-	
-	//yahoo
-	else if(decodeUri.match(/yahoo/)!=null){
-		if(decodeUri.match(/\&p=(.+)/i)!=null){
-//			console.log(decodeUri.match(/\&p=(.+)/i)[1]);
-			var search=decodeUri.match(/\&p=(.+)/i)[1];
-			search=search.replace(/\+/g, ' ');
-			console.log(search);
-			var	searchArray=search.split(' ');
-			for(var i=0;i<searchArray.length;i++){
-				if(i==(searchArray.length-1)){
-					var temp=searchArray[i].split('&');
-					searchArray[i]=temp[0];		
-				}
-			}
-			if(dotory.checkRe(searchArray))	{
-				var result=dotory.matchKeyword(keywordArray,url,title);
-				if(result!=null)
-					return {keyword:keywordArray[result.index],index:result.index};
-				else return{keyword:null,index:null};
-			}
-			else{
-				keywordArray[keywordArray.length]=searchArray;
-				return {keyword:keywordArray[keywordArray.length-1],index:keywordArray.length-1};
-			}
-		}else{
-			var result=dotory.matchKeyword(keywordArray,url,title);
-			if(result!=null)
-				return {keyword:keywordArray[result.index],index:result.index};
-			else return{keyword:null,index:null};
-		}
-	}
-	
-	else{ //검색해서 얻은 결과가 아니면
-		var result=dotory.matchKeyword(keywordArray,url,title);
-		if(result!=null)
-			return {keyword:keywordArray[result.index],index:result.index};
-		else return{keyword:null,index:null};			
-	}
-	
-}
+	var result = dotory.matchKeyword(keywordArray, url, title);
+	if( result != null )
+		return { keyword:keywordArray[result.index], index:result.index };
+	else 
+		return { keyword:null,index:null };	
+};
+
 
 //클릭도니 사이트 title 비교 해 키워드 등록
 dotory.matchKeyword=function(keywordArray, url, title){

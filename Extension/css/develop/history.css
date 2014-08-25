@@ -5,19 +5,20 @@ FOOTER.dotory_history_footer{ padding: 0 10px 0 10px; width:580px;height:40px;fl
 
 LI.dotory_history_head{ margin-left: -10px;}
 DIV.dotory_history_content{ width:600px; height: 300px; float:left; margin-top: 5px;}
-DIV.current_content{ width:400px; float:left; overflow-y: hidden; overflow-x: hidden; padding: 5px 0 15px 10px; margin-left: 10px; height: 280px; }
-HEADER.current_content_header{ position: fixed; background: #fff; left: -395px; top : 55px; width: 400px; z-index: 10; display: block; padding: 10px 0 10px 10px; display: none;}
-HEADER.current_content_header>DIV.left{ float: left; width: 385px;}
-HEADER.current_content_header>DIV.right{ float: left; width: 15px; opacity:0.9;}
-HEADER.current_content_header>DIV.right>BUTTON{ width: 15px; float: left; cursor: pointer;  min-height: 100%; background: url("../../images/btn_hide_keyword.png") no-repeat 0px 35px #d6d6d6; border-radius : 0 3px 3px 0; }
+DIV.current_content{ width:405px; float:left; overflow-y: hidden; overflow-x: hidden; padding: 5px 0 15px 10px; margin-left: 10px; height: 280px; }
+
+HEADER.current_content_header{ float:left; width: 380px; padding: 10px 0 10px 10px; }
+
 H2.page_head{ color:#000; font-weight: normal; font-size: 100%; float: left; margin-top: 5px; }
 H2.page_head>SPAN.text{ float: left; font-size: 93.75%; color: #181515; width: 100%; margin-bottom: 10px;}
-H2.page_head>SPAN.keyword_total{ float: left; width: 260px; width: 100%; margin-bottom: 10px;}
-H2.page_head>SPAN.keyword_total>A{ font-size:75%; float: left; color: #c4c4c4; cursor: pointer; margin-right: 8px;}
-H2.page_head>SPAN.keyword_total>A:HOVER{ color: #3f3f3f;}
-H2.page_head>SPAN.keyword_total>A.selected{ color: #000; }
+H2.page_head>SPAN.keyword_list{ }
+H2.page_head>SPAN.keyword_list>A{ font-size:75%; float: left; color: #c4c4c4; cursor: pointer; margin: 0 8px 8px 0;}
+H2.page_head>SPAN.keyword_list>A:HOVER{ color: #3f3f3f;}
+H2.page_head>SPAN.keyword_list>A.selected{ color: #000; }
+BUTTON.page_more_btn{ background: transparent; font-size: 75%; float: right; cursor: pointer; margin-right: 20px; color: #464646;}
+BUTTON.page_more_btn:HOVER{ color: #000;}
 
-UL.opened_page_list_all{ float: left; width: 100%; }
+UL.opened_page_list_all{ float: left; width: 100%; margin-top: 10px;}
 UL.opened_page_list_all>LI{float: left; width: 100px; }
 UL.opened_page_list_all>LI>BUTTON{cursor : pointer; float: left; width: 90px; padding: 5px; font-size: 75%; border-radius:3px;}
 UL.opened_page_list_all>LI>BUTTON:HOVER{background: #8b8b8b;}
@@ -35,8 +36,8 @@ A.opend_page_link>SPAN.date{ font-size: 62.5%; color: #808080 !important;}
 INPUT.opened_page_check{ margin: 6px 4px 0 0 ;}
 UL.opened_page_list_wrap>LI>SPAN.more_tag{ color: #fff; float: left; width: 100%; font-size: 75%; text-indent: 15px;}
 
-DIV.date_history{ width:140px; float:left; height: 280px; padding: 5px 10px 15px 20px; margin-right: 10px; overflow-y: hidden; overflow-x: hidden;}
-H2.date_head{ font-size: 93.75%; color:#181515; font-weight: normal; margin-top: 5px;}
+DIV.date_history{ width:150px; float:left; height: 280px; padding: 10px 0 15px 15px; margin-right: 10px; overflow-y: hidden; overflow-x: hidden;}
+H2.date_head{ font-size: 93.75%; color:#181515; font-weight: normal; margin-top: 10px;}
 UL.history_list_wrap{float: left; width: 100%; padding-top: 10px;}
 UL.history_list_wrap>LI{ float:left; width: 100%; height: 20px; background: #fff; padding: 5px 0; border-radius:2px; line-height: 20px; margin-bottom: 3px; cursor: pointer;}
 UL.history_list_wrap>LI>SPAN.date{ font-size: 81.25%; float: left; margin: 0 8px;}
