@@ -11,8 +11,8 @@
 	</appender>
 	
 	<appender name="filelog" class="org.apache.log4j.DailyRollingFileAppender">
-<!-- 		<param name="file" value="D:/spring_log/dotory.log"/> -->
-		<param name="file" value="/var/log/tomcat7/dotory/dotory.log"/>
+		<param name="file" value="D:/spring_log/dotory.log"/>
+<!-- 		<param name="file" value="/var/log/tomcat7/dotory/dotory.log"/> -->
         <param name="MaxFileSize" value="1MB"/>
         <param name="MaxBackupIndex" value="10"/>
 		<layout class="org.apache.log4j.PatternLayout">
