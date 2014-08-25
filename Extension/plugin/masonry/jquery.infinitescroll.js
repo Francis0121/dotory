@@ -219,7 +219,7 @@
             }
 
             this._prefill = function() {
-            	if( (dotory.web.container.imageSearchFilter.page+1) < opts.maxPage){
+            	if( (dotory.web.container.imageSearchFilter.page+1) < this.options.maxPage){
 	                if (needsPrefill()) {
 	                    instance.scroll();
 	                }
