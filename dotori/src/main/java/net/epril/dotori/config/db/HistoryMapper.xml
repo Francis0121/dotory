@@ -215,6 +215,7 @@
 			i.register_date
 		ORDER BY
 			i.register_date DESC
+		LIMIT #{pagination.itemSeqBegin}, #{pagination.numItemsPerPage}
 	</select>
 	
 	<select id="selectHistoryDateCount" parameterType="HistoryFilter" resultType="Integer">
