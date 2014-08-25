@@ -192,8 +192,7 @@ public class ImageFilter implements Filter{
                 hsl = fromRgbToHsl(rgb);
                 int color = fromHslToColor(hsl[0], hsl[1], hsl[2]);
                 colors[color]+=1;
-                
-                logger.debug("rgb : "+rgb[0]+ " " + rgb[1] + " " + rgb[2] + " hsl : " +hsl[0] + " " + hsl[1] + " " + hsl[2] + " color : "+color);
+                //logger.debug("rgb : "+rgb[0]+ " " + rgb[1] + " " + rgb[2] + " hsl : " +hsl[0] + " " + hsl[1] + " " + hsl[2] + " color : "+color);
             }
         }
         

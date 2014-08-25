@@ -50,7 +50,7 @@
 			) pc
 		WHERE
 		<![CDATA[
-				pc.count>=3
+				pc.count>=5
 		]]>
 	</select>
 	
@@ -76,7 +76,7 @@
 			) pc
 		WHERE
 		<![CDATA[
-			pc.count>=3
+			pc.count>=5
 		]]>
 		ORDER BY
 			pc.`count` DESC
