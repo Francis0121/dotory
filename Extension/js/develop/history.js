@@ -218,9 +218,23 @@ dotory.history.pageEvent = function(){
 			checkbox = thiz.find('input[type=checkbox]');
 		
 		if(checkbox.attr('checked') == undefined){
+			$(this).addClass('check');
 			checkbox.attr('checked', 'checked');
 		}else{
+			$(this).removeClass('check');
 			checkbox.removeAttr('checked');
+		}
+	});
+	
+	$('.opened_page_list_wrap>li>input[type=checkbox]').off('click').on('click', function(){
+		var thiz = $(this);
+		
+		if(thiz.attr('checked') == undefined){
+			$(this).parent('li').addClass('check');
+			thiz.attr('checked', 'checked');
+		}else{
+			$(this).parent('li').removeClass('check');
+			thiz.removeAttr('checked');
 		}
 	});
 };
@@ -237,8 +251,10 @@ dotory.history.keywordEvent = function(){
 				checkbox = $(li).find('input[type=checkbox]');
 			
 			checkbox.removeAttr('checked');
+			checkbox.parent('li').removeClass('check');
 			if(checkbox.val() == keyword){
 				checkbox.attr('checked', 'checked');
+				checkbox.parent('li').addClass('check');
 			}
 		}
 		$('.keyword_total>a').removeClass('selected');
@@ -257,8 +273,10 @@ dotory.history.keywordEvent = function(){
 				checkbox = $(li).find('input[type=checkbox]');
 			
 			checkbox.removeAttr('checked');
+			checkbox.parent('li').removeClass('check');
 			if(checkbox.val() == keyword){
 				checkbox.attr('checked', 'checked');
+				checkbox.parent('li').addClass('check');
 			}
 		}
 		$('.keyword_total>a').removeClass('selected');
@@ -273,6 +291,7 @@ dotory.history.keywordEvent = function(){
 			var li = lis[i],
 				checkbox = $(li).find('input[type=checkbox]');
 			checkbox.attr('checked', 'checked');
+			checkbox.parent('li').addClass('check');
 		}
 	});
 	
@@ -283,6 +302,7 @@ dotory.history.keywordEvent = function(){
 			var li = lis[i],
 				checkbox = $(li).find('input[type=checkbox]');
 			checkbox.removeAttr('checked');
+			checkbox.parent('li').removeClass('check');
 		}
 	});
 };

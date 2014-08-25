@@ -25,6 +25,7 @@ UL.opened_page_list_all>LI>BUTTON:HOVER{background: #8b8b8b;}
 
 UL.opened_page_list_wrap{float: left; width: 100%; padding-top: 5px; }
 UL.opened_page_list_wrap>LI{float: left; width: 375px; padding: 0 8px; line-height: 25px;}
+UL.opened_page_list_wrap>LI.check{background: #e0e0e0;}
 UL.opened_page_list_wrap>LI:HOVER{ background: #ccc;}
 UL.opened_page_list_wrap>LI>INPUT{ float: left;}
 UL.opened_page_list_wrap>LI>A{ float: left; width: 358px;}
