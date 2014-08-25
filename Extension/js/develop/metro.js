@@ -107,6 +107,21 @@ dotory.metro.pageLoad=function(){
 				
 				sendUrl[i]=url;
 				
+				/*******************타이틀 긴거 짜르기*********************/				
+				var cutTitle=new Array();
+				if(title.length>30){
+					var cut=['\.', '\-' , '\>', '\,'];
+					for(var j=0;j<cut.length;j++){
+						if(title.match(cut[j])){
+							cutTitle[cutTitle.length] = title.split(cut[j]);
+						}
+					}					
+					title=cutTitle[0][0];	
+				}
+				/*****************************************************/
+				
+				console.log(title);
+				console.log(url);
 				if(cnt%3 == 0){					
 					if(cnt!=0){
 						sub += ulBack;
@@ -117,15 +132,22 @@ dotory.metro.pageLoad=function(){
 					}
 				}
 				sub += '<li>';
-				if(favicon != null && favicon != undefined && favicon != '' ){
+				if(favicon != null && favicon != undefined && favicon != '' ){ //favicon 가져오기 
 				sub += '	<div class="metro_background" id="metro_background_'+i+'">';
 				sub += '		<img src="'+favicon+'" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
 				sub += ' 		<span>'+headText+'</span>';
 				sub += '	</div>';		//color값 처리
-				}else{
-				sub += '	<div class="metro_background '+color[cnt%9]+'">';
-				sub += ' 		<span>'+headText+'</span>';
-				sub += '	</div>';		//color값 처리	
+				}
+//				else{	// favicon 없을 때
+//				sub += '	<div class="metro_background '+color[cnt%9]+'">';
+//				sub += ' 		<span>'+headText+'</span>';
+//				sub += '	</div>';		//color값 처리	
+//				}
+				else{	// favicon 없을 때
+					sub += '	<div class="metro_background id="metro_background_'+i+'"'+color[cnt%9]+'">';
+					sub += ' 		<img src="../images/acorn-19.png" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
+					sub += ' 		<span>'+headText+'</span>';
+					sub += '	</div>';		//color값 처리	
 				}
 				sub += '	<div class="metro_popup">';
 				sub += '		<a class="metro_popup_link" href="'+url+'" id="urls'+i+'">'+title+'</a>';
@@ -207,6 +229,7 @@ dotory.metro.onloadImage = function(){
 
 function openUrl(url){
 	var id=new Array();
+	console.log("In fuction : "+url);
 	for(var i=0;i<url.length;i++){
 		(function(){
 			id='urls'+i;

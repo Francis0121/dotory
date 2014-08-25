@@ -3,16 +3,15 @@
 HTML{ width: 600px; height: 400px; overflow: hidden;}
 BODY{ overflow: hidden;}
 
-DIV.dotory_fixed_wrap{ width: 600px; height: 400px; overflow: hidden; margin: 0px; outline: 1px solid #808080;}
+DIV.dotory_fixed_wrap{ width: 600px; height: 400px; overflow: hidden !important; margin: 0px; }
 DIV.dotory_wrap { width: 600px; height: 400px; float: left; position: absolute; top: 0; left: 0;}
-DIV.dotory_metro {background: #fff; overflow-x: hidden; overflow-y: hidden;
-background: url("../images/background.jpg");}
+DIV.dotory_metro {background: #fff; overflow: hidden !important; background: url("../images/background.jpg");}
 /* linear-gradient(135deg, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%);W3C} */
-DIV.dotory_image { background: #f7f7f7; overflow-x: hidden; overflow-y: hidden; left: 600px; }
-DIV.dotory_history { background: #f7f7f7; overflow-x: hidden; overflow-y: hidden; left: 600px; }
-DIV.dotory_login{ z-index: 5; background: #fff;}
+DIV.dotory_image { background: #f7f7f7; overflow: hidden !important; left: 600px; }
+DIV.dotory_history { background: #f7f7f7; overflow: hidden !important; left: 600px; }
+DIV.dotory_login{ z-index: 5; background: #fff; overflow: hidden;}
 DIV.dotory_login_content{ text-align: center; width: 600px; height: 400px; float: left; }
-DIV.dotory_loading_extension{ display:none; position: fixed; top:0; left:0; z-index: 10; background: #000; width: 600px; height: 400px; float: left; background: url("../images/loading.gif") no-repeat #fff 250px 125px; opacity: 0.8; text-indent: -9999px;}
+DIV.dotory_loading_extension{ overflow: hidden !important; display:none; position: fixed; top:0; left:0; z-index: 10; background: #000; width: 600px; height: 400px; float: left; background: url("../images/loading.gif") no-repeat #fff 250px 125px; opacity: 0.8; text-indent: -9999px;}
 
 UL.dotory_common_top{ float:left; }
 UL.dotory_common_top>LI{ float:left;}
