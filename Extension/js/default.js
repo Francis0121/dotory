@@ -4,7 +4,7 @@ if(typeof dotory == 'undefined'){
 
 var keywordPns=new Array();
 
-dotory.contextPath = 'http://localhost:8080';
+dotory.contextPath = 'http://dotory.epril.net/dotori/';
 dotory.types = {
 	main : 'MAIN',
 	web : 'WEB',
