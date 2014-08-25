@@ -207,30 +207,14 @@ dotory.metro.onloadImage = function(){
 
 function openUrl(url){
 	var id=new Array();
-	document.addEventListener('click',function(){
-		for(var i=0;i<url.length;i++){
-			(function(){
-				id='urls'+i;
-				var temp=document.getElementById(id);
-				var location=temp.href;
-				temp.onclick=function(){
-					chrome.tabs.create({active:true,url:location});
-				};
-			})();
-		}
-	});
+	for(var i=0;i<url.length;i++){
+		(function(){
+			id='urls'+i;
+			var temp=document.getElementById(id);
+			var location=temp.href;
+			temp.onclick=function(){
+				chrome.tabs.create({url:location});
+			};
+		})();
+	}
 };
-//	for(var i=0;i<url.length;i++){
-//		id='urls'+i;
-//		var temp=document.getElementById(id);
-//		var tempurl=url[i];
-//		console.log(tempurl);
-//		temp.addEventListener('click',function(){alert("id : "+id+"  //  url : "+tempurl);chrome.tabs.create({url:tempurl})
-//		,false);
-//		}
-	//}
-	
-//};
-//function open(pickedUrl){
-//	chrome.tabs.create({url:pickedUrl})
-//}

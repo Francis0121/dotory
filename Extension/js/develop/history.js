@@ -21,10 +21,6 @@ dotory.history.binding = function(){
 			thiz.css('display', 'none');			
 		});
 	});
-
-//	$('#history_tab_open').on('click',function(){
-//		dotory.history.tabOpen();
-//	});
 	
 	dotory.history.total();
 	
@@ -47,7 +43,8 @@ dotory.history.binding = function(){
 };
 /********************탭열기***************************/
 dotory.history.tabOpen=function(keywords){
-	var lis = $('.opened_page_list_wrap').find('li');
+	var lis = $('.opened_page_list_wrap').find('li'),
+		urlArray=new Array();
 	
 	for(var i=0; i<lis.length; i++){
 		var li = lis[i],
@@ -56,9 +53,14 @@ dotory.history.tabOpen=function(keywords){
 			checkbox = $(li).find('input[type=checkbox]');
 		if(checkbox.attr('checked')){
 			console.log(url);
-			chrome.tabs.create({url:url});
+			urlArray[urlArray.length]=url;			
 		}
 	}
+	if(urlArray.length>=3)
+		chrome.windows.create({url:urlArray,type:'normal'});
+	else
+		for(var j=0;j<urlArray.length;j++)
+			chrome.tabs.create({url:urlArray[j]});
 };
 /***********************************************/
 dotory.history.total = function(){
