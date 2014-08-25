@@ -38,6 +38,8 @@ DIV.metro_popup{ width: 160px; height: 90px; position: relative; float: left; ba
 DIV.metro_popup>A.metro_popup_link{ color: #fff; width: 100%; float: left; text-align: center; height: 25px; padding: 30px 0; font-size: 81.25%; line-height: 25px;}
 
 DIV.metro_background{width: 160px; height: 90px; float: left; }
+DIV.metro_background>IMG{ width: 32px; margin: 5px;}
+DIV.metro_background>SPAN{ width: 150px; padding: 0 5px 5px 5px; text-align: left; float: left; font-size: 87.5%; color: #fff; }
 DIV.metro_color_blue{ background: linear-gradient(135deg, rgba(30,189,240,1) 0%,rgba(39,172,213,1) 48%,rgba(59,140,156,1) 100%); /* W3C */}
 DIV.metro_color_green{ background: linear-gradient(135deg, rgba(99,177,65,1) 1%,rgba(79,138,51,0.82) 47%,rgba(89,158,58,0.78) 56%,rgba(112,201,73,0.78) 76%,rgba(129,231,85,0.78) 100%); /* W3C */ }
 DIV.metro_color_orange{ background: #d99824; }

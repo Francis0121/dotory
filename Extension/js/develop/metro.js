@@ -87,10 +87,23 @@ dotory.metro.pageLoad=function(){
 			           'metro_color_gray','metro_color_softGray'];
 			
 			for(var i=0;i<visits.length;i++){
-				var count=visits[i].count;												//자주 방문하는 페이지
-				var url=visits[i].url;
-				var title=visits[i].title;
-				var keyword=visits[i].keyword;
+				var count=visits[i].count,
+					url=visits[i].url,
+					title=visits[i].title,
+					keyword=visits[i].keyword,
+					domain=visits[i].domain,
+					favicon=visits[i].favicon;
+				
+				var headText = '';
+				if(keyword == null || keyword == undefined || keyword == ''){
+					headText = domain.replace(/http:\/\//, '');
+					headText = headText.replace(/https:\/\//, '');
+					headText = headText.replace(/\//, '');
+					headText = headText.replace(/(\.co)?\.[\w]*$/, '');
+					headText = headText.replace(/www./, '');
+				}else{
+					headText = keyword;
+				}
 				
 				sendUrl[i]=url;
 				
@@ -104,9 +117,16 @@ dotory.metro.pageLoad=function(){
 					}
 				}
 				sub += '<li>';
+				if(favicon != null && favicon != undefined && favicon != '' ){
 				sub += '	<div class="metro_background '+color[cnt%9]+'">';
-				sub += ' 	'+keyword;
+				sub += '		<img src="'+favicon+'" title="Favicon"/>';
+				sub += ' 		<span>'+headText+'</span>';
 				sub += '	</div>';		//color값 처리
+				}else{
+				sub += '	<div class="metro_background '+color[cnt%9]+'">';
+				sub += ' 		<span>'+headText+'</span>';
+				sub += '	</div>';		//color값 처리	
+				}
 				sub += '	<div class="metro_popup">';
 				sub += '		<a class="metro_popup_link" href="'+url+'" id="urls'+i+'">'+title+'</a>';
 				sub += '	</div>';
