@@ -194,10 +194,21 @@ dotory.history.makeKeywordHtml = function(keywords){
 };
 
 dotory.history.headerEvent = function(){
-
+	
 	$('#btn_keyword_more').off('click').on('click', function(){
-		$('.more_keyword').show();
-		$(this).hide();
+		var thiz = $(this),
+			attr = thiz.attr('data-on');
+		
+		if(attr == 'true'){
+			$('.more_keyword').hide();
+			thiz.text('More...');			
+			thiz.removeAttr('data-on');
+		}else{
+			$('.more_keyword').show();
+			thiz.text('Hide...');
+			thiz.attr('data-on', 'true');
+		}
+		
 	});
 };
 
