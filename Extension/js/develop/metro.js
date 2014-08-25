@@ -118,8 +118,8 @@ dotory.metro.pageLoad=function(){
 				}
 				sub += '<li>';
 				if(favicon != null && favicon != undefined && favicon != '' ){
-				sub += '	<div class="metro_background '+color[cnt%9]+'">';
-				sub += '		<img src="'+favicon+'" title="Favicon"/>';
+				sub += '	<div class="metro_background" id="metro_background_'+i+'">';
+				sub += '		<img src="'+favicon+'" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
 				sub += ' 		<span>'+headText+'</span>';
 				sub += '	</div>';		//color값 처리
 				}else{
@@ -133,16 +133,75 @@ dotory.metro.pageLoad=function(){
 				sub += '</li>';
 			
 				cnt++;
-			
+				
 			}
 			sub += ulBack;
 			content.append(sub);
-
+			
 		}
 		dotory.metro.mousehover();
 		dotory.metro.horizontalScroll();
+		dotory.metro.onloadImage();
 
 		openUrl(sendUrl);
+	});
+};
+
+dotory.metro.onloadImage = function(){
+	
+	$('.favion_onload').load(function() {
+		var thiz = this;
+		if(thiz.width == 0 || thiz.height == 0) 
+			return;
+		
+		var canvas = $('<canvas/>')[0];
+		canvas.width = thiz.width;
+		canvas.height = thiz.height;
+		canvas.getContext('2d').drawImage(thiz, 0, 0, thiz.width, thiz.height);
+					
+		var data = canvas.getContext('2d').getImageData(0, 0, thiz.width, thiz.height).data;		
+		var colors = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+		for(var j=0; j<thiz.width*thiz.height*4; j+=4){
+			var hsl = extraction.fromRgbToHsl(data[j+0], data[j+1], data[j+2]);
+			colors[extraction.fromHslToColor(hsl.hue, hsl.sat, hsl.lgt)]+=1;
+		} 
+		var max = colors.indexOf(Math.max.apply(Math, colors));
+
+		var index = $(this).attr('data-index');
+		switch (max) {
+		case 1: // ~ black
+			$('#metro_background_'+index).addClass('metro_color_gray');
+			break;
+		case 2: // ~ white
+			$('#metro_background_'+index).addClass('metro_color_white');
+			break;
+		case 3: // ~ gray
+			$('#metro_background_'+index).addClass('metro_color_softGray');
+			break;
+		case 4: // ~ red
+			$('#metro_background_'+index).addClass('metro_color_red');
+			break;
+		case 5: // ~ yellow
+			$('#metro_background_'+index).addClass('metro_color_yellowOrange');
+			break;
+		case 6: // ~ green
+			$('#metro_background_'+index).addClass('metro_color_green');
+			break;
+		case 7: // ~ cyan
+			$('#metro_background_'+index).addClass('metro_color_grayBlue');
+			break;
+		case 8: // ~ blue
+			$('#metro_background_'+index).addClass('metro_color_blue');
+			break;
+		case 9: // ~ magenta
+			$('#metro_background_'+index).addClass('metro_color_purple');
+			break;
+		default:
+			break;
+		}
+		
+	}).error(function() {  
+		// ~ Error Handler
 	});
 };
 
