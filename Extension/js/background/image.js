@@ -1,5 +1,67 @@
+dotory.isFrameset = function(content, json, index){
+	// ~ ing
+	var frame_regex = /\<frame[^\>]*src\=[\'\"]?([^\>\'\"]+)[\'\"]?[^>]*\>/g;
+	var domain_regex = /^(http|https):\/\/([a-z0-9-_\.]*)[\/\?]{0,1}/;
+	var frameSrcs = new Array();
+	
+	if(content.match(frame_regex) != null){
+		var frames = content.match(frame_regex);
+		for(var i=0; i<frames.length; i++){
+			var frame= frames[i],
+				arrTemp = frame.split(' ');
+			
+			for(var j=0; j<arrTemp.length; j++){
+				var strTemp = arrTemp[j];
+					
+				if(strTemp.match(/src=/) != null){
+					var frameSrc = strTemp.replace(/src\=\"/, '');
+						frameSrc = frameSrc.replace(/\"/, '');
+					if(frameSrcs.indexOf(frameSrc) == -1){
+						if(frameSrc.match(domain_regex)){
+							frameSrcs.push(frameSrc)
+						}else{ 
+							frameSrc = dotory.absolute(json.url, frameSrc);
+							frameSrcs.push(frameSrc);
+						}
+						console.log('Frame src : '+frameSrc);
+					}
+				}
+			}
+		}
+	}else{
+		return true;
+	}
+	
+	var	newJson = 
+		{ 	'userPn' 	:	json.userPn,
+			'domain'	:	json.domain,
+			'url'		:	json.url,
+			'title'		:	json.title,
+			'favicon'	: 	json.favicon,
+			'keyword'	: 	json.keyword,
+			'keywordpn' : 	json.keywordpn,
+			'frameSrcs'	:	frameSrcs };
+	
+	dotory.sendData(newJson, index, '');
+	return false;
+};
 
-dotory.imageFiltering = function(content, url, title, favicon,keyword,index){
+dotory.sendData = function(json, index, srcs){
+	
+	var $url = dotory.contextPath + '/parsing/analysis';
+	
+	$.postJSON($url,json,function(object){
+		var data = object.data;
+    	if(object.code==200){
+    		if(srcs != null && srcs != undefined && srcs.length != 0 && srcs != '')
+    			dotory.imageSearchCondition(srcs, data.visitPn);
+    		keywordPns[index]=data.keywordpn;
+		}
+    });
+};
+
+
+dotory.imageFiltering = function(content, url, title, favicon, keyword, index){
 	
 	if(dotory.regex == null || dotory.regex == undefined){
 //		console.log('Error : Doesn`t make Image Regex');
@@ -9,6 +71,18 @@ dotory.imageFiltering = function(content, url, title, favicon,keyword,index){
 	var domain_regex = /^(http|https):\/\/([a-z0-9-_\.]*)[\/\?]{0,1}/,
 		domain = url.match(domain_regex)[0];
 	var html = content;
+	
+	var	json = { 	'userPn' 	:	dotory.user.pn,
+					'domain'	:	domain,
+					'url'		:	url,
+					'title'		:	title,
+					'favicon'	: 	favicon == null ? '' : favicon,
+					'keyword'	: 	keyword != null ? keyword : null,
+					'keywordpn' : 	keywordPns[index]};
+	
+	if(!dotory.isFrameset(content, json, index)){
+		return;
+	}
 	
 	for(var i=0; i < dotory.regex.tags.length; i++){
 		var tag = dotory.regex.tags[i];
@@ -144,26 +218,8 @@ dotory.imageFiltering = function(content, url, title, favicon,keyword,index){
 			srcs.splice(stack.pop(), 1);
 		}
 	}
-		
-	var $url = dotory.contextPath + '/parsing/analysis';
-	var	json = { 	'userPn' 	:	dotory.user.pn,
-					'domain'	:	domain,
-					'url'		:	url,
-					'title'		:	title,
-					'favicon'	: 	favicon == null ? '' : favicon,
-					'keyword'	: 	keyword != null ? keyword : null,
-					'keywordpn' : 	keywordPns[index]};
-						
-	$.postJSON($url,json,function(object){
-		var data = object.data;
-    	if(object.code==200){
-//    		console.log('[Image] Json success');
-//    		console.log("recieved keyword"+keyword);
-    		dotory.imageSearchCondition(srcs, data.visitPn);
-    		keywordPns[index]=data.keywordpn;
-    		console.log(keywordPns[index]);
-		}
-    });
+	
+	dotory.sendData(json, index, srcs);
 };
 
 dotory.imageSearchCondition = function(srcs, visitPn){
