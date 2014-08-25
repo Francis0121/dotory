@@ -91,7 +91,7 @@ public class ParsingServiceImpl extends SqlSessionDaoSupport implements
 			parsing.setUrlPn(pn);
 		}
 		insertParsingVisit(parsing);
-		if(parsing.getKeywordpn()==null)
+		if(parsing.getKeywordpn()==null && !parsing.getKeyword().equals(""))
 			insertParsingKeyword(parsing);
 		insertParsingData(parsing);
 			
