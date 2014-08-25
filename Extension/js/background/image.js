@@ -107,6 +107,7 @@ dotory.imageFiltering = function(content, url, title, favicon, keyword, index){
 		for(var i=0; i<eles.length; i++){
 			if(eles[i] == undefined ) continue;
 			var selector = '#'+eles[i].replace(/(:|\.|\[|\]|\/|\(|\))/g, '\\$1');
+			if(selector.match(/(\(|\))/ig) != null) continue;
 			var domIds = dom.find(selector);
 			if(domIds.length != 0){
 				domIds.remove();
@@ -132,6 +133,7 @@ dotory.imageFiltering = function(content, url, title, favicon, keyword, index){
 		for(var i=0; i<eles.length; i++){
 			if(eles[i] == undefined ) continue;
 			var selector = '.'+eles[i].replace(/(:|\.|\[|\]|\/|\(|\))/g, '\\$1');
+			if(selector.match(/(\(|\))/ig) != null) continue;
 //			console.log(selector);
 			var domClazzs = dom.find(selector); 
 			if(domClazzs.length != 0)
@@ -159,6 +161,7 @@ dotory.imageFiltering = function(content, url, title, favicon, keyword, index){
 		for(var i=0; i<seles.length; i++){
 			if(seles[i] == undefined) continue;
 			var selector = '#'+seles[i].replace(/(:|\.|\[|\]|\/|\(|\))/g, '\\$1');
+			if(selector.match(/(\(|\))/ig) != null) continue;
 			var find = dom.find(selector);
 			container += $('<div>').append(find.clone()).html();
 		}
@@ -181,6 +184,7 @@ dotory.imageFiltering = function(content, url, title, favicon, keyword, index){
 		for(var i=0; i<seles.length; i++){
 			if(seles[i] == undefined) continue;
 			var selector = '.'+seles[i].replace(/(:|\.|\[|\]|\/|\(|\))/g, '\\$1');
+			if(selector.match(/(\(|\))/ig) != null) continue;
 			var find = dom.find(selector);
 			container += $('<div>').append(find.clone()).html();
 		}
