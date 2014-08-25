@@ -219,9 +219,11 @@
             }
 
             this._prefill = function() {
-                if (needsPrefill()) {
-                    instance.scroll();
-                }
+            	if( (dotory.web.container.imageSearchFilter.page+1) < opts.maxPage){
+	                if (needsPrefill()) {
+	                    instance.scroll();
+	                }
+            	}
 
                 $window.bind("resize.infinite-scroll", function() {
                     if (needsPrefill()) {
