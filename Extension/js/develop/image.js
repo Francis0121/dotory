@@ -119,27 +119,28 @@ dotory.image.loading = function(){
 				sendUrl[i]=image.link;
 				
 				var html = 	'<li>';
-					html +=	'	<a href="'+image.link+' id="url'+i+'">';
+					html +=	'	<a href="'+image.link+'" id="url'+i+'">';
 					html += '		<img src="'+image.url+'"/>';
 					html +=	'	</a>';
 					html += '</li>';	
 				dotory.image.container.append(html);
 			}
-//			openUrl(sendUrl);
 		}
+		openImageUrl(sendUrl);
 	});	
 };
 
-function openUrl(url){
+function openImageUrl(url){
 	var id=new Array();
 	for(var i=0;i<url.length;i++){
 		(function(){
-			id='urls'+i;
-//			console.log("id : "+id);
-			var temp=document.getElementById(id);
-			var location=temp.href;
-			temp.onclick=function(){
-				chrome.tabs.create({url:location});
+			id='url'+i;
+			var save=document.getElementById(id);
+			var loc=save.href;
+			console.log("id : "+id+"  href : "+loc);
+			save.onclick=function(){
+				alert(loc);
+				chrome.tabs.create({url:loc});
 			};
 		})();
 	}
