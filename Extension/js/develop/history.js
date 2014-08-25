@@ -89,7 +89,6 @@ dotory.history.makeKeywordHtml = function(keywords){
 	
 	// keywords
 	pageWrap.html('');
-	var count = 0;
 	for (var i=0; i < keywords.length; i++) {
 		var keyword = keywords[i];
 
@@ -117,7 +116,7 @@ dotory.history.makeKeywordHtml = function(keywords){
 		pageWrap.append(pageHtml);
 		pageHtml = $(pageHtml.clone());
 	}
-	if(count == 0){
+	if(keywords.length == 0){
 		var $object = pageHtml.find('.opend_page_link');
 		$object.attr('href', '#');
 		
@@ -139,6 +138,7 @@ dotory.history.makeKeywordHtml = function(keywords){
 	// ~ keyword array
 	keywordTotal.html('');
 	var size = keywordArray.length > 5 ? 5: keywordArray.length;
+	var count = 0;
 	for(var i=0; i<size; i++){
 		var strKeyword = keywordArray[i];
 		if(strKeyword == 'null' || strKeyword == null){
@@ -150,12 +150,13 @@ dotory.history.makeKeywordHtml = function(keywords){
 		
 		keywordTotal.append(keywordHtml);
 		keywordHtml = $(keywordHtml.clone());
+		count++;
 	}
-	if(size < 0){
-		keywordHtml(keywordHtml);
+	if(count == 0){
+		keywordTotal.append(keywordHtml);
 		keywordTotal.hide();
 	}else{
-		keywordHtml.show();
+		keywordTotal.show();
 	}
 	
 	moreWrap.html('');
