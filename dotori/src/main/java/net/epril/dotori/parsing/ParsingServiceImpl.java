@@ -39,7 +39,7 @@ public class ParsingServiceImpl extends SqlSessionDaoSupport implements
 	@SuppressWarnings("unchecked")
 	@Override
 	public Map<String, Object> controlParsingData(Parsing parsing)
-			throws IOException {
+			throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		// ~ URL, Visit, Data 
 		Pattern pattern = Pattern.compile("^(http|https):\\/\\/([a-z0-9-_\\.]*)[\\/\\?]{0,1}");

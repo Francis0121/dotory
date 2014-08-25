@@ -1,6 +1,5 @@
 package net.epril.dotori.parsing;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -45,9 +44,8 @@ public class ParsingThread implements Runnable {
 
 			logger.debug("images = " + images);
 			parsingService.insertImages(images);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
  
 		long finish = System.currentTimeMillis();

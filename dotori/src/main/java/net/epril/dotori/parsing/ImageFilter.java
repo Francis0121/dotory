@@ -1,13 +1,16 @@
 package net.epril.dotori.parsing;
 
-import java.io.IOException;
+import java.awt.image.BufferedImage;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
 import net.epril.dotori.regex.Regex;
@@ -31,7 +34,7 @@ public class ImageFilter implements Filter{
 	private RegexService regexService;
 	
 	@Override
-	public Map<String, Object> filtering(Parsing parsing, Document document){
+	public Map<String, Object> filtering(Parsing parsing, Document document) throws Exception{
 		// ~ Elimination Tag 
 		// ~ TODO 정규표현식 문제점 <div> <div></div> </div>가 되는 경우 </div>를 먼저있는것이 걸려서 삭제가 안됨
 		// ~ iframe을 무조건 적으로 삭제했더니 문제가 생김
@@ -119,7 +122,7 @@ public class ImageFilter implements Filter{
 				for (Object obj : elements.toArray()) {
 					Element element = (Element) obj;
 					// TODO width, height, color
-					Image image = new Image(parsing.getPn(), element.attr("src"), 100, 100, 1);
+					Image image = loadImageAnalsisPixel(element.attr("src"), parsing.getPn());
 					if(!images.contains(image)){
 						images.add(image);
 					}
@@ -150,8 +153,8 @@ public class ImageFilter implements Filter{
 				Elements elements = clazz.select("img");
 				for (Object obj : elements.toArray()) {
 					Element element = (Element) obj;
-					// TODO width, height, color
-					Image image = new Image(parsing.getPn(), element.attr("src"), 100, 100, 1);
+					// image onload after check -> change string compare
+					Image image = loadImageAnalsisPixel(element.attr("src"), parsing.getPn());
 					if(!images.contains(image)){
 						images.add(image);
 					}
@@ -164,8 +167,7 @@ public class ImageFilter implements Filter{
 			Elements elements = document.select("img");
 			for (Object obj : elements.toArray()) {
 				Element element = (Element) obj;
-				// TODO width, height, color
-				images.add(new Image(parsing.getPn(), element.attr("src"), 100, 100, 1));
+				images.add(loadImageAnalsisPixel(element.attr("src"), parsing.getPn()));
 			}
 		}
 		
@@ -177,9 +179,95 @@ public class ImageFilter implements Filter{
 		return map;
 	}
 	
+	private Image loadImageAnalsisPixel(String url, Integer pn) throws Exception{
+		URL imageURL = new URL(url);		
+		BufferedImage img = ImageIO.read(imageURL);
+
+        int[] rgb, hsl;
+        int[] colors = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+        for(int i = 0; i < img.getHeight(); i++){
+            for(int j = 0; j < img.getWidth(); j++){
+                rgb = getPixelData(img, i, j);
+                hsl = fromRgbToHsl(rgb);
+                int color = fromHslToColor(hsl[0], hsl[1], hsl[2]);
+                colors[color]+=1;
+                
+                logger.debug("rgb : "+rgb[0]+ " " + rgb[1] + " " + rgb[2] + " hsl : " +hsl[0] + " " + hsl[1] + " " + hsl[2] + " color : "+color);
+            }
+        }
+        
+        int max = colors[0], index = 0;
+        for(int i=1; i<colors.length; i++){
+        	if(max < colors[i]){
+        		colors[i] = max;
+        		index = i;
+        	}
+        }
+        
+	    return new Image(pn, url, img.getWidth(), img.getHeight(), index);
+	}
+			
+	private int[] getPixelData(BufferedImage img, int x, int y) {
+		int argb = img.getRGB(x, y);
+		int rgb[] = new int[] {
+		    (argb >> 16) & 0xff, //red
+		    (argb >>  8) & 0xff, //green
+		    (argb      ) & 0xff  //blue
+		};
+		logger.debug("rgb: " + rgb[0] + " " + rgb[1] + " " + rgb[2]);
+		return rgb;
+	}
+	
+	private int[] fromRgbToHsl(int[] rgb){
+		int r = rgb[0], g = rgb[1], b = rgb[2];
+		
+		rgb[0] /= 255;
+		rgb[1] /= 255; 
+		rgb[2] /= 255;
+		Arrays.sort(rgb);
+	    int max = rgb[rgb.length-1];
+	    int min = rgb[0];
+	    int h = 0, s, l = (max + min) / 2;
+
+	    if(max == min){
+	        h = s = 0; // achromatic
+	    }else{
+	        int d = max - min;
+	        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+	        if(max == r){
+	        	h = (g - b) / d + (g < b ? 6 : 0);
+	        }else if(max == g){
+	        	h = (b - r) / d + 2;
+	        }else if(max == b){
+	        	h = (r - g) / d + 4;
+	        }
+	        h*=60;
+	        if (h < 0) {
+	            h +=360;
+	        }
+	    }
+		return new int[]{h, s, l}; 
+	}
+	
+	private int fromHslToColor(int hue, int sat, int lgt){
+		if (lgt < 0.2)  return 1;
+	    if (lgt > 0.8)  return 2;
+	    
+	    if (sat < 0.25) return 3;
+	    
+	    if (hue < 30)   return 4;
+	    if (hue < 90)   return 5;
+	    if (hue < 150)  return 6;
+	    if (hue < 210)  return 7;
+	    if (hue < 270)  return 8;
+	    if (hue < 330)  return 9;
+	    return 4;
+	}
+	
 	@Override
 	public Map<String, Object> frameFiltering(Parsing parsing)
-			throws IOException {
+			throws Exception {
 		List<Document> documents = new ArrayList<Document>();
 		List<String> frameSrcs = parsing.getFrameSrcs();
 		while(true){

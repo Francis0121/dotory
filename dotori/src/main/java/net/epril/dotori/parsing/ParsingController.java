@@ -1,6 +1,5 @@
 package net.epril.dotori.parsing;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -51,7 +50,7 @@ public class ParsingController {
 		Map<String, Object> map;
 		try {
 			map = parsingService.controlParsingData(parsing);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			logger.error("Url Parsing Error : ", e);
 			return new Json(AJC.IO_EXCEPTION_WARN, "");
 		}		
