@@ -83,7 +83,7 @@ public class ParsingServiceImpl extends SqlSessionDaoSupport implements
 	}
 	
 	@Override
-	public Map<String, Object> insertAnalysisData(Parsing parsing) {
+	public Map<String, Object> insertAnalysisData(Parsing parsing) throws IOException {
 		Integer pn = getSqlSession().selectOne("parsing.existParsingUrl", parsing);
 		if(pn == null || pn.equals(0)){
 			getSqlSession().insert("parsing.insertParsingUrl", parsing);			

@@ -1,5 +1,6 @@
 package net.epril.dotori.parsing;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +14,6 @@ import net.epril.dotori.regex.Regex;
 import net.epril.dotori.regex.RegexService;
 import net.epril.dotori.regex.RegexUtil;
 
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -64,7 +64,7 @@ public class ImageFilter implements Filter{
 		for(String strEle : eliminateList){
 			Element element = document.getElementById(strEle);
 			if(element != null){
-				logger.debug("\n"+element.toString()+"\n");
+				//logger.debug("\n"+element.toString()+"\n");
 				element.remove();				
 			}else{
 				logger.warn("Why this element not search?? [ Name = " + strEle + " ] ");
@@ -174,7 +174,72 @@ public class ImageFilter implements Filter{
 		// ~ Return Data
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("images", images);
-		map.put("htmlImage", StringEscapeUtils.escapeHtml4(document.toString()));
+		return map;
+	}
+	
+	@Override
+	public Map<String, Object> frameFiltering(Parsing parsing)
+			throws IOException {
+		List<Document> documents = new ArrayList<Document>();
+		List<String> frameSrcs = parsing.getFrameSrcs();
+		while(true){
+			List<String> newFrameSrcs = new ArrayList<String>();
+			Document document;
+			for(String frameSrc : frameSrcs){
+				logger.debug("Crawler Doing Url " + frameSrc);
+				document = Jsoup.connect(frameSrc)
+							.userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36").get();
+				// ~ Change Absolute Path
+				Elements elems = document.select("[src]");
+		        for(Element elem : elems){
+		            if( !elem.attr("src").equals(elem.attr("abs:src")) ){
+		                elem.attr("src", elem.attr("abs:src"));
+		            }
+		        }
+				
+				Pattern pattern = Pattern.compile("<frame[^>]*src=[\'\"]?([^>\'\"]+)[\'\"]?[^>]*>");
+				Matcher matcher = pattern.matcher(document.html());
+				// ~ Not Match add Documents
+				int count = 0;
+				while(matcher.find()){
+					count++;
+					String frame = matcher.group();
+					String[] arrTemp = frame.split(" ");
+					
+					for(String strTemp : arrTemp){
+						Pattern srcPattern = Pattern.compile("src=");
+						Matcher srcMatcher = srcPattern.matcher(strTemp);
+						if(srcMatcher.find()){
+							String newFrameSrc = strTemp.replace("src=", "").replace("\"", "");
+							if(!frameSrc.contains(newFrameSrc)){
+								logger.debug("Frame src : " + newFrameSrc);
+								newFrameSrcs.add(newFrameSrc);
+							}
+						}
+					}
+				}
+				
+				if(count == 0){
+					documents.add(document);
+					continue;
+				}	
+			}
+			if(newFrameSrcs.size() == 0){
+				break;
+			}else{
+				frameSrcs = newFrameSrcs;
+			}
+		}
+		logger.debug("Document size = " + documents.size());
+		List<Image> totalImage = new ArrayList<Image>();
+		for(Document document : documents){
+			Map<String, Object> imageMap = filtering(parsing, document);
+			@SuppressWarnings("unchecked")
+			List<Image> images = (List<Image>) imageMap.get("images");
+			totalImage.addAll(images);
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("images", totalImage);
 		return map;
 	}
 }

@@ -11,6 +11,8 @@ import net.epril.dotori.json.AJC;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,6 +36,9 @@ public class ParsingController {
 
 	@Inject
 	private ParsingService parsingService;
+	
+	@Inject
+	private ApplicationContext appContext;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String showParsingPage() {
@@ -60,6 +65,13 @@ public class ParsingController {
 		Map<String, Object> map; 
 		try{
 			map = parsingService.insertAnalysisData(parsing);
+	
+			if(parsing.getFrameSrcs() != null && parsing.getFrameSrcs().size() != 0){
+				ThreadPoolTaskExecutor taskExecutor = (ThreadPoolTaskExecutor) appContext.getBean("taskExecutor");
+				ParsingThread parsingThread = (ParsingThread) appContext.getBean("parsingThread");
+				parsingThread.setParsing(parsing);    
+				taskExecutor.execute(parsingThread);   
+			}
 		}catch(Exception e){
 			e.printStackTrace();
 			return new Json(AJC.ERROR, "Exception", e);

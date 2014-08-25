@@ -19,7 +19,7 @@ public interface ParsingService {
 	
 	String selectDomainFromVisitPn(Integer visitPn);
 	
-	Map<String, Object> insertAnalysisData(Parsing parsing);
+	Map<String, Object> insertAnalysisData(Parsing parsing) throws IOException;
 
 	void insertImage(Image image);
 

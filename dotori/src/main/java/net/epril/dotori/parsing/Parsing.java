@@ -66,7 +66,15 @@ public class Parsing {
 	 */
 	private String favicon;
 
+	/**
+	 * Keyword
+	 */
 	private String keyword;
+
+	/**
+	 * Frame Url
+	 */
+	private List<String> frameSrcs;
 
 	public Parsing() {
 		super();
@@ -83,6 +91,10 @@ public class Parsing {
 
 	public String getFavicon() {
 		return favicon;
+	}
+
+	public List<String> getFrameSrcs() {
+		return frameSrcs;
 	}
 
 	public String getHtml() {
@@ -133,6 +145,10 @@ public class Parsing {
 		this.favicon = favicon;
 	}
 
+	public void setFrameSrcs(List<String> frameSrcs) {
+		this.frameSrcs = frameSrcs;
+	}
+
 	public void setHtml(String html) {
 		this.html = html;
 	}
@@ -175,7 +191,7 @@ public class Parsing {
 				+ urlPn + ", userPn=" + userPn + ", url=" + url + ", domain="
 				+ domain + ", title=" + title + ", html=" + html + ", count="
 				+ count + ", srcs=" + srcs + ", favicon=" + favicon
-				+ ", keyword=" + keyword + "]";
+				+ ", keyword=" + keyword + ", frameSrcs=" + frameSrcs + "]";
 	}
 
 }
