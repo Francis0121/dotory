@@ -64,7 +64,9 @@ dotory.metro.mousehover=function(){
 		background.animate({opacity:'1.0'},300);
 	});
 };
+
 dotory.metro.pageLoad=function(){
+	console.log('loading... start');
 	var url= dotory.contextPath+'/visit/info',
 		json={'userPn': dotory.user.pn };
 	var sendUrl=new Array();
@@ -110,7 +112,7 @@ dotory.metro.pageLoad=function(){
 				/*******************타이틀 긴거 짜르기*********************/				
 				var cutTitle=new Array();
 				if(title.length>30){
-					var cut=['\.', '\-' , '\>', '\,'];
+					var cut=['\.', '\-' , '\>'];
 					for(var j=0;j<cut.length;j++){
 						if(title.match(cut[j])){
 							cutTitle[cutTitle.length] = title.split(cut[j]);
@@ -166,6 +168,8 @@ dotory.metro.pageLoad=function(){
 		dotory.metro.onloadImage();
 
 		openUrl(sendUrl);
+		console.log('loadin End');
+		dotory.loading.finsih(); // sign-in-loading-finish && load-metro (ajax send message finish)
 	});
 };
 

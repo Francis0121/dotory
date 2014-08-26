@@ -1,12 +1,12 @@
 /****************************************************/
-var keywordArray=new Array([],[]); //검색어 저장 배열
+var keywordArray=new Array(); //검색어 저장 배열
 
 //검색 키워드 중복있는지 체크
 dotory.checkRe=function(searchArray){
 	for(var i=0;i<keywordArray.length;i++){
 		for(var j=0;j<keywordArray[i].length;j++){
 			if(searchArray[j].match(keywordArray[i][j])){
-				console.log(keywordArray[i][j]+" : already have");
+				console.log('Already Have : ' +keywordArray[i][j]);
 				return true;
 			}else
 				return false;
@@ -35,7 +35,11 @@ dotory.queryMatch = function(url,title){
 		factor = url.match(/\?.+/i)[0];
 		factor = factor.replace(/\?/, '');
 	}else{
-		return { keyword:null,index:null };
+		var result = dotory.matchKeyword(url, title);
+		if( result != null )
+			return { keyword:keywordArray[result.index], index:result.index };
+		else 
+			return { keyword:null,index:null };	
 	}
 	
 	
@@ -84,7 +88,7 @@ dotory.queryMatch = function(url,title){
 		
 		// ~ Search Keyword is matching
 		if(dotory.checkRe(searchList)){	
-			var result = dotory.matchKeyword(keywordArray, url, title);
+			var result = dotory.matchKeyword(url, title);
 			if(result!=null)
 				return { keyword:keywordArray[result.index], index:result.index };
 			else 
@@ -95,7 +99,7 @@ dotory.queryMatch = function(url,title){
 		}
 	}
 	
-	var result = dotory.matchKeyword(keywordArray, url, title);
+	var result = dotory.matchKeyword(url, title);
 	if( result != null )
 		return { keyword:keywordArray[result.index], index:result.index };
 	else 
@@ -104,8 +108,8 @@ dotory.queryMatch = function(url,title){
 
 
 //클릭도니 사이트 title 비교 해 키워드 등록
-dotory.matchKeyword=function(keywordArray, url, title){
-	console.log("matching....");
+dotory.matchKeyword=function(url, title){
+	//console.log('Matching keyword : ' + keywordArray);
 	var match=0;
 	if(keywordArray!=null){
 		for(var i=0;i<keywordArray.length;i++){
@@ -113,15 +117,16 @@ dotory.matchKeyword=function(keywordArray, url, title){
 //				console.log("title : "+title);
 				var titlelow=title.toLowerCase();
 				var keylow=keywordArray[i][j].toLowerCase();
-				console.log(titlelow+keylow);
+				//console.log(titlelow+keylow);
 				if(titlelow.match(keylow)!=null){ //배열에 있는 키워드와 맞으면
 					//db에 키워드 넣기
-					console.log("Input DB : "+keylow);
-					match=1;
+					//console.log('Input Database : ' + keylow);
+					match = 1;
 //					return {keyword: keylow, index: i};
 				}
-			}if(match==1){
-				console.log(keywordArray[i]);
+			}
+			if(match==1){
+				//console.log('Match == 1');
 				return {keyword: keywordArray[i], index: i};
 			}
 		}

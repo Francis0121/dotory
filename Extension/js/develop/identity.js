@@ -78,8 +78,7 @@ function fetchUserInfo(user_info){
 			}else if(dotory.type == dotory.types.web){
 				dotory.web.binding();
 			}
-		}
-		dotory.loading.finsih(); // sign-in-loading-finish (ajax send message finish) 
+		} 
 	});
 }
   

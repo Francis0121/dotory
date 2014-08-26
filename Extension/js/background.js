@@ -34,5 +34,6 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 			stringKeyword=stringKeyword+" "+keyword.keyword[i];
 		}
 	}
+	console.log('Keyword = [' + stringKeyword + '] ');
 	dotory.imageFiltering(request.content, sender.tab.url, sender.tab.title, sender.tab.favIconUrl,stringKeyword,keyword.index);
 });

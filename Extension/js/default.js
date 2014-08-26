@@ -33,9 +33,12 @@ dotory.loading = {
 		var thiz = $('.dotory_loading_extension');
 		if(thiz.css('display') == 'none'){
 			$('.dotory_loading_extension').fadeIn();		
+			thiz.css('display', 'block');
 		}
 	},
 	finsih : function(){
+		var thiz = $('.dotory_loading_extension');
 		$('.dotory_loading_extension').fadeOut();		
+		thiz.css('display', 'none');
 	}
 }
