@@ -1,4 +1,50 @@
 @CHARSET "UTF-8";
+
+@font-face {
+    font-family: NanumBarunGothic;
+    src: url(font/NANUMBARUNGOTHIC.TTF);
+}
+
+@font-face {
+    font-family: NanumBarunGothicBold;
+    src: url(font/NANUMBARUNGOTHICBOLD.TTF);
+}
+
+@font-face {
+    font-family: NanumGothic;
+    src: url(font/NANUMGOTHIC.TTF);
+}
+
+@font-face {
+    font-family: NanumGothicExtraBold;
+    src: url(font/NANUMGOTHICEXTRABOLD.TTF);
+}
+
+@font-face {
+    font-family: NanumGothicLight;
+    src: url(font/NANUMGOTHICLIGHT.TTF);
+}
+
+@font-face {
+    font-family: NanumMyeongJo;
+    src: url(font/NANUMMYEONGJO.TTF);
+}
+
+@font-face {
+    font-family: NanumMyeongJoBold;
+    src: url(font/NANUMMYEONGJOBOLD.TTF);
+}
+
+@font-face {
+    font-family: NanumMyeongJoExtraBold;
+    src: url(font/NANUMMYEONGJOEXTRABOLD.TTF);
+}
+
+@font-face {
+    font-family: NanumPen;
+    src: url(font/NANUMPEN.TTF);
+}
+
 /******************************************
 	All Base Style : Delete browser style
 *******************************************/
