@@ -80,8 +80,6 @@ dotory.metro.pageLoad=function(){
 	var url= dotory.contextPath+'/visit/info',
 		json={'userPn': dotory.user.pn };
 	var sendUrl=new Array();
-	var flag=false,
-		flagCnt=0;
 	
 	$.postJSON(url, json, function(object){
 		var content = $('.dotory_content');
@@ -94,7 +92,12 @@ dotory.metro.pageLoad=function(){
 				ulBack = '</ul>';
 			var sub = '';
 			var visits=data.visits;
-			var cnt=0;
+			var cnt=0,
+				first=true,
+				colorcnt=0,
+				metro_cnt=3;
+			var flag=false,
+				flagCnt=0;
 			
 			var color=['metro_color_blue','metro_color_green','metro_color_orange','metro_color_red',
 			           'metro_color_purple','metro_color_grayBlue','metro_color_yellowOrange',
@@ -133,21 +136,26 @@ dotory.metro.pageLoad=function(){
 					title=cutTitle[0][0];	
 				}
 				/*****************************************************/
-				console.log("length : "+headText.length);
-				console.log(title);
-				console.log(url);
-				if(cnt%3 == 0){					
-					if(cnt!=0){
-						sub += ulBack;
+//				console.log("length : "+headText.length);
+//				console.log(title);
+//				console.log(url);
+				console.log("cnt : "+cnt+"   metro_cnt: "+metro_cnt);
+				if(cnt%metro_cnt == 0){	
+					metro_cnt=3;
+					console.log("check : "+metro_cnt);
+					if(first==false){
+						cnt=0;
+						sub+=ulBack;
 						content.append(sub);
-						sub = ulFront;
+						sub=ulFront;
 					}else{
+						first=false;
 						sub = ulFront;						
 					}
 				}
 				
 				if(favicon != null && favicon != undefined && favicon != '' ){ //favicon 가져오기 
-					if(headText.length<=6 || flag==true){
+					if(headText.length<=5 || flag==true){
 
 						sub += '<li style="width: 90px">';
 						sub += '	<div class="metro_half_background" id="metro_background_'+i+'">';
@@ -160,9 +168,12 @@ dotory.metro.pageLoad=function(){
 						sub += '	</div>';
 						sub += '</li>';
 						
-						flagCnt++;
-						if(flagCnt%2==1) //작게한 그 다음것도 작게 만들기
+						if(flagCnt%2==0){ //작게한 그 다음것도 작게 만들기
 							flag=true;
+							flagCnt++;
+							metro_cnt++;
+							console.log("non favicon cnt : "+metro_cnt);
+						}
 						else
 							flag=false;
 						
@@ -188,27 +199,30 @@ dotory.metro.pageLoad=function(){
 //				}
 				
 				else{	// favicon 없을 때
-					if(headText.length<=6 || flag==true){
+					if(headText.length<=5 || flag==true){
 						sub += '<li style="width: 90px">';
-						sub += '	<div class="metro_half_background" id="metro_background_'+i+'">';
-						sub += '		<img src="'+favicon+'" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
+						sub += '	<div class="metro_half_background '+color[colorcnt%9]+'" id="metro_background_'+i+'">';
+						sub += ' 		<img src="../images/defalt-favicon.png" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
 						sub += ' 		<span>'+headText+'</span>';
-						sub += '	</div>';		//color값 처리
+						sub += '	</div>';	//color값 처리
 						
 						sub += '	<div class="metro_half_popup">';
 						sub += '		<a class="metro_half_popup_link" href="'+url+'" id="urls'+i+'">'+title+'</a>';
 						sub += '	</div>';
 						sub += '</li>';
 
-						flagCnt++;
-						if(flagCnt%2==1) //작게한 그 다음것도 작게 만들기
+						if(flagCnt%2==0){ //작게한 그 다음것도 작게 만들기
 							flag=true;
+							flagCnt++;
+							metro_cnt++;
+							console.log("non favicon cnt : "+metro_cnt);
+						}
 						else
 							flag=false;
 						
 					}else{
 						sub += '<li>'
-						sub += '	<div class="metro_background '+color[cnt%9]+'" id="metro_background_'+i+'">';
+						sub += '	<div class="metro_background '+color[colorcnt%9]+'" id="metro_background_'+i+'">';
 						sub += ' 		<img src="../images/defalt-favicon.png" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
 						sub += ' 		<span>'+headText+'</span>';
 						sub += '	</div>';		//color값 처리	
@@ -221,6 +235,7 @@ dotory.metro.pageLoad=function(){
 				}
 				
 				cnt++;
+				colorcnt++;
 				
 			}
 			sub += ulBack;
