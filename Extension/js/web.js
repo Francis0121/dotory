@@ -185,13 +185,13 @@ dotory.web.content = function(json_parameter){
 			nextSelector : '#page-nav a',  // selector for the NEXT link (to page 2)
 			itemSelector : '.history_images>li',     // selector for all items you'll retrieve
 			loading:{
-				finishedMsg: '',
-				img: ''
+				finishedMsg: 'No more pages to load.',
+				img: '../../images/loading_black.gif'
 			},
 			appendCallback: false,
 			parameter : parameter,
-			prefill: true//,
-			//maxPage : dotory.web.container.imageSearchFilter.pagination.numPages
+			prefill: true,
+			maxPage : dotory.web.container.imageSearchFilter.pagination.numPages
 		},
 		// 	trigger Masonry as a callback
 		function(object, opts) {

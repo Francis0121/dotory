@@ -27,10 +27,17 @@ BUTTON#history_back_btn{ width: 40px; height: 40px; background: url("../images/b
 BUTTON#history_back_btn:HOVER{ background-position: 0 -40px;}
 BUTTON#history_back_btn:ACTIVE{ background-position: 0 -80px;}
 BUTTON#history_more_btn{ }
-BUTTON#history_tab_open{ width: 100px;}
 BUTTON#image_back_btn{ width: 40px; height: 40px; background: url("../images/btn_right_arrow_splite.png") no-repeat; text-indent: -9999px; margin-top: -4px;}
 BUTTON#image_back_btn:HOVER{ background-position: 0 -40px;}
 BUTTON#image_back_btn:ACTIVE{ background-position: 0 -80px;}
 BUTTON#signin{ margin-top: 165px; background: url("../images/btn_google_signin.png") no-repeat; width: 220px; height: 40px; text-indent: -9999px;}
 BUTTON#signin:HOVER { background-position: 0 -80px; }
 BUTTON#signin:ACTIVE { background-position: 0 -40px; }
+
+BUTTON.btn_blue_hoki{ background: #67809f; cursor : pointer; float: left; width: 90px; padding: 8px 5px; font-size: 75%; border-radius:3px; color: #fff; }
+BUTTON.btn_blue_hoki:HOVER{ background: #566c88;}
+BUTTON.btn_grey_cascade{ width: 90px; border-radius: 3px; color: #fff; cursor: pointer; background: #95a5a6; font-size: 75%; padding: 8px 5px;}
+BUTTON.btn_grey_cascade:HOVER{ background: #7f9293;}
+BUTTON#history_tab_open{ margin: 5px 5px 5px 20px;}
+BUTTON#history_tab_open:ACTIVE { margin-top: 6px;}
+

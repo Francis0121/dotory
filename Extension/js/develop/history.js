@@ -305,6 +305,8 @@ dotory.history.keywordEvent = function(){
 				checkbox = $(li).find('input[type=checkbox]');
 			checkbox.removeAttr('checked');
 			checkbox.parent('li').removeClass('check');
+			$('.keyword_total>a').removeClass('selected');
+			$('.more_keyword>a').removeClass('selected');
 		}
 	});
 };
@@ -359,20 +361,28 @@ dotory.history.getKeyword = function(date){
 };
 
 // ~ Date Pagination
+dotory.history.scrollingData = false;
+
 dotory.history.getDate = function(){
 	var url = dotory.contextPath+'/history/date',
 		json = { 	'userPn' 	: 	dotory.user.pn,
 					'page'		:	dotory.history.historyFilter.page + 1};
-	
 	if(dotory.history.historyFilter.page + 1 > dotory.history.historyFilter.pagination.numPages){
 		return;
 	}
+	
+	if(dotory.history.scrollingData){
+		return;
+	}
+	
+	dotory.history.scrollingData = true;
 	$.getJSON(url, json, function(object){
 		var data = object.data;
 		
 		if(object.code == 200){
 			dotory.history.historyFilter = data.historyFilter;
 			dotory.history.makeDateHtml(data.dates);
+			dotory.history.scrollingData = false;
 		}
 	});
 	

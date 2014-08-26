@@ -41,6 +41,10 @@ UL.web_search_condition>LI.button>BUTTON{ background-color: #5ccdde; border: 1px
 DIV.web_search_cond_wrap{ float: right; width: 40px; height: 80px; border-left: 1px solid #ced9db;}
 DIV.web_search_cond_wrap>button { padding: 5px; height: 70px; width: 30px; background: url("../images/btn_search_cond.png") no-repeat; text-indent: -9999px; cursor: pointer;	}
 
+DIV#infscr-loading{ position: fixed; bottom: 0; left :0; z-index: 10; background: #000; width: 20%; margin: 0 40%; height: 150px; opacity:.5; border-radius: 10px;}
+DIV#infscr-loading>IMG{ display: block; margin: 0 auto; width: 70px; height: 70px; }
+DIV#infscr-loading>DIV{ color: #fff; font-size: 75%; margin: 10px auto; text-decoration: none; width: 100%; text-align: center;}
+
 /** Footer*/
 FOOTER.web_footer>SPAN.copyright{ width: 100%; text-align: center; display: block; font-size: 68.75%; color: #818181; line-height: 30px;}
 DIV.scroll_top_wrap{ display:none;  position: fixed; width: 77px; height: 64px; bottom: 30px; right: 30px;}
