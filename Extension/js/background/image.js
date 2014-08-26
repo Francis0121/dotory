@@ -210,7 +210,7 @@ dotory.imageFiltering = function(content, url, title, favicon, keyword, index){
 				find = '';
 			}
 			container += $('<div>').append(find.clone()).html();
-		}
+		}	
 //		console.log('Select CLASS : '+seles);
 	}
 	
@@ -218,6 +218,9 @@ dotory.imageFiltering = function(content, url, title, favicon, keyword, index){
 		container = eleHtml;
 //		console.log('Container is empty');
 	}
+	
+	var table_regex = /<\/?(table|tr|td|th|tbody|thead|tfoot)+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)\/?>/g;
+	container = container.replace(table_regex, '');
 	
 	var imgs = $('<div>').append(container).find('img');
 	var srcs = new Array();
