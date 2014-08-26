@@ -37,7 +37,7 @@ DIV.dotory_metro UL.dotory_icon>LI{ width: 180px; height: 100px; float: left; ma
 DIV.metro_popup{ width: 180px; height: 100px; position: relative; float: left; background: #262626; opacity: 0.9;}
 DIV.metro_popup>A.metro_popup_link{ color: #fff; width: 100%; float: left; text-align: center; height: 25px; padding: 30px 0; font-size: 81.25%; line-height: 25px;}
 
-/**********************************************************************************/
+/***********************************크기 절반 짜리***************************************/
 DIV.metro_half_popup1{ margin-right: 6px; width: 87px; height: 100px; position: relative; float: left; background: #262626; opacity: 0.9;}
 DIV.metro_half_popup1>A.metro_half_popup_link1{ color: #fff; width: 100%; text-align: center; height: 25px; padding: 15px 0; font-size: 81.25%; line-height: 20px;}
 DIV.metro_half_popup2{ width: 87px; height: 100px; position: relative; float: left; background: #262626; opacity: 0.9;}

@@ -131,7 +131,7 @@ dotory.metro.pageLoad=function(){
 				}
 				
 				sendUrl[i]=url;
-				
+				console.log(title);
 				/*******************타이틀 긴거 짜르기*********************/				
 				var cutTitle=new Array();
 				if(title.length>30){
@@ -161,20 +161,23 @@ dotory.metro.pageLoad=function(){
 				
 				if(favicon != null && favicon != undefined && favicon != '' ){ //favicon 가져오기 
 					if(headText.length<=5 || flag==true){
+						var set=flagCnt%2+1;
+						console.log(set);
 						if(flagCnt%2==0){ //작게한 그 다음것도 작게 만들기   popup2
 							flag=true;
 							flagCnt++;
 							metro_cnt++;
+							
 							console.log("case1 : yes favicon, left");
 
 							sub += '<li style="width: 93px">';
-							sub += '	<div class="metro_half_background1" id="metro_background_'+i+'">';
+							sub += '	<div class="metro_half_background'+set+'" id="metro_background_'+i+'">';
 							sub += '		<img src="'+favicon+'" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
 							sub += ' 		<span>'+headText+'</span>';
 							sub += '	</div>';		//color값 처리
 							
-							sub += '	<div class="metro_half_popup1">';
-							sub += '		<a class="metro_half_popup_link1" href="'+url+'" id="urls'+i+'">'+title+'</a>';
+							sub += '	<div class="metro_half_popup'+set+'">';
+							sub += '		<a class="metro_half_popup_link'+set+'" href="'+url+'" id="urls'+i+'">'+title+'</a>';
 							sub += '	</div>';
 							sub += '</li>';
 						}else{ //popup1							
@@ -183,13 +186,13 @@ dotory.metro.pageLoad=function(){
 							console.log("case2 : yes favicon, right");
 							
 							sub += '<li style="width: 87px">';
-							sub += '	<div class="metro_half_background2" id="metro_background_'+i+'">';
+							sub += '	<div class="metro_half_background'+set+'" id="metro_background_'+i+'">';
 							sub += '		<img src="'+favicon+'" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
 							sub += ' 		<span>'+headText+'</span>';
 							sub += '	</div>';		//color값 처리
 							
-							sub += '	<div class="metro_half_popup2">';
-							sub += '		<a class="metro_half_popup_link2" href="'+url+'" id="urls'+i+'">'+title+'</a>';
+							sub += '	<div class="metro_half_popup'+set+'">';
+							sub += '		<a class="metro_half_popup_link'+set+'" href="'+url+'" id="urls'+i+'">'+title+'</a>';
 							sub += '	</div>';
 							sub += '</li>';
 						}							
@@ -216,33 +219,36 @@ dotory.metro.pageLoad=function(){
 				
 				else{	// favicon 없을 때
 					if(headText.length<=5 || flag==true){
+						var set=flagCnt%2+1;
+						console.log(set);
 						if(flagCnt%2==0){ //작게한 그 다음것도 작게 만들기  popup2
 							flag=true;
 							flagCnt++;
 							metro_cnt++;
 							console.log("case4 : no favicon, left");
 							sub += '<li style="width: 93px">';
-							sub += '	<div class="metro_half_background1 '+color[colorcnt%9]+'" id="metro_background_'+i+'">';
+							sub += '	<div class="metro_half_background'+set+ ' '+color[colorcnt%9]+'" id="metro_background_'+i+'">';
 							sub += ' 		<img src="../images/defalt-favicon.png" />';
 							sub += ' 		<span>'+headText+'</span>';
 							sub += '	</div>';	//color값 처리
 							
-							sub += '	<div class="metro_half_popup1">';
-							sub += '		<a class="metro_half_popup_link1" href="'+url+'" id="urls'+i+'">'+title+'</a>';
+							sub += '	<div class="metro_half_popup'+set+'">';
+							sub += '		<a class="metro_half_popup_link'+set+'" href="'+url+'" id="urls'+i+'">'+title+'</a>';
 							sub += '	</div>';
 							sub += '</li>';
 						}else{//popup1
 							flag=false;
+							flagCnt++;
 							console.log("case5 : no favicon, right");
 							
 							sub += '<li style="width: 87px">';
-							sub += '	<div class="metro_half_background2 '+color[colorcnt%9]+'" id="metro_background_'+i+'">';
+							sub += '	<div class="metro_half_background'+set+ ' '+color[colorcnt%9]+'" id="metro_background_'+i+'">';
 							sub += ' 		<img src="../images/defalt-favicon.png" />';
 							sub += ' 		<span>'+headText+'</span>';
 							sub += '	</div>';	//color값 처리
 							
-							sub += '	<div class="metro_half_popup2">';
-							sub += '		<a class="metro_half_popup_link2" href="'+url+'" id="urls'+i+'">'+title+'</a>';
+							sub += '	<div class="metro_half_popup'+set+'">';
+							sub += '		<a class="metro_half_popup_link'+set+'" href="'+url+'" id="urls'+i+'">'+title+'</a>';
 							sub += '	</div>';
 							sub += '</li>';
 						}

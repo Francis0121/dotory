@@ -138,7 +138,7 @@ function openImageUrl(url){
 			var save=document.getElementById(id);
 			var loc=save.href;
 			save.onclick=function(){
-				alert(loc);
+//				alert(loc);
 				chrome.tabs.create({url:loc});
 			};
 		})();
