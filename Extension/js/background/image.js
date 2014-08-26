@@ -58,7 +58,8 @@ dotory.sendData = function(json, index, srcs){
 
 
 dotory.imageFiltering = function(content, url, title, favicon, keyword, index){
-	
+
+	// ~ Not loaded regex Error Handling
 	if(dotory.regex == null || dotory.regex == undefined){
 //		console.log('Error : Doesn`t make Image Regex');
 		return;
@@ -76,10 +77,12 @@ dotory.imageFiltering = function(content, url, title, favicon, keyword, index){
 					'keyword'	: 	keyword != null ? keyword : null,
 					'keywordpn' : 	keywordPns[index]};
 	
+	// ~ is frame -> return
 	if(!dotory.isFrameset(content, json, index)){
 		return;
 	}
 	
+	html = html.replace(/src=/ig, 'data-src=');
 	for(var i=0; i < dotory.regex.tags.length; i++){
 		var tag = dotory.regex.tags[i];
 		html = html.replace(new RegExp(tag, 'ig'), '');
@@ -103,7 +106,14 @@ dotory.imageFiltering = function(content, url, title, favicon, keyword, index){
 			if(eles[i] == undefined ) continue;
 			var selector = '#'+eles[i].replace(/(:|\.|\[|\]|\/|\(|\))/g, '\\$1');
 			if(selector.match(/(\(|\))/ig) != null) continue;
-			var domIds = dom.find(selector);
+			
+			var domIds;
+			try{
+				domIds = dom.find(selector);
+			}catch (e) {
+				console.log(selector +' ' + e);
+				domIds = '';
+			}
 			if(domIds.length != 0){
 				domIds.remove();
 			}
@@ -130,7 +140,13 @@ dotory.imageFiltering = function(content, url, title, favicon, keyword, index){
 			var selector = '.'+eles[i].replace(/(:|\.|\[|\]|\/|\(|\))/g, '\\$1');
 			if(selector.match(/(\(|\))/ig) != null) continue;
 //			console.log(selector);
-			var domClazzs = dom.find(selector); 
+			var domClazzs;
+			try{
+				domClazzs = dom.find(selector);
+			}catch (e) {
+				console.log(selector +' ' + e);
+				domClazzs = '';
+			}
 			if(domClazzs.length != 0)
 				domClazzs.remove();
 		}
@@ -157,7 +173,13 @@ dotory.imageFiltering = function(content, url, title, favicon, keyword, index){
 			if(seles[i] == undefined) continue;
 			var selector = '#'+seles[i].replace(/(:|\.|\[|\]|\/|\(|\))/g, '\\$1');
 			if(selector.match(/(\(|\))/ig) != null) continue;
-			var find = dom.find(selector);
+			var find;
+			try{
+				find = dom.find(selector);
+			}catch (e) {
+				console.log(selector +' ' + e);
+				find = '';
+			}
 			container += $('<div>').append(find.clone()).html();
 		}
 //		console.log('Select ID : '+seles);
@@ -180,7 +202,13 @@ dotory.imageFiltering = function(content, url, title, favicon, keyword, index){
 			if(seles[i] == undefined) continue;
 			var selector = '.'+seles[i].replace(/(:|\.|\[|\]|\/|\(|\))/g, '\\$1');
 			if(selector.match(/(\(|\))/ig) != null) continue;
-			var find = dom.find(selector);
+			var find;
+			try{
+				find = dom.find(selector);
+			}catch (e) {
+				console.log(selector +' ' + e);
+				find = '';
+			}
 			container += $('<div>').append(find.clone()).html();
 		}
 //		console.log('Select CLASS : '+seles);
@@ -194,14 +222,14 @@ dotory.imageFiltering = function(content, url, title, favicon, keyword, index){
 	var imgs = $('<div>').append(container).find('img');
 	var srcs = new Array();
 	for(var i=0; i<imgs.length; i++){
-		var src = $(imgs[i]).attr('src');		
+		var src = $(imgs[i]).attr('data-src');		
 		if(src != null && src != '' && srcs.indexOf(src) == -1){
 			if(src.match(domain_regex)){
 				srcs[i] = src;
 			}else{ 
 				srcs[i] = dotory.absolute(url, src);
 			}
-//			console.log(srcs[i]);
+			//console.log(srcs[i]);
 		}
 	}
 	
@@ -218,6 +246,8 @@ dotory.imageFiltering = function(content, url, title, favicon, keyword, index){
 			srcs.splice(stack.pop(), 1);
 		}
 	}
+	
+	console.log('srcs [' + srcs + ']');
 	
 	dotory.sendData(json, index, srcs);
 };

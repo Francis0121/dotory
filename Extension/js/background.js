@@ -25,13 +25,11 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 });
 
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-	//var keyword=dotory.getSearchWord(request.content,sender.tab.url,sender.tab.title);
-	var keyword = dotory.queryMatch(sender.tab.url,sender.tab.title)
-	var stringKeyword = ''; //배열 keyword를 string으로 붙여줄 객체
+	var keyword = dotory.queryMatch(sender.tab.url,sender.tab.title);
+	var stringKeyword = '';
 	if(keyword != undefined && keyword != null && keyword.keyword != undefined){
-		//console.log('Keyword Element ' + keyword.keyword);
-		for(var i=0;i<keyword.keyword.length;i++){
-			stringKeyword=stringKeyword+" "+keyword.keyword[i];
+		for(var i=0; i<keyword.keyword.length; i++){
+			stringKeyword+=(keyword.keyword[i]+' ');
 		}
 	}
 	console.log('Keyword = [' + stringKeyword + '] ');
