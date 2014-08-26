@@ -20,7 +20,7 @@ dotory.checkRe=function(searchArray){
 dotory.queryMatch = function(url,title){
 	var domain_regexs = [ /google/, /naver/, /daum/, /yahoo/, /nate/, /bing/ ];
 	var query_regexs = [ 	
-		                    [ /q=/  ], // google
+		                    [ /q=/i  ], // google
 							[ /query=/i ], // naver
 							[ /q=/i ], // daum
 							[ /p=/i ], // yahoo 
@@ -28,8 +28,8 @@ dotory.queryMatch = function(url,title){
 		                    [ /q=/i	] // bing
 		               ]; 
 	
-	for(var i=0; i<domain_regexs.length; i++){
-		var domain_regex = domain_regexs[i];
+	for(var iDomain=0; iDomain<domain_regexs.length; iDomain++){
+		var domain_regex = domain_regexs[iDomain];
 	
 		var search = '';
 		var searchList = new Array();
@@ -57,15 +57,15 @@ dotory.queryMatch = function(url,title){
 			}
 			
 			// ~ Google Exception ... (ex: ie=UTF-8#query=search_keyword)
-			for(var i=0; i<factorList.length; i++){
-				var atom = factorList[i];
+			for(var iFactor=0; iFactor<factorList.length; iFactor++){
+				var atom = factorList[iFactor];
 				if(atom.match(/\#/) != null){
 					var array = atom.split(/\#/);
-					for(var j=0; j<array.length; j++){
-						if(j == 0){
-							factorList[i] = array[j];
+					for(var iTemp=0; iTemp<array.length; iTemp++){
+						if(iTemp == 0){
+							factorList[iFactor] = array[iTemp];
 						}else{
-							factorList.push(array[j]);
+							factorList.push(array[iTemp]);
 						}
 					}
 				}
@@ -73,10 +73,10 @@ dotory.queryMatch = function(url,title){
 			
 			// ~ url decode end
 			
-			var regex =  query_regexs[i][0];
-			for(var i=0; i<factorList.length; i++){
-				if(factorList[i].match(regex) != null){
-					search = factorList[i];
+			var regex =  query_regexs[iDomain][0];
+			for(var iRegex=0; iRegex<factorList.length; iRegex++){
+				if(factorList[iRegex].match(regex) != null){
+					search = factorList[iRegex];
 					break;
 				}
 			}
