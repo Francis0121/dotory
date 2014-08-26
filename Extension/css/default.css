@@ -71,7 +71,7 @@ figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video, button{
 	margin: 0; padding: 0; border: 0; vertical-align: baseline; 
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-family: DaumRegular, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 article, aside, details,figcaption, figure,

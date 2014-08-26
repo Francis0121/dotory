@@ -1,11 +1,11 @@
 @CHARSET "UTF-8";
 
 /** Metro */
-DIV.frame { width: 525px; height: 300px;  overflow: hidden; float: left;}
+DIV.frame { width: 525px; height: 330px;  overflow: hidden; float: left;}
 
 DIV.dotory_metro>HEADER.dotory_header { padding: 17px 25px; width:550px; height:30px; float:left; }
-DIV.dotory_metro DIV.dotory_content{ padding:5px 25px 0 25px;  height: 300px; float:left; }
-DIV.dotory_metro>ASIDE.dotory_aside{ float:left; width: 75px; height: 300px;}
+DIV.dotory_metro DIV.dotory_content{ padding:5px 25px 0 25px;  height: 330px; float:left; }
+DIV.dotory_metro>ASIDE.dotory_aside{ float:left; width: 75px; height: 330px;}
 DIV.dotory_metro>ASIDE.dotory_aside>DIV{ float: left; width: 60px; height: 60px; margin: 10px 10px 10px 7px;}
 DIV.dotory_metro>ASIDE.dotory_aside>DIV:nth-child(1){margin-top: 36px; }
 DIV.dotory_metro>ASIDE.dotory_aside>DIV:nth-child(2){margin-top: 16px; }
@@ -30,24 +30,33 @@ DIV.dotory_metro UL.dotory_top>LI:nth-child(2)>SPAN{ width:115px; line-height: 2
 DIV.dotory_metro UL.dotory_top>LI:nth-child(3){ margin: 3px 5px; float:left; }
 DIV.dotory_metro UL.dotory_top>LI:nth-child(3)>IMG{ width: 24px; height: 24px;}
 
-DIV.dotory_metro UL.dotory_icon{ margin-right: 7px; width: 180px; height: 300px; float:left; }
+DIV.dotory_metro UL.dotory_icon{margin-right: 7px; width: 180px; height: 330px; float:left; }
 DIV.dotory_metro UL.dotory_icon:nth-child(3n){ margin-right: 15px;}
 DIV.dotory_metro UL.dotory_icon>LI{ width: 180px; height: 100px; float: left; margin-bottom: 7px; overflow: hidden; box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.75);}
 
 DIV.metro_popup{ width: 180px; height: 100px; position: relative; float: left; background: #262626; opacity: 0.9;}
 DIV.metro_popup>A.metro_popup_link{ color: #fff; width: 100%; float: left; text-align: center; height: 25px; padding: 30px 0; font-size: 81.25%; line-height: 25px;}
 
-DIV.metro_half_background{width:90px; height:100px; float:left; }
-DIV.metro_background{width: 180px; height: 100px; float: left; }
+/**********************************************************************************/
+DIV.metro_half_popup{ width: 83px; height: 100px; position: relative; float: left; background: #262626; opacity: 0.9;}
+DIV.metro_half_popup>A.metro_half_popup_link{ color: #fff; width: 100%; float: left; text-align: center; height: 25px; padding: 30px 0; font-size: 81.25%; line-height: 25px;}
+DIV.metro_half_background{width:83px; height:100px; float:left; }
+DIV.metro_half_background>IMG{ width:32px; margin:3px}
+DIV.metro_half_background>SPAN{width:80px; padding:0 5px 5px 5px; text-align: left; float: left; font-size: 62.5%; color: #fff; }
+/**********************************************************************************/
+
+/* background: url("../images/dog.jpg"); filter: blur(5px); ---- blur -----*/
+DIV.metro_background{ width: 180px; height: 100px; float: left; }
 DIV.metro_background>IMG{ width: 32px; margin: 5px;}
-DIV.metro_background>SPAN{ width: 150px; padding: 0 5px 5px 5px; text-align: left; float: left; font-size: 87.5%; color: #fff; }
+DIV.metro_background>SPAN{ width: 150px; padding: 0 5px 5px 5px; text-align: left; float: left; font-size: 62.5%; color: #fff; }
 DIV.metro_color_blue{ background: linear-gradient(135deg, rgba(30,189,240,1) 0%,rgba(39,172,213,1) 48%,rgba(59,140,156,1) 100%); /* W3C */}
 DIV.metro_color_green{ background: linear-gradient(135deg, rgba(99,177,65,1) 1%,rgba(79,138,51,0.82) 47%,rgba(89,158,58,0.78) 56%,rgba(112,201,73,0.78) 76%,rgba(129,231,85,0.78) 100%); /* W3C */ }
 DIV.metro_color_orange{ background: #d99824; }
 DIV.metro_color_red{ background: #cc0000; }
-DIV.metro_color_purple{ background: #9ca3b5; }
+DIV.metro_color_purple{ background: #9ca3b5; } 
 DIV.metro_color_grayBlue{ background: #50a8ac; }
 DIV.metro_color_yellowOrange{ background: #ffd966; }
 DIV.metro_color_gray{ background: #999999; }
 DIV.metro_color_softGray{ background: #cccccc; }
 DIV.metro_color_popup{ background: #262626; }
+DIV.metro_color_redGra{background: linear-gradient(to bottom, rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%);}

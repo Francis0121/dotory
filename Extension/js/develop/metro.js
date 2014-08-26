@@ -53,15 +53,25 @@ dotory.metro.mousehover=function(){
 		var thiz = $(this),
 			popup = thiz.children('.metro_popup'),
 			background = thiz.children('.metro_background');
+		var	popup2 = thiz.children('.metro_half_popup'),
+			background2 = thiz.children('.metro_half_background');
 		
-		popup.animate({top:'-90px'},300);
+		popup.animate({top:'-100px'},300);
 		background.animate({opacity:'.6'},300);
+		popup2.animate({top:'-100px'},300);
+		background2.animate({opacity:'.6'},300);
+		
 	}, function(){
 		var thiz = $(this),
 			popup = thiz.children('.metro_popup'),
 			background = thiz.children('.metro_background');
+		var	popup2 = thiz.children('.metro_half_popup'),
+			background2 = thiz.children('.metro_half_background');
+	
 		popup.animate({top:'0px'},300);
 		background.animate({opacity:'1.0'},300);
+		popup2.animate({top:'0px'},300);
+		background2.animate({opacity:'1.0'},300);
 	});
 };
 
@@ -70,6 +80,8 @@ dotory.metro.pageLoad=function(){
 	var url= dotory.contextPath+'/visit/info',
 		json={'userPn': dotory.user.pn };
 	var sendUrl=new Array();
+	var flag=false,
+		flagCnt=0;
 	
 	$.postJSON(url, json, function(object){
 		var content = $('.dotory_content');
@@ -121,7 +133,7 @@ dotory.metro.pageLoad=function(){
 					title=cutTitle[0][0];	
 				}
 				/*****************************************************/
-				
+				console.log("length : "+headText.length);
 				console.log(title);
 				console.log(url);
 				if(cnt%3 == 0){					
@@ -133,29 +145,81 @@ dotory.metro.pageLoad=function(){
 						sub = ulFront;						
 					}
 				}
-				sub += '<li>';
+				
 				if(favicon != null && favicon != undefined && favicon != '' ){ //favicon 가져오기 
-				sub += '	<div class="metro_background" id="metro_background_'+i+'">';
-				sub += '		<img src="'+favicon+'" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
-				sub += ' 		<span>'+headText+'</span>';
-				sub += '	</div>';		//color값 처리
+					if(headText.length<=6 || flag==true){
+
+						sub += '<li style="width: 90px">';
+						sub += '	<div class="metro_half_background" id="metro_background_'+i+'">';
+						sub += '		<img src="'+favicon+'" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
+						sub += ' 		<span>'+headText+'</span>';
+						sub += '	</div>';		//color값 처리
+						
+						sub += '	<div class="metro_half_popup">';
+						sub += '		<a class="metro_half_popup_link" href="'+url+'" id="urls'+i+'">'+title+'</a>';
+						sub += '	</div>';
+						sub += '</li>';
+						
+						flagCnt++;
+						if(flagCnt%2==1) //작게한 그 다음것도 작게 만들기
+							flag=true;
+						else
+							flag=false;
+						
+							
+					}else{
+						sub += '<li>'
+						sub += '	<div class="metro_background" id="metro_background_'+i+'">';
+						sub += '		<img src="'+favicon+'" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
+						sub += ' 		<span>'+headText+'</span>';
+						sub += '	</div>';		//color값 처리
+						
+						sub += '	<div class="metro_popup">';
+						sub += '		<a class="metro_popup_link" href="'+url+'" id="urls'+i+'">'+title+'</a>';
+						sub += '	</div>';
+						sub += '</li>';
+					
+					}
 				}
 //				else{	// favicon 없을 때
 //				sub += '	<div class="metro_background '+color[cnt%9]+'">';
 //				sub += ' 		<span>'+headText+'</span>';
 //				sub += '	</div>';		//color값 처리	
 //				}
+				
 				else{	// favicon 없을 때
-					sub += '	<div class="metro_background id="metro_background_'+i+'"'+color[cnt%9]+'">';
-					sub += ' 		<img src="../images/acorn-19.png" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
-					sub += ' 		<span>'+headText+'</span>';
-					sub += '	</div>';		//color값 처리	
+					if(headText.length<=6 || flag==true){
+						sub += '<li style="width: 90px">';
+						sub += '	<div class="metro_half_background" id="metro_background_'+i+'">';
+						sub += '		<img src="'+favicon+'" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
+						sub += ' 		<span>'+headText+'</span>';
+						sub += '	</div>';		//color값 처리
+						
+						sub += '	<div class="metro_half_popup">';
+						sub += '		<a class="metro_half_popup_link" href="'+url+'" id="urls'+i+'">'+title+'</a>';
+						sub += '	</div>';
+						sub += '</li>';
+
+						flagCnt++;
+						if(flagCnt%2==1) //작게한 그 다음것도 작게 만들기
+							flag=true;
+						else
+							flag=false;
+						
+					}else{
+						sub += '<li>'
+						sub += '	<div class="metro_background '+color[cnt%9]+'" id="metro_background_'+i+'">';
+						sub += ' 		<img src="../images/defalt-favicon.png" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
+						sub += ' 		<span>'+headText+'</span>';
+						sub += '	</div>';		//color값 처리	
+						
+						sub += '	<div class="metro_popup">';
+						sub += '		<a class="metro_popup_link" href="'+url+'" id="urls'+i+'">'+title+'</a>';
+						sub += '	</div>';
+						sub += '</li>';
+					}
 				}
-				sub += '	<div class="metro_popup">';
-				sub += '		<a class="metro_popup_link" href="'+url+'" id="urls'+i+'">'+title+'</a>';
-				sub += '	</div>';
-				sub += '</li>';
-			
+				
 				cnt++;
 				
 			}
@@ -205,7 +269,7 @@ dotory.metro.onloadImage = function(){
 			$('#metro_background_'+index).addClass('metro_color_softGray');
 			break;
 		case 4: // ~ red
-			$('#metro_background_'+index).addClass('metro_color_red');
+			$('#metro_background_'+index).addClass('metro_color_redGra');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
 			break;
 		case 5: // ~ yellow
 			$('#metro_background_'+index).addClass('metro_color_yellowOrange');
@@ -222,6 +286,7 @@ dotory.metro.onloadImage = function(){
 		case 9: // ~ magenta
 			$('#metro_background_'+index).addClass('metro_color_purple');
 			break;
+			
 		default:
 			break;
 		}
