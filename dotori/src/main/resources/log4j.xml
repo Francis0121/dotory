@@ -25,6 +25,7 @@
 		<!-- Application Loggers -->
 	<logger name="net.epril.dotori">
 		<level value="debug" />
+		<appender-ref ref="filelog"/>
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
@@ -52,7 +53,6 @@
 	<root>
 		<priority value="debug" />
 		<appender-ref ref="console" />
-		<appender-ref ref="filelog"/>
 	</root>
 	
 </log4j:configuration>
