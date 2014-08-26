@@ -28,7 +28,7 @@ dotory.queryMatch = function(url,title){
 		                    [ /q=/i	] // bing
 		               ]; 
 	
-	url = decodeURIComponent(url)
+	url = decodeURIComponent(url);
 	var factor = '';
 	var factorList = new Array();
 	if(url.match(/\?.+/i) != null){

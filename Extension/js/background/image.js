@@ -17,18 +17,13 @@ dotory.isFrameset = function(content, json, index){
 					var frameSrc = strTemp.replace(/src\=\"/, '');
 						frameSrc = frameSrc.replace(/\"/, '');
 					if(frameSrcs.indexOf(frameSrc) == -1){
-						if(frameSrc.match(domain_regex)){
-							frameSrcs.push(frameSrc)
-						}else{ 
-							frameSrc = dotory.absolute(json.url, frameSrc);
-							frameSrcs.push(frameSrc);
-						}
-						//console.log('Frame src : '+frameSrc);
+						frameSrcs.push(frameSrc);
+						//console.log('\nFrame src Change: '+frameSrc);
 					}
 				}
 			}
 		}
-		console.log('Doing frame src : ' + frameSrc);
+		//console.log('Doing frame src : ' + frameSrcs);
 	}else{
 		return true;
 	}
@@ -41,7 +36,7 @@ dotory.isFrameset = function(content, json, index){
 			'favicon'	: 	json.favicon,
 			'keyword'	: 	json.keyword,
 			'keywordpn' : 	json.keywordpn,
-			'frameSrcs'	:	frameSrcs };
+			'isFrame'	:	true };
 	
 	dotory.sendData(newJson, index, '');
 	return false;
@@ -330,11 +325,15 @@ dotory.judgeHSL= function(hue, sat, lgt){
 };
 
 dotory.absolute = function(base, relative) {
+	var domain_regex = /^(http|https):\/\/([a-z0-9-_\.]*)[\/\?]{0,1}/;
     var stack = base.split('/'),
-        parts = relative.split('/');
+        parts = relative.split('/'),
+        domain = base.match(domain_regex)[0];
     stack.pop(); // remove current file name (or empty string)
                  // (omit if "base" is the current folder without trailing slash)
     for (var i=0; i<parts.length; i++) {
+    	if(parts[i] == '')
+    		continue;
         if (parts[i] == '.')
             continue;
         if (parts[i] == '..')
