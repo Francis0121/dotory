@@ -289,34 +289,44 @@ dotory.history.keywordEvent = function(){
 	$('#all_checked').off('click').on('click', function(){
 		var thiz = $(this);
 		if(thiz.attr('data-checked') == 'true'){
-			var lis = $('.opened_page_list_wrap').find('li');
-			
-			for(var i=0; i<lis.length; i++){
-				var li = lis[i],
-					checkbox = $(li).find('input[type=checkbox]');
-				checkbox.removeAttr('checked');
-				checkbox.parent('li').removeClass('check');
-				$('.keyword_total>a').removeClass('selected');
-				$('.more_keyword>a').removeClass('selected');
-			}
-			thiz.removeAttr('data-checked');
-			thiz.addClass('btn_check_box_not_checked').removeClass('btn_check_box_checked');
+			dotory.history.unchecked();
 		}else{
-			var lis = $('.opened_page_list_wrap').find('li');
-			
-			for(var i=0; i<lis.length; i++){
-				var li = lis[i],
-					checkbox = $(li).find('input[type=checkbox]');
-				checkbox.attr('checked', 'checked');
-				checkbox.parent('li').addClass('check');
-				$('.keyword_total>a').removeClass('selected');
-				$('.more_keyword>a').removeClass('selected');
-			}
-			thiz.attr('data-checked', 'true');
-			thiz.addClass('btn_check_box_checked').removeClass('btn_check_box_not_checked');
+			dotory.history.checked();
 		}
 	});
 	
+};
+
+dotory.history.unchecked = function(){
+	var thiz = $('#all_checked');
+	var lis = $('.opened_page_list_wrap').find('li');
+	
+	for(var i=0; i<lis.length; i++){
+		var li = lis[i],
+			checkbox = $(li).find('input[type=checkbox]');
+		checkbox.removeAttr('checked');
+		checkbox.parent('li').removeClass('check');
+		$('.keyword_total>a').removeClass('selected');
+		$('.more_keyword>a').removeClass('selected');
+	}
+	thiz.removeAttr('data-checked');
+	thiz.addClass('btn_check_box_not_checked').removeClass('btn_check_box_checked');
+};
+
+dotory.history.checked = function(){
+	var thiz = $('#all_checked');
+	var lis = $('.opened_page_list_wrap').find('li');
+	
+	for(var i=0; i<lis.length; i++){
+		var li = lis[i],
+			checkbox = $(li).find('input[type=checkbox]');
+		checkbox.attr('checked', 'checked');
+		checkbox.parent('li').addClass('check');
+		$('.keyword_total>a').removeClass('selected');
+		$('.more_keyword>a').removeClass('selected');
+	}
+	thiz.attr('data-checked', 'true');
+	thiz.addClass('btn_check_box_checked').removeClass('btn_check_box_not_checked');
 };
 
 dotory.history.makeDateHtml = function(dates){
@@ -346,6 +356,7 @@ dotory.history.dateEvent = function(){
 		var domDate = thiz.children('.date'),
 			date = domDate.text();
 		
+		dotory.history.unchecked();
 		dotory.history.getKeyword(date);
 	});
 };
