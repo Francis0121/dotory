@@ -43,16 +43,16 @@ DIV.metro_half_popup1>A.metro_half_popup_link1{ color: #fff; width: 100%; text-a
 DIV.metro_half_popup2{ width: 87px; height: 100px; position: relative; float: left; background: #262626; opacity: 0.9;}
 DIV.metro_half_popup2>A.metro_half_popup_link2{ color: #fff; width: 100%; text-align: center; float: left;  height: 25px; padding: 15px 0; font-size: 81.25%; line-height: 20px;}
 DIV.metro_half_background1{ margin-right: 6px; width:87px; height:100px; float:left; }
-DIV.metro_half_background1>IMG{ height:32px; margin:3px}
+DIV.metro_half_background1>IMG{ height:32px; margin-left:28px; margin-top:34px}
 DIV.metro_half_background1>SPAN{width:80px; padding:0 5px 5px 5px; text-align: left; float: left; font-size: 62.5%; color: #fff; }
 DIV.metro_half_background2{ width:87px; height:100px; float:left; }
-DIV.metro_half_background2>IMG{ height:32px; margin:3px}
+DIV.metro_half_background2>IMG{ height:32px; margin-left:28px; margin-top:34px}
 DIV.metro_half_background2>SPAN{width:80px; padding:0 5px 5px 5px; text-align: left; float: left; font-size: 62.5%; color: #fff; }
 /**********************************************************************************/
 
 /* background: url("../images/dog.jpg"); filter: blur(5px); ---- blur -----*/
 DIV.metro_background{ width: 180px; height: 100px; float: left; }
-DIV.metro_background>IMG{ height: 32px; margin: 5px;}
+DIV.metro_background>IMG{ height: 64px; margin-left: 58px; margin-top: 17px}
 DIV.metro_background>SPAN{ width: 150px; padding: 0 5px 5px 5px; text-align: left; float: left; font-size: 62.5%; color: #fff; }
 DIV.metro_color_blue{ background: linear-gradient(135deg, rgba(30,189,240,1) 0%,rgba(39,172,213,1) 48%,rgba(59,140,156,1) 100%); /* W3C */}
 DIV.metro_color_green{ background: linear-gradient(135deg, rgba(99,177,65,1) 1%,rgba(79,138,51,0.82) 47%,rgba(89,158,58,0.78) 56%,rgba(112,201,73,0.78) 76%,rgba(129,231,85,0.78) 100%); /* W3C */ }
