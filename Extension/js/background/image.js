@@ -180,7 +180,8 @@ dotory.imageFiltering = function(content, url, title, favicon, keyword, index){
 				console.log(selector +' ' + e);
 				find = '';
 			}
-			container += $('<div>').append(find.clone()).html();
+			if(find != '')
+				container += $('<div>').append(find.clone()).html();
 		}
 //		console.log('Select ID : '+seles);
 	}
@@ -209,7 +210,8 @@ dotory.imageFiltering = function(content, url, title, favicon, keyword, index){
 				console.log(selector +' ' + e);
 				find = '';
 			}
-			container += $('<div>').append(find.clone()).html();
+			if(find != '')
+				container += $('<div>').append(find.clone()).html();
 		}	
 //		console.log('Select CLASS : '+seles);
 	}
