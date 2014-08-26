@@ -82,7 +82,7 @@ dotory.imageFiltering = function(content, url, title, favicon, keyword, index){
 		return;
 	}
 	
-	html = html.replace(/src=/ig, 'data-src=');
+	html = html.replace(/<img *(.*)src=/ig, '<img data-dotorysrc=');
 	for(var i=0; i < dotory.regex.tags.length; i++){
 		var tag = dotory.regex.tags[i];
 		html = html.replace(new RegExp(tag, 'ig'), '');
@@ -225,7 +225,7 @@ dotory.imageFiltering = function(content, url, title, favicon, keyword, index){
 	var imgs = $('<div>').append(container).find('img');
 	var srcs = new Array();
 	for(var i=0; i<imgs.length; i++){
-		var src = $(imgs[i]).attr('data-src');		
+		var src = $(imgs[i]).attr('data-dotorysrc');		
 		if(src != null && src != '' && srcs.indexOf(src) == -1){
 			if(src.match(domain_regex)){
 				srcs[i] = src;
