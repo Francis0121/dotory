@@ -53,11 +53,15 @@ dotory.metro.mousehover=function(){
 		var thiz = $(this),
 			popup = thiz.children('.metro_popup'),
 			background = thiz.children('.metro_background');
-		var	popup2 = thiz.children('.metro_half_popup'),
-			background2 = thiz.children('.metro_half_background');
+		var	popup1 = thiz.children('.metro_half_popup1'),
+			background1 = thiz.children('.metro_half_background1');
+		var	popup2 = thiz.children('.metro_half_popup2'),
+			background2 = thiz.children('.metro_half_background2');
 		
 		popup.animate({top:'-100px'},300);
 		background.animate({opacity:'.6'},300);
+		popup1.animate({top:'-100px'},300);
+		background1.animate({opacity:'.6'},300);
 		popup2.animate({top:'-100px'},300);
 		background2.animate({opacity:'.6'},300);
 		
@@ -65,11 +69,15 @@ dotory.metro.mousehover=function(){
 		var thiz = $(this),
 			popup = thiz.children('.metro_popup'),
 			background = thiz.children('.metro_background');
-		var	popup2 = thiz.children('.metro_half_popup'),
-			background2 = thiz.children('.metro_half_background');
-	
+		var	popup1 = thiz.children('.metro_half_popup1'),
+			background1 = thiz.children('.metro_half_background1');
+		var	popup2 = thiz.children('.metro_half_popup2'),
+			background2 = thiz.children('.metro_half_background2');
+		
 		popup.animate({top:'0px'},300);
 		background.animate({opacity:'1.0'},300);
+		popup1.animate({top:'0px'},300);
+		background1.animate({opacity:'1.0'},300);
 		popup2.animate({top:'0px'},300);
 		background2.animate({opacity:'1.0'},300);
 	});
@@ -136,7 +144,7 @@ dotory.metro.pageLoad=function(){
 					title=cutTitle[0][0];	
 				}
 				/*****************************************************/
-//				console.log("cnt : "+cnt+"   metro_cnt: "+metro_cnt);
+				console.log("cnt : "+cnt+"   metro_cnt: "+metro_cnt);
 				if(cnt%metro_cnt == 0){	
 					metro_cnt=3;
 					console.log("check : "+metro_cnt);
@@ -157,6 +165,7 @@ dotory.metro.pageLoad=function(){
 							flag=true;
 							flagCnt++;
 							metro_cnt++;
+							console.log("case1 : yes favicon, left");
 
 							sub += '<li style="width: 93px">';
 							sub += '	<div class="metro_half_background1" id="metro_background_'+i+'">';
@@ -164,12 +173,14 @@ dotory.metro.pageLoad=function(){
 							sub += ' 		<span>'+headText+'</span>';
 							sub += '	</div>';		//color값 처리
 							
-							sub += '	<div class="metro_half_popup2">';
+							sub += '	<div class="metro_half_popup1">';
 							sub += '		<a class="metro_half_popup_link1" href="'+url+'" id="urls'+i+'">'+title+'</a>';
 							sub += '	</div>';
 							sub += '</li>';
 						}else{ //popup1							
 							flag=false;
+							flagCnt++;
+							console.log("case2 : yes favicon, right");
 							
 							sub += '<li style="width: 87px">';
 							sub += '	<div class="metro_half_background2" id="metro_background_'+i+'">';
@@ -177,12 +188,13 @@ dotory.metro.pageLoad=function(){
 							sub += ' 		<span>'+headText+'</span>';
 							sub += '	</div>';		//color값 처리
 							
-							sub += '	<div class="metro_half_popup1">';
+							sub += '	<div class="metro_half_popup2">';
 							sub += '		<a class="metro_half_popup_link2" href="'+url+'" id="urls'+i+'">'+title+'</a>';
 							sub += '	</div>';
 							sub += '</li>';
 						}							
 					}else{
+						console.log("case3 : yes favicon, normal");
 						sub += '<li>'
 						sub += '	<div class="metro_background" id="metro_background_'+i+'">';
 						sub += '		<img src="'+favicon+'" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
@@ -208,34 +220,37 @@ dotory.metro.pageLoad=function(){
 							flag=true;
 							flagCnt++;
 							metro_cnt++;
+							console.log("case4 : no favicon, left");
 							sub += '<li style="width: 93px">';
 							sub += '	<div class="metro_half_background1 '+color[colorcnt%9]+'" id="metro_background_'+i+'">';
-							sub += ' 		<img src="../images/defalt-favicon.png" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
+							sub += ' 		<img src="../images/defalt-favicon.png" />';
 							sub += ' 		<span>'+headText+'</span>';
 							sub += '	</div>';	//color값 처리
 							
-							sub += '	<div class="metro_half_popup">';
+							sub += '	<div class="metro_half_popup1">';
 							sub += '		<a class="metro_half_popup_link1" href="'+url+'" id="urls'+i+'">'+title+'</a>';
 							sub += '	</div>';
 							sub += '</li>';
 						}else{//popup1
 							flag=false;
+							console.log("case5 : no favicon, right");
 							
 							sub += '<li style="width: 87px">';
 							sub += '	<div class="metro_half_background2 '+color[colorcnt%9]+'" id="metro_background_'+i+'">';
-							sub += ' 		<img src="../images/defalt-favicon.png" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
+							sub += ' 		<img src="../images/defalt-favicon.png" />';
 							sub += ' 		<span>'+headText+'</span>';
 							sub += '	</div>';	//color값 처리
 							
-							sub += '	<div class="metro_half_popup">';
+							sub += '	<div class="metro_half_popup2">';
 							sub += '		<a class="metro_half_popup_link2" href="'+url+'" id="urls'+i+'">'+title+'</a>';
 							sub += '	</div>';
 							sub += '</li>';
 						}
 					}else{
+						console.log("case6 : no favicon, normal");
 						sub += '<li>'
 						sub += '	<div class="metro_background '+color[colorcnt%9]+'" id="metro_background_'+i+'">';
-						sub += ' 		<img src="../images/defalt-favicon.png" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
+						sub += ' 		<img src="../images/defalt-favicon.png" />';
 						sub += ' 		<span>'+headText+'</span>';
 						sub += '	</div>';		//color값 처리	
 						
@@ -248,7 +263,7 @@ dotory.metro.pageLoad=function(){
 				
 				cnt++;
 				colorcnt++;
-				
+				console.log("color cnt : "+colorcnt%9);
 			}
 			sub += ulBack;
 			content.append(sub);
@@ -325,7 +340,7 @@ dotory.metro.onloadImage = function(){
 
 function openUrl(url){
 	var id=new Array();
-	console.log("In fuction : "+url);
+//	console.log("In fuction : "+url);
 	for(var i=0;i<url.length;i++){
 		(function(){
 			id='urls'+i;
