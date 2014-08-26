@@ -5,7 +5,7 @@ HEADER.dotory_image_header{ padding: 10px 10px 10px 10px; width:580px; height:30
 
 H1.image_title>SPAN{ float: left; margin: 1px 0 0 -10px;}
 
-DIV.dotory_image_content{ padding: 10px 10px 0px 10px; width:580px; height:340px; float:left; overflow-y: hidden; overflow-x: hidden;}
+DIV.dotory_image_content{ padding: 10px 10px 0px 10px; width:580px; height:330px; float:left; overflow-y: hidden; overflow-x: hidden;}
 UL.history_images{ float:left; width: 580px;}
 UL.history_images>LI{ margin : 3px; float:left; color:#000; background-color: #fff;  width: 134px; text-indent: -9999px;}
 UL.history_images>LI>A{ float: left; }

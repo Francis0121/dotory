@@ -28,40 +28,6 @@ dotory.queryMatch = function(url,title){
 		                    [ /q=/i	] // bing
 		               ]; 
 	
-	url = decodeURIComponent(url);
-	var factor = '';
-	var factorList = new Array();
-	if(url.match(/\?.+/i) != null){
-		factor = url.match(/\?.+/i)[0];
-		factor = factor.replace(/\?/, '');
-	}else{
-		var result = dotory.matchKeyword(url, title);
-		if( result != null )
-			return { keyword:keywordArray[result.index], index:result.index };
-		else 
-			return { keyword:null,index:null };	
-	}
-	
-	
-	if( factor != '' && factor != null || factor != undefined){
-		factorList = factor.split(/\&/);
-	}
-	
-	// ~ Google Exception ... (ex: ie=UTF-8#query=search_keyword)
-	for(var i=0; i<factorList.length; i++){
-		var atom = factorList[i];
-		if(atom.match(/\#/) != null){
-			var array = atom.split(/\#/);
-			for(var j=0; j<array.length; j++){
-				if(j == 0){
-					factorList[i] = array[j];
-				}else{
-					factorList.push(array[j]);
-				}
-			}
-		}
-	}
-	
 	for(var i=0; i<domain_regexs.length; i++){
 		var domain_regex = domain_regexs[i];
 	
@@ -69,6 +35,44 @@ dotory.queryMatch = function(url,title){
 		var searchList = new Array();
 		
 		if(url.match(domain_regex) != null){
+			
+			// ~ url decode start
+			url = decodeURIComponent(url);
+			var factor = '';
+			var factorList = new Array();
+			if(url.match(/\?.+/i) != null){
+				factor = url.match(/\?.+/i)[0];
+				factor = factor.replace(/\?/, '');
+			}else{
+				var result = dotory.matchKeyword(url, title);
+				if( result != null )
+					return { keyword:keywordArray[result.index], index:result.index };
+				else 
+					return { keyword:null,index:null };	
+			}
+			
+			
+			if( factor != '' && factor != null || factor != undefined){
+				factorList = factor.split(/\&/);
+			}
+			
+			// ~ Google Exception ... (ex: ie=UTF-8#query=search_keyword)
+			for(var i=0; i<factorList.length; i++){
+				var atom = factorList[i];
+				if(atom.match(/\#/) != null){
+					var array = atom.split(/\#/);
+					for(var j=0; j<array.length; j++){
+						if(j == 0){
+							factorList[i] = array[j];
+						}else{
+							factorList.push(array[j]);
+						}
+					}
+				}
+			}
+			
+			// ~ url decode end
+			
 			var regex =  query_regexs[i][0];
 			for(var i=0; i<factorList.length; i++){
 				if(factorList[i].match(regex) != null){
