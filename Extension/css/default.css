@@ -1,6 +1,16 @@
 @CHARSET "UTF-8";
 
 @font-face {
+    font-family: DaumRegular;
+    src: url(font/DAUM_REGULAR.TTF);
+}
+
+@font-face {
+    font-family: DaumSemiBold;
+    src: url(font/DAUM_SEMIBOLD.TTF);
+}
+
+@font-face {
     font-family: NanumBarunGothic;
     src: url(font/NANUMBARUNGOTHIC.TTF);
 }
