@@ -87,6 +87,15 @@ dotory.queryMatch = function(url,title){
 			continue;
 		}
 		
+		// ~ Not searching portal 
+		if(search == '' || search == undefined || search == null){
+			var result = dotory.matchKeyword(url, title);
+			if( result != null )
+				return { keyword:keywordArray[result.index], index:result.index };
+			else 
+				return { keyword:null,index:null };	
+		}
+		
 		searchList = search.split(' ');
 		//console.log('Keyword List='+searchList);
 		
