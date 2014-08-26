@@ -30,19 +30,24 @@ DIV.dotory_metro UL.dotory_top>LI:nth-child(2)>SPAN{ width:115px; line-height: 2
 DIV.dotory_metro UL.dotory_top>LI:nth-child(3){ margin: 3px 5px; float:left; }
 DIV.dotory_metro UL.dotory_top>LI:nth-child(3)>IMG{ width: 24px; height: 24px;}
 
-DIV.dotory_metro UL.dotory_icon{margin-right: 7px; width: 180px; height: 330px; float:left; }
+DIV.dotory_metro UL.dotory_icon{margin-right: 6px; width: 180px; height: 330px; float:left; }
 DIV.dotory_metro UL.dotory_icon:nth-child(3n){ margin-right: 15px;}
-DIV.dotory_metro UL.dotory_icon>LI{ width: 180px; height: 100px; float: left; margin-bottom: 7px; overflow: hidden; box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.75);}
+DIV.dotory_metro UL.dotory_icon>LI{ width: 180px; height: 100px; float: left; margin-bottom: 6px; overflow: hidden; box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.75);}
 
 DIV.metro_popup{ width: 180px; height: 100px; position: relative; float: left; background: #262626; opacity: 0.9;}
 DIV.metro_popup>A.metro_popup_link{ color: #fff; width: 100%; float: left; text-align: center; height: 25px; padding: 30px 0; font-size: 81.25%; line-height: 25px;}
 
 /**********************************************************************************/
-DIV.metro_half_popup{ width: 83px; height: 100px; position: relative; float: left; background: #262626; opacity: 0.9;}
-DIV.metro_half_popup>A.metro_half_popup_link{ color: #fff; width: 100%; float: left; text-align: center; height: 25px; padding: 30px 0; font-size: 81.25%; line-height: 25px;}
-DIV.metro_half_background{width:83px; height:100px; float:left; }
-DIV.metro_half_background>IMG{ height:32px; margin:3px}
-DIV.metro_half_background>SPAN{width:80px; padding:0 5px 5px 5px; text-align: left; float: left; font-size: 62.5%; color: #fff; }
+DIV.metro_half_popup1{ margin-right: 6px; width: 87px; height: 100px; position: relative; float: left; background: #262626; opacity: 0.9;}
+DIV.metro_half_popup1>A.metro_half_popup_link{ color: #fff; width: 100%; float: left; text-align: center; height: 25px; padding: 30px 0; font-size: 81.25%; line-height: 25px;}
+DIV.metro_half_popup2{ width: 87px; height: 100px; position: relative; float: left; background: #262626; opacity: 0.9;}
+DIV.metro_half_popup2>A.metro_half_popup_link{ color: #fff; width: 100%; float: left; text-align: center; height: 25px; padding: 30px 0; font-size: 81.25%; line-height: 25px;}
+DIV.metro_half_background1{ margin-right: 6px; width:87px; height:100px; float:left; }
+DIV.metro_half_background1>IMG{ height:32px; margin:3px}
+DIV.metro_half_background1>SPAN{width:80px; padding:0 5px 5px 5px; text-align: left; float: left; font-size: 62.5%; color: #fff; }
+DIV.metro_half_background2{ width:87px; height:100px; float:left; }
+DIV.metro_half_background2>IMG{ height:32px; margin:3px}
+DIV.metro_half_background2>SPAN{width:80px; padding:0 5px 5px 5px; text-align: left; float: left; font-size: 62.5%; color: #fff; }
 /**********************************************************************************/
 
 /* background: url("../images/dog.jpg"); filter: blur(5px); ---- blur -----*/

@@ -136,10 +136,7 @@ dotory.metro.pageLoad=function(){
 					title=cutTitle[0][0];	
 				}
 				/*****************************************************/
-//				console.log("length : "+headText.length);
-//				console.log(title);
-//				console.log(url);
-				console.log("cnt : "+cnt+"   metro_cnt: "+metro_cnt);
+//				console.log("cnt : "+cnt+"   metro_cnt: "+metro_cnt);
 				if(cnt%metro_cnt == 0){	
 					metro_cnt=3;
 					console.log("check : "+metro_cnt);
@@ -156,28 +153,35 @@ dotory.metro.pageLoad=function(){
 				
 				if(favicon != null && favicon != undefined && favicon != '' ){ //favicon 가져오기 
 					if(headText.length<=5 || flag==true){
-
-						sub += '<li style="width: 90px">';
-						sub += '	<div class="metro_half_background" id="metro_background_'+i+'">';
-						sub += '		<img src="'+favicon+'" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
-						sub += ' 		<span>'+headText+'</span>';
-						sub += '	</div>';		//color값 처리
-						
-						sub += '	<div class="metro_half_popup">';
-						sub += '		<a class="metro_half_popup_link" href="'+url+'" id="urls'+i+'">'+title+'</a>';
-						sub += '	</div>';
-						sub += '</li>';
-						
-						if(flagCnt%2==0){ //작게한 그 다음것도 작게 만들기
+						if(flagCnt%2==0){ //작게한 그 다음것도 작게 만들기   popup2
 							flag=true;
 							flagCnt++;
 							metro_cnt++;
-							console.log("non favicon cnt : "+metro_cnt);
-						}
-						else
-							flag=false;
-						
+
+							sub += '<li style="width: 93px">';
+							sub += '	<div class="metro_half_background1" id="metro_background_'+i+'">';
+							sub += '		<img src="'+favicon+'" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
+							sub += ' 		<span>'+headText+'</span>';
+							sub += '	</div>';		//color값 처리
 							
+							sub += '	<div class="metro_half_popup2">';
+							sub += '		<a class="metro_half_popup_link1" href="'+url+'" id="urls'+i+'">'+title+'</a>';
+							sub += '	</div>';
+							sub += '</li>';
+						}else{ //popup1							
+							flag=false;
+							
+							sub += '<li style="width: 87px">';
+							sub += '	<div class="metro_half_background2" id="metro_background_'+i+'">';
+							sub += '		<img src="'+favicon+'" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
+							sub += ' 		<span>'+headText+'</span>';
+							sub += '	</div>';		//color값 처리
+							
+							sub += '	<div class="metro_half_popup1">';
+							sub += '		<a class="metro_half_popup_link2" href="'+url+'" id="urls'+i+'">'+title+'</a>';
+							sub += '	</div>';
+							sub += '</li>';
+						}							
 					}else{
 						sub += '<li>'
 						sub += '	<div class="metro_background" id="metro_background_'+i+'">';
@@ -200,26 +204,34 @@ dotory.metro.pageLoad=function(){
 				
 				else{	// favicon 없을 때
 					if(headText.length<=5 || flag==true){
-						sub += '<li style="width: 90px">';
-						sub += '	<div class="metro_half_background '+color[colorcnt%9]+'" id="metro_background_'+i+'">';
-						sub += ' 		<img src="../images/defalt-favicon.png" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
-						sub += ' 		<span>'+headText+'</span>';
-						sub += '	</div>';	//color값 처리
-						
-						sub += '	<div class="metro_half_popup">';
-						sub += '		<a class="metro_half_popup_link" href="'+url+'" id="urls'+i+'">'+title+'</a>';
-						sub += '	</div>';
-						sub += '</li>';
-
-						if(flagCnt%2==0){ //작게한 그 다음것도 작게 만들기
+						if(flagCnt%2==0){ //작게한 그 다음것도 작게 만들기  popup2
 							flag=true;
 							flagCnt++;
 							metro_cnt++;
-							console.log("non favicon cnt : "+metro_cnt);
-						}
-						else
+							sub += '<li style="width: 93px">';
+							sub += '	<div class="metro_half_background1 '+color[colorcnt%9]+'" id="metro_background_'+i+'">';
+							sub += ' 		<img src="../images/defalt-favicon.png" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
+							sub += ' 		<span>'+headText+'</span>';
+							sub += '	</div>';	//color값 처리
+							
+							sub += '	<div class="metro_half_popup">';
+							sub += '		<a class="metro_half_popup_link1" href="'+url+'" id="urls'+i+'">'+title+'</a>';
+							sub += '	</div>';
+							sub += '</li>';
+						}else{//popup1
 							flag=false;
-						
+							
+							sub += '<li style="width: 87px">';
+							sub += '	<div class="metro_half_background2 '+color[colorcnt%9]+'" id="metro_background_'+i+'">';
+							sub += ' 		<img src="../images/defalt-favicon.png" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
+							sub += ' 		<span>'+headText+'</span>';
+							sub += '	</div>';	//color값 처리
+							
+							sub += '	<div class="metro_half_popup">';
+							sub += '		<a class="metro_half_popup_link2" href="'+url+'" id="urls'+i+'">'+title+'</a>';
+							sub += '	</div>';
+							sub += '</li>';
+						}
 					}else{
 						sub += '<li>'
 						sub += '	<div class="metro_background '+color[colorcnt%9]+'" id="metro_background_'+i+'">';
