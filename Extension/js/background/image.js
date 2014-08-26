@@ -223,16 +223,17 @@ dotory.imageFiltering = function(content, url, title, favicon, keyword, index){
 	container = container.replace(table_regex, '');
 	
 	var imgs = $('<div>').append(container).find('img');
-	var srcs = new Array();
+	var srcs = new Array(), count = 0;
 	for(var i=0; i<imgs.length; i++){
 		var src = $(imgs[i]).attr('data-dotorysrc');		
 		if(src != null && src != '' && srcs.indexOf(src) == -1){
 			if(src.match(domain_regex)){
-				srcs[i] = src;
+				srcs[count] = src;
 			}else{ 
-				srcs[i] = dotory.absolute(url, src);
+				srcs[count] = dotory.absolute(url, src);
 			}
-			//console.log(srcs[i]);
+			//console.log('src_' + count + ' ' +srcs[count] + ' ' + srcs.indexOf(src) + ' ' + src.length);
+			count++;
 		}
 	}
 	
@@ -312,7 +313,7 @@ dotory.imageSearchCondition = function(srcs, visitPn){
 			}
 			
 		}).error(function() { 
-			console.log('Error Loading image '); 
+			console.log('Error Loading image ' + src); 
 		}).attr('src', src);
 	}
 };
