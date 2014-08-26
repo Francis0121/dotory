@@ -7,7 +7,7 @@ LI.dotory_history_head{ margin-left: -10px;}
 DIV.dotory_history_content{ width:600px; height: 300px; float:left; margin-top: 5px;}
 DIV.current_content{ width:405px; float:left; overflow-y: hidden; overflow-x: hidden; padding: 5px 0 0 10px; margin-left: 10px; height: 290px; }
 
-HEADER.current_content_header{ float:left; width: 380px; padding: 10px 0 10px 10px; }
+HEADER.current_content_header{ float:left; width: 380px; padding: 10px 0 7px 10px; margin-bottom: 15px; border-bottom: 1px solid #e5e5e5;}
 
 H2.page_head{ color:#000; font-weight: normal; font-size: 100%; float: left; margin-top: 5px; }
 H2.page_head>SPAN.text{ float: left; font-size: 93.75%; width: 100%; margin-bottom: 15px; color: #666;}
@@ -18,10 +18,10 @@ H2.page_head>SPAN.keyword_list>A.selected{ color: #000; }
 BUTTON.page_more_btn{ background: transparent; font-size: 75%; float: right; cursor: pointer; margin-right: 20px; color: #464646;}
 BUTTON.page_more_btn:HOVER{ color: #000;}
 
-UL.opened_page_list_all{ float: left; width: 100%; margin-top: 10px;}
-UL.opened_page_list_all>LI{float: left; width: 100px; }
+DIV.opened_page_list_all{ float: left; width: 100%; margin: 0 0 7px 4px;}
+DIV.opened_page_list_all>LABEL{float : left; font-size :87.5%; color: #434343; margin: 5px 0 0 5px;}
 
-UL.opened_page_list_wrap{float: left; width: 100%; padding-top: 5px; }
+UL.opened_page_list_wrap{float: left; width: 100%; }
 UL.opened_page_list_wrap>LI{float: left; width: 375px; padding: 0 8px; line-height: 25px;}
 UL.opened_page_list_wrap>LI.check{background: #e0e0e0;}
 UL.opened_page_list_wrap>LI:HOVER{ background: #ccc;}

@@ -287,28 +287,36 @@ dotory.history.keywordEvent = function(){
 	});
 	
 	$('#all_checked').off('click').on('click', function(){
-		var lis = $('.opened_page_list_wrap').find('li');
-		
-		for(var i=0; i<lis.length; i++){
-			var li = lis[i],
-				checkbox = $(li).find('input[type=checkbox]');
-			checkbox.attr('checked', 'checked');
-			checkbox.parent('li').addClass('check');
+		var thiz = $(this);
+		if(thiz.attr('data-checked') == 'true'){
+			var lis = $('.opened_page_list_wrap').find('li');
+			
+			for(var i=0; i<lis.length; i++){
+				var li = lis[i],
+					checkbox = $(li).find('input[type=checkbox]');
+				checkbox.removeAttr('checked');
+				checkbox.parent('li').removeClass('check');
+				$('.keyword_total>a').removeClass('selected');
+				$('.more_keyword>a').removeClass('selected');
+			}
+			thiz.removeAttr('data-checked');
+			thiz.addClass('btn_check_box_not_checked').removeClass('btn_check_box_checked');
+		}else{
+			var lis = $('.opened_page_list_wrap').find('li');
+			
+			for(var i=0; i<lis.length; i++){
+				var li = lis[i],
+					checkbox = $(li).find('input[type=checkbox]');
+				checkbox.attr('checked', 'checked');
+				checkbox.parent('li').addClass('check');
+				$('.keyword_total>a').removeClass('selected');
+				$('.more_keyword>a').removeClass('selected');
+			}
+			thiz.attr('data-checked', 'true');
+			thiz.addClass('btn_check_box_checked').removeClass('btn_check_box_not_checked');
 		}
 	});
 	
-	$('#all_unchecked').off('click').on('click', function(){
-		var lis = $('.opened_page_list_wrap').find('li');
-		
-		for(var i=0; i<lis.length; i++){
-			var li = lis[i],
-				checkbox = $(li).find('input[type=checkbox]');
-			checkbox.removeAttr('checked');
-			checkbox.parent('li').removeClass('check');
-			$('.keyword_total>a').removeClass('selected');
-			$('.more_keyword>a').removeClass('selected');
-		}
-	});
 };
 
 dotory.history.makeDateHtml = function(dates){

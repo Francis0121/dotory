@@ -41,3 +41,7 @@ BUTTON.btn_grey_cascade:HOVER{ background: #7f9293;}
 BUTTON#history_tab_open{ margin: 5px 5px 5px 20px;}
 BUTTON#history_tab_open:ACTIVE { margin-top: 6px;}
 
+BUTTON.btn_check_box{ width: 19px; height: 19px; float: left; cursor: pointer; text-indent: -9999px; border-radius: 2px;}
+BUTTON.btn_check_box_not_checked{ border: 1px solid #98a8a9; background: #f7f7f7 url("../images/btn_check_box.png") -2px 0 no-repeat; }
+BUTTON.btn_check_box_not_checked:HOVER{ background: #ccd3dc url("../images/btn_check_box.png") -2px -20px no-repeat;}
+BUTTON.btn_check_box_checked{ border: 1px solid #566c88; background: #67809f url("../images/btn_check_box.png") -2px -20px no-repeat; }
