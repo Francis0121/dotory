@@ -65,7 +65,7 @@ public class ParsingController {
 		try{
 			map = parsingService.insertAnalysisData(parsing);
 	
-			if(parsing.getFrameSrcs() != null && parsing.getFrameSrcs().size() != 0){
+			if(parsing.getIsFrame()){
 				ThreadPoolTaskExecutor taskExecutor = (ThreadPoolTaskExecutor) appContext.getBean("taskExecutor");
 				ParsingThread parsingThread = (ParsingThread) appContext.getBean("parsingThread");
 				parsingThread.setParsing(parsing);    

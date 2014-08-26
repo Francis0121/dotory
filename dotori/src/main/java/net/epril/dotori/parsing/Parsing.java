@@ -72,13 +72,14 @@ public class Parsing {
 	private String keyword;
 
 	/**
-	 * Frame Url
+	 * Is Frame??
 	 */
-	private List<String> frameSrcs;
+	private Boolean isFrame;
 
 	public Parsing() {
 		super();
 		this.userPn = 1;
+		this.isFrame = false;
 	}
 
 	public Integer getCount() {
@@ -93,12 +94,12 @@ public class Parsing {
 		return favicon;
 	}
 
-	public List<String> getFrameSrcs() {
-		return frameSrcs;
-	}
-
 	public String getHtml() {
 		return html;
+	}
+
+	public Boolean getIsFrame() {
+		return isFrame;
 	}
 
 	public String getKeyword() {
@@ -145,12 +146,12 @@ public class Parsing {
 		this.favicon = favicon;
 	}
 
-	public void setFrameSrcs(List<String> frameSrcs) {
-		this.frameSrcs = frameSrcs;
-	}
-
 	public void setHtml(String html) {
 		this.html = html;
+	}
+
+	public void setIsFrame(Boolean isFrame) {
+		this.isFrame = isFrame;
 	}
 
 	public void setKeyword(String keyword) {
@@ -191,7 +192,7 @@ public class Parsing {
 				+ urlPn + ", userPn=" + userPn + ", url=" + url + ", domain="
 				+ domain + ", title=" + title + ", html=" + html + ", count="
 				+ count + ", srcs=" + srcs + ", favicon=" + favicon
-				+ ", keyword=" + keyword + ", frameSrcs=" + frameSrcs + "]";
+				+ ", keyword=" + keyword + ", isFrame=" + isFrame + "]";
 	}
 
 }

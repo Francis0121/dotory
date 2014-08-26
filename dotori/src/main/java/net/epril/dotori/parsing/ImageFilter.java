@@ -189,6 +189,9 @@ public class ImageFilter implements Filter{
         for(int i = 0; i < img.getHeight(); i++){
             for(int j = 0; j < img.getWidth(); j++){
                 rgb = getPixelData(img, i, j);
+                if(rgb == null){
+                	continue;
+                }
                 hsl = fromRgbToHsl(rgb);
                 int color = fromHslToColor(hsl[0], hsl[1], hsl[2]);
                 colors[color]+=1;
@@ -208,13 +211,18 @@ public class ImageFilter implements Filter{
 	}
 			
 	private int[] getPixelData(BufferedImage img, int x, int y) {
-		int argb = img.getRGB(x, y);
+		int argb;
+		try{
+			argb = img.getRGB(x, y);
+		}catch(Exception e){
+			return null;
+		}
 		int rgb[] = new int[] {
 		    (argb >> 16) & 0xff, //red
 		    (argb >>  8) & 0xff, //green
 		    (argb      ) & 0xff  //blue
 		};
-		logger.debug("rgb: " + rgb[0] + " " + rgb[1] + " " + rgb[2]);
+		//logger.debug("rgb: " + rgb[0] + " " + rgb[1] + " " + rgb[2]);
 		return rgb;
 	}
 	
@@ -268,7 +276,8 @@ public class ImageFilter implements Filter{
 	public Map<String, Object> frameFiltering(Parsing parsing)
 			throws Exception {
 		List<Document> documents = new ArrayList<Document>();
-		List<String> frameSrcs = parsing.getFrameSrcs();
+		List<String> frameSrcs = new ArrayList<String>();
+		frameSrcs.add(parsing.getUrl());
 		while(true){
 			List<String> newFrameSrcs = new ArrayList<String>();
 			Document document;
@@ -297,7 +306,7 @@ public class ImageFilter implements Filter{
 						Pattern srcPattern = Pattern.compile("src=");
 						Matcher srcMatcher = srcPattern.matcher(strTemp);
 						if(srcMatcher.find()){
-							String newFrameSrc = strTemp.replace("src=", "").replace("\"", "");
+							String newFrameSrc = strTemp.replace("src=", "").replace("\"", "").replace("&amp;", "&");
 							if(!frameSrc.contains(newFrameSrc)){
 								logger.debug("Frame src : " + newFrameSrc);
 								newFrameSrcs.add(newFrameSrc);
