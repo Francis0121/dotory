@@ -17,11 +17,8 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 		{ code : 'chrome.extension.sendRequest( { content: document.body.innerHTML}, function(response) { console.log("success"); });' }, 
 		function() { 
 //			console.log('Send Request done'); 
-			
 		}
-		
 	);
-    
 });
 
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
