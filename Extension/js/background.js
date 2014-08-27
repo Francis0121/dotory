@@ -22,6 +22,10 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 });
 
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+	if(dotory.user == null || dotory.user == undefined || dotory.user.pn == null || dotory.user.pn == undefined || dotory.user.pn == '' || dotory.user.pn == '0'){
+		getUserInfo(false);
+	}
+	
 	var keyword = dotory.queryMatch(sender.tab.url,sender.tab.title);
 	var stringKeyword = '';
 	if(keyword != undefined && keyword != null && keyword.keyword != undefined){
