@@ -53,16 +53,16 @@ DIV.metro_half_background2>SPAN{width:80px; padding:0 5px 5px 5px; text-align: l
 DIV.metro_background{ width: 180px; height: 100px; float: left; }
 DIV.metro_background>IMG{ height: 64px; margin-left: 58px; margin-top: 17px}
 DIV.metro_background>SPAN{ width: 150px; padding: 0 5px 5px 5px; text-align: left; float: left; font-size: 62.5%; color: #fff; }
-DIV.metro_color_blue{ background: #4b8df8;}
-DIV.metro_color_green{ background: green;}
+DIV.metro_color_blue{ background: #2b59a6;}
+DIV.metro_color_green{ background: #008000;}
 /* linear-gradient(135deg, rgba(99,177,65,1) 1%,rgba(79,138,51,0.82) 47%,rgba(89,158,58,0.78) 56%,rgba(112,201,73,0.78) 76%,rgba(129,231,85,0.78) 100%); W3C  */
-DIV.metro_color_orange{ background: #d99824; }
+DIV.metro_color_orange{ background: #f96908; }
 DIV.metro_color_red{ background: #cc0000; }
-DIV.metro_color_purple{ background: #9ca3b5; } 
-DIV.metro_color_grayBlue{ background: #50a8ac; }
+DIV.metro_color_purple{ background: #924190; } 
+DIV.metro_color_grayBlue{ background: #00b4c2; }
 DIV.metro_color_yellowOrange{ background: #ffd966; }
-DIV.metro_color_gray{ background: #999999; }
-DIV.metro_color_softGray{ background: #cccccc; }
+DIV.metro_color_gray{ background: #6f787f; }
+DIV.metro_color_softGray{ background: #ddd9d0; }
 DIV.metro_color_white{ background: #eeeeee; }
 DIV.metro_color_popup{ background: #262626; }
 DIV.metro_color_redGra{background: linear-gradient(to bottom, rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%);}

@@ -117,18 +117,25 @@ dotory.metro.pageLoad=function(){
 					title=visits[i].title,
 					keyword=visits[i].keyword,
 					domain=visits[i].domain,
-					favicon=visits[i].favicon;
+					favicon=visits[i].favicon,
+					domainSplit = 'a';
 				
+				console.log(initial);
 				var headText = '';
+				
+				domainSplit = domain.replace(/http:\/\//, '');
+				domainSplit = domainSplit.replace(/https:\/\//, '');
+				domainSplit = domainSplit.replace(/\//, '');
+				domainSplit = domainSplit.replace(/(\.co)?\.[\w]*$/, '');
+				domainSplit = domainSplit.replace(/www./, '');
+				
 				if(keyword == null || keyword == undefined || keyword == ''){
-					headText = domain.replace(/http:\/\//, '');
-					headText = headText.replace(/https:\/\//, '');
-					headText = headText.replace(/\//, '');
-					headText = headText.replace(/(\.co)?\.[\w]*$/, '');
-					headText = headText.replace(/www./, '');
+					headText = domainSplit;
 				}else{
 					headText = keyword;
 				}
+				
+				var initial=domainSplit[0].toLowerCase();
 				
 				sendUrl[i]=url;
 				console.log(title);
@@ -228,7 +235,7 @@ dotory.metro.pageLoad=function(){
 //							console.log("case4 : no favicon, left");
 							sub += '<li style="width: 93px">';
 							sub += '	<div class="metro_half_background'+set+ ' '+color[colorcnt%9]+'" id="metro_background_'+i+'">';
-							sub += ' 		<img src="../images/defalt-favicon.png" />';
+							sub += ' 		<img src="../images/alpabat/'+initial+'.png" />';
 							sub += ' 		<span>'+headText+'</span>';
 							sub += '	</div>';	//color값 처리
 							
@@ -243,7 +250,7 @@ dotory.metro.pageLoad=function(){
 							
 							sub += '<li style="width: 87px">';
 							sub += '	<div class="metro_half_background'+set+ ' '+color[colorcnt%9]+'" id="metro_background_'+i+'">';
-							sub += ' 		<img src="../images/defalt-favicon.png" />';
+							sub += ' 		<img src="../images/alpabat/'+initial+'.png" />';
 							sub += ' 		<span>'+headText+'</span>';
 							sub += '	</div>';	//color값 처리
 							
@@ -256,7 +263,7 @@ dotory.metro.pageLoad=function(){
 //						console.log("case6 : no favicon, normal");
 						sub += '<li>'
 						sub += '	<div class="metro_background '+color[colorcnt%9]+'" id="metro_background_'+i+'">';
-						sub += ' 		<img src="../images/defalt-favicon.png" />';
+						sub += ' 		<img src="../images/alpabat/'+initial+'.png" />';
 						sub += ' 		<span>'+headText+'</span>';
 						sub += '	</div>';		//color값 처리	
 						
