@@ -63,7 +63,7 @@ dotory.image.binding = function(){
 					for(var i=0; i<images.length; i++){
 						var image = images[i];
 						var html = 	'<li>';
-							html +=	'	<a href="'+image.link+'">';
+							html +=	'	<a href="'+image.link+'" class="url_image_link" >';
 							html += '		<img src="'+image.url+'"/>';
 							html +=	'	</a>';
 							html += '</li>';	
@@ -77,8 +77,10 @@ dotory.image.binding = function(){
 				//$container.append(content).masonry('appended', content); 
 				$newElems.imagesLoaded(function(){
 					$('.history_images').append( $newElems ).masonry( 'appended', $newElems, true);
+					setTimeout('dotory.image.linkbinding()',0);
 				});
 				dotory.image.scrollingData = false;
+				
 			}
 	    );
 		
@@ -104,7 +106,6 @@ dotory.image.binding = function(){
 
 dotory.image.loading = function(){
 	var url = dotory.contextPath + '/image/list?page=1&userPn='+dotory.user.pn;
-	var sendUrl=new Array();
 	
 	$.getJSON(url, function(object){
 		var data = object.data,
@@ -115,32 +116,23 @@ dotory.image.loading = function(){
 		
 		if(object.code == 200){
 			for(var i=0; i<images.length; i++){
-				var image = images[i];
-				sendUrl[i]=image.link;
+				var image = images[i]
 				
 				var html = 	'<li>';
-					html +=	'	<a href="'+image.link+'" id="url'+i+'">';
+					html +=	'	<a href="'+image.link+'" class="url_image_link">';
 					html += '		<img src="'+image.url+'"/>';
 					html +=	'	</a>';
 					html += '</li>';	
 				dotory.image.container.append(html);
 			}
 		}
-		openImageUrl(sendUrl);
+		dotory.image.linkbinding();
 	});	
 };
 
-function openImageUrl(url){
-	var id=new Array();
-	for(var i=0;i<url.length;i++){
-		(function(){
-			id='url'+i;
-			var save=document.getElementById(id);
-			var loc=save.href;
-			save.onclick=function(){
-//				alert(loc);
-				chrome.tabs.create({url:loc});
-			};
-		})();
-	}
+dotory.image.linkbinding = function(){
+	$('.url_image_link').off('click').on('click', function(){
+		var thiz = $(this); 	
+		chrome.tabs.create( { url : thiz.attr('href') });
+	});
 };
