@@ -338,6 +338,17 @@ dotory.history.makeDateHtml = function(dates){
 		dateWrap.html('');
 	}
 	dateHtml = $(dateHtml.clone());
+	if(dates == null || dates == undefined || dates.length == 0){
+		var $object = dateHtml.find('.date');
+		$object.text('No data');
+		
+		dateWrap.append(dateHtml);
+		dateHtml = $(dateHtml.clone());
+	
+		dotory.history.dateEvent();
+		return;
+	}
+	
 	for (var i=0; i < dates.length; i++){			
 		var date = dates[i];
 			
