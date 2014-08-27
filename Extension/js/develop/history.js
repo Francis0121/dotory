@@ -22,6 +22,10 @@ dotory.history.binding = function(){
 		});
 	});
 	
+	$('#history_tab_open').on('click',function(){
+		dotory.history.tabOpen();
+	});
+	
 	dotory.history.total();
 	
 	$('.current_content').mCustomScrollbar({
@@ -42,22 +46,23 @@ dotory.history.binding = function(){
 	});
 };
 /********************탭열기***************************/
-dotory.history.tabOpen=function(keywords){
+dotory.history.tabOpen=function(){
 	var lis = $('.opened_page_list_wrap').find('li'),
 		urlArray=new Array();
 	
 	for(var i=0; i<lis.length; i++){
-		var li = lis[i],
-			keyword = keywords[i],
-			url = keyword.url,
-			checkbox = $(li).find('input[type=checkbox]');
-//			console.log("keyword : "+keyword);
+		var li = $(lis[i]),
+			checkbox = li.find('input[type=checkbox]');
+
 		if(checkbox.attr('checked')){
-			urlArray[urlArray.length]=url;			
+			var ahref = li.find('a.opend_page_link'),
+				url = ahref.attr('href');
+			urlArray.push(url);			
 		}
 	}
+	
 	if(urlArray.length>=3)
-		chrome.windows.create({url:urlArray,type:'normal'});
+		chrome.windows.create( {url:urlArray, type:'normal'});
 	else
 		for(var j=0;j<urlArray.length;j++)
 			chrome.tabs.create({url:urlArray[j]});
@@ -76,11 +81,6 @@ dotory.history.total = function(){
 			
 			dotory.history.historyFilter = data.historyFilter;
 			dotory.history.makeDateHtml(data.dates);
-
-
-			$('#history_tab_open').on('click',function(){
-				dotory.history.tabOpen(data.keywords);
-			});
 		}
 		
 	});
@@ -370,6 +370,7 @@ dotory.history.dateEvent = function(){
 		dotory.history.unchecked();
 		dotory.history.getKeyword(date);
 	});
+	
 };
 
 dotory.history.getKeyword = function(date){
