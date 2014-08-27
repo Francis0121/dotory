@@ -78,6 +78,14 @@ function fetchUserInfo(user_info){
 			}else if(dotory.type == dotory.types.web){
 				dotory.web.binding();
 			}
+			
+			if(dotory.isLogin){
+				dotory.isLogin = false;
+				for(var i=0; i<dotory.request_stack.length; i++){
+					var rs = dotory.request_stack[i];
+					dotory.afterLoginDo(rs.request, rs.sender, rs.sendResponse);
+				}
+			}
 		} 
 	});
 }

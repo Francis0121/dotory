@@ -21,11 +21,21 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 	);
 });
 
+dotory.request_stack = new Array();
+dotory.isLogin = false;
+
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 	if(dotory.user == null || dotory.user == undefined || dotory.user.pn == null || dotory.user.pn == undefined || dotory.user.pn == '' || dotory.user.pn == '0'){
 		getUserInfo(false);
-	}
+		dotory.request_stack.push({'request' : request, 'sender' : sender, 'sendResponse' : sendResponse});
+		dotory.isLogin = true;
+		return;
+	}	
 	
+	dotory.afterLoginDo(request, sender, sendResponse);
+});
+
+dotory.afterLoginDo = function(request, sender, sendResponse){
 	var keyword = dotory.queryMatch(sender.tab.url,sender.tab.title);
 	var stringKeyword = '';
 	if(keyword != undefined && keyword != null && keyword.keyword != undefined){
@@ -34,5 +44,5 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 		}
 	}
 	console.log('Keyword = [' + stringKeyword + '] ');
-	dotory.imageFiltering(request.content, sender.tab.url, sender.tab.title, sender.tab.favIconUrl,stringKeyword,keyword.index);
-});
+	dotory.imageFiltering(request.content, sender.tab.url, sender.tab.title, sender.tab.favIconUrl,stringKeyword,keyword.index);	
+};
