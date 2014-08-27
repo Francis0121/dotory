@@ -293,6 +293,13 @@ dotory.imageSearchCondition = function(srcs, visitPn){
 			} 
 			var max = colors.indexOf(Math.max.apply(Math, colors));
 //			console.log('Max : ' + max + ' ' +Math.max.apply(Math, colors));
+			var maxIndex = 0, maxValue = 0;
+			for(var i=1; i<colors.length; i++){
+				if(maxValue < colors[i]){
+					maxIndex = i;
+					maxValue = colors[i];
+				}
+			}
 			
 			var now = new Date();
 			var elapsed = Math.round((now - start)/600);
@@ -302,7 +309,7 @@ dotory.imageSearchCondition = function(srcs, visitPn){
 							'url'		:	thiz.src,
 							'width'		:	thiz.width,
 							'height'	:	thiz.height,
-							'color'		:	max	};
+							'color'		:	maxIndex	};
 			images.push(image);
 			
 			if(count == srcs.length){

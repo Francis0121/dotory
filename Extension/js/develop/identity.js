@@ -37,7 +37,6 @@ function xhrWithAuth(method, url, interactive, callback) {
 }
 
 function getUserInfo(interactive) {
-	dotory.loading.start(); // sing-in-start
 	xhrWithAuth('GET', 'https://www.googleapis.com/plus/v1/people/me', interactive, onUserInfoFetched);
 }
   // @corecode_end getProtectedData
@@ -62,6 +61,7 @@ function populateUserInfo(user_info) {
 }
 	
 function fetchUserInfo(user_info){
+	dotory.loading.start(); // sing-in-start
 	$('#user_name').text(user_info.displayName);
 	
 	var url = dotory.contextPath + '/signin?data='+user_info.id;
