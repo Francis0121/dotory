@@ -285,6 +285,7 @@ dotory.metro.pageLoad=function(){
 	});
 };
 
+dotory.metro.count = 0;
 dotory.metro.onloadImage = function(){
 	
 	$('.favion_onload').load(function() {
@@ -303,10 +304,20 @@ dotory.metro.onloadImage = function(){
 			var hsl = extraction.fromRgbToHsl(data[j+0], data[j+1], data[j+2]);
 			colors[extraction.fromHslToColor(hsl.hue, hsl.sat, hsl.lgt)]+=1;
 		} 
-		var max = colors.indexOf(Math.max.apply(Math, colors));
-
+		
+		var maxIndex = 0, maxValue = 0;
+		for(var i=1; i<colors.length; i++){
+			if(maxValue < colors[i]){
+				maxIndex = i;
+				maxValue = colors[i];
+			}
+		}
+		
 		var index = $(this).attr('data-index');
-		switch (max) {
+		console.log( dotory.metro.count++ + ' ' + $(thiz).attr('src'));
+		console.log( 'colors : ' + colors + ' index : ' + index + ' max : ' + maxIndex);
+		
+		switch (maxIndex) {
 		case 1: // ~ black
 			$('#metro_background_'+index).addClass('metro_color_gray');
 			break;
@@ -341,6 +352,7 @@ dotory.metro.onloadImage = function(){
 		
 	}).error(function() {  
 		// ~ Error Handler
+		console.log('Load Image Error');
 	});
 };
 

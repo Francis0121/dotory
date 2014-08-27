@@ -50,12 +50,12 @@ DIV.metro_half_background2>IMG{ height:32px; margin-left:28px; margin-top:34px}
 DIV.metro_half_background2>SPAN{width:80px; padding:0 5px 5px 5px; text-align: left; float: left; font-size: 62.5%; color: #fff; }
 /**********************************************************************************/
 
-/* background: url("../images/dog.jpg"); filter: blur(5px); ---- blur -----*/
 DIV.metro_background{ width: 180px; height: 100px; float: left; }
 DIV.metro_background>IMG{ height: 64px; margin-left: 58px; margin-top: 17px}
 DIV.metro_background>SPAN{ width: 150px; padding: 0 5px 5px 5px; text-align: left; float: left; font-size: 62.5%; color: #fff; }
-DIV.metro_color_blue{ background: linear-gradient(135deg, rgba(30,189,240,1) 0%,rgba(39,172,213,1) 48%,rgba(59,140,156,1) 100%); /* W3C */}
-DIV.metro_color_green{ background: linear-gradient(135deg, rgba(99,177,65,1) 1%,rgba(79,138,51,0.82) 47%,rgba(89,158,58,0.78) 56%,rgba(112,201,73,0.78) 76%,rgba(129,231,85,0.78) 100%); /* W3C */ }
+DIV.metro_color_blue{ background: #4b8df8;}
+DIV.metro_color_green{ background: green;}
+/* linear-gradient(135deg, rgba(99,177,65,1) 1%,rgba(79,138,51,0.82) 47%,rgba(89,158,58,0.78) 56%,rgba(112,201,73,0.78) 76%,rgba(129,231,85,0.78) 100%); W3C  */
 DIV.metro_color_orange{ background: #d99824; }
 DIV.metro_color_red{ background: #cc0000; }
 DIV.metro_color_purple{ background: #9ca3b5; } 
