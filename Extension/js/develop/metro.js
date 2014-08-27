@@ -162,13 +162,13 @@ dotory.metro.pageLoad=function(){
 				if(favicon != null && favicon != undefined && favicon != '' ){ //favicon 가져오기 
 					if(headText.length<=5 || flag==true){
 						var set=flagCnt%2+1;
-						console.log(set);
+//						console.log(set);
 						if(flagCnt%2==0){ //작게한 그 다음것도 작게 만들기   popup2
 							flag=true;
 							flagCnt++;
 							metro_cnt++;
 							
-							console.log("case1 : yes favicon, left");
+//							console.log("case1 : yes favicon, left");
 
 							sub += '<li style="width: 93px">';
 							sub += '	<div class="metro_half_background'+set+'" id="metro_background_'+i+'">';
@@ -183,7 +183,7 @@ dotory.metro.pageLoad=function(){
 						}else{ //popup1							
 							flag=false;
 							flagCnt++;
-							console.log("case2 : yes favicon, right");
+//							console.log("case2 : yes favicon, right");
 							
 							sub += '<li style="width: 87px">';
 							sub += '	<div class="metro_half_background'+set+'" id="metro_background_'+i+'">';
@@ -197,7 +197,7 @@ dotory.metro.pageLoad=function(){
 							sub += '</li>';
 						}							
 					}else{
-						console.log("case3 : yes favicon, normal");
+//						console.log("case3 : yes favicon, normal");
 						sub += '<li>'
 						sub += '	<div class="metro_background" id="metro_background_'+i+'">';
 						sub += '		<img src="'+favicon+'" title="Favicon" class="favion_onload" data-index="'+i+'"/>';
@@ -220,12 +220,12 @@ dotory.metro.pageLoad=function(){
 				else{	// favicon 없을 때
 					if(headText.length<=5 || flag==true){
 						var set=flagCnt%2+1;
-						console.log(set);
+//						console.log(set);
 						if(flagCnt%2==0){ //작게한 그 다음것도 작게 만들기  popup2
 							flag=true;
 							flagCnt++;
 							metro_cnt++;
-							console.log("case4 : no favicon, left");
+//							console.log("case4 : no favicon, left");
 							sub += '<li style="width: 93px">';
 							sub += '	<div class="metro_half_background'+set+ ' '+color[colorcnt%9]+'" id="metro_background_'+i+'">';
 							sub += ' 		<img src="../images/defalt-favicon.png" />';
@@ -239,7 +239,7 @@ dotory.metro.pageLoad=function(){
 						}else{//popup1
 							flag=false;
 							flagCnt++;
-							console.log("case5 : no favicon, right");
+//							console.log("case5 : no favicon, right");
 							
 							sub += '<li style="width: 87px">';
 							sub += '	<div class="metro_half_background'+set+ ' '+color[colorcnt%9]+'" id="metro_background_'+i+'">';
@@ -253,7 +253,7 @@ dotory.metro.pageLoad=function(){
 							sub += '</li>';
 						}
 					}else{
-						console.log("case6 : no favicon, normal");
+//						console.log("case6 : no favicon, normal");
 						sub += '<li>'
 						sub += '	<div class="metro_background '+color[colorcnt%9]+'" id="metro_background_'+i+'">';
 						sub += ' 		<img src="../images/defalt-favicon.png" />';
