@@ -434,5 +434,14 @@ dotory.makeImageRegex = function(){
 				srcs : regexSrcs
 			};
 		}
+		
+		if(dotory.isRegex){
+			dotory.isRegex = false;
+			for(var i=0; i<dotory.request_regex_stack.length; i++){
+				var rs = dotory.request_regex_stack[i];
+				dotory.afterLoginDo(rs.request, rs.sender, rs.sendResponse);
+				console.log('Make After Doing Regex ' + i);
+			}
+		}
 	});
 };

@@ -22,7 +22,9 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 });
 
 dotory.request_stack = new Array();
+dotory.request_regex_stack = new Array();
 dotory.isLogin = false;
+dotory.isRegex = false;
 
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 	if(dotory.user == null || dotory.user == undefined || dotory.user.pn == null || dotory.user.pn == undefined || dotory.user.pn == '' || dotory.user.pn == '0'){
@@ -30,7 +32,15 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 		dotory.request_stack.push({'request' : request, 'sender' : sender, 'sendResponse' : sendResponse});
 		dotory.isLogin = true;
 		return;
-	}	
+	}
+	
+	if(dotory.regex == null || dotory.regex == undefined ){
+		console.log('Error : Doesn`t make Image Regex');
+		dotory.request_regex_stack.push({'request' : request, 'sender' : sender, 'sendResponse' : sendResponse});
+		dotory.makeImageRegex();
+		dotory.isRegex = true;
+		return;
+	}
 	
 	dotory.afterLoginDo(request, sender, sendResponse);
 });
