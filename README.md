@@ -1,4 +1,1 @@
-dotori
-======
-
-SECMEM Mini Project
+dotory
